@@ -123,7 +123,7 @@ private extension RootViewController {
                 options.shouldProcessLazily = true
             }.parse(xmlString)
             let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
-            Logger.debug.message("\(stations)")
+            Logger.debug.message().object(stations)
         }
         catch {
             Logger.error.message("\(error as NSError)")
