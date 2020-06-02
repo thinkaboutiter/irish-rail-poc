@@ -9,6 +9,15 @@
           "revision": "98e0f489f498111d71b49c47e86e2701fec5296d",
           "version": "2.4.1"
         }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/thinkaboutiter/SWXMLHash",
+        "state": {
+          "branch": null,
+          "revision": "a4931e5c3bafbedeb1601d3bb76bbe835c6d475a",
+          "version": "5.0.1"
+        }
       }
     ]
   },
