@@ -118,6 +118,36 @@ private extension RootViewController {
     }
     
     func parseXmlString(_ xmlString: String) {
-        Logger.debug.message().object(xmlString)
+        do {
+            let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
+                options.shouldProcessLazily = true
+            }.parse(xmlString)
+            let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
+            Logger.debug.message("\(stations)")
+        }
+        catch {
+            Logger.error.message("\(error as NSError)")
+        }
+    }
+}
+
+import SWXMLHash
+
+struct Station: XMLIndexerDeserializable {
+    let desc: String
+    let alias: String?
+    let latitude: Double
+    let longitude: Double
+    let code: String
+    let id: Int
+    
+    static func deserialize(_ element: XMLIndexer) throws -> Station {
+        return try Station(
+            desc: element["StationDesc"].value(),
+            alias: element["StationAlias"].value(),
+            latitude: element["StationLatitude"].value(),
+            longitude: element["StationLongitude"].value(),
+            code: element["StationCode"].value(),
+            id: element["StationId"].value())
     }
 }
