@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
-		4F88AE332486D4C000CA20D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE322486D4C000CA20D7 /* SceneDelegate.swift */; };
-		4F88AE352486D4C000CA20D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE342486D4C000CA20D7 /* ViewController.swift */; };
-		4F88AE382486D4C000CA20D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE362486D4C000CA20D7 /* Main.storyboard */; };
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,9 +15,6 @@
 /* Begin PBXFileReference section */
 		4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "irish-rail-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F88AE302486D4C000CA20D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F88AE322486D4C000CA20D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4F88AE342486D4C000CA20D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4F88AE372486D4C000CA20D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F88AE3C2486D4C300CA20D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F88AE3E2486D4C300CA20D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +50,28 @@
 		4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */ = {
 			isa = PBXGroup;
 			children = (
-				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
-				4F88AE322486D4C000CA20D7 /* SceneDelegate.swift */,
-				4F88AE342486D4C000CA20D7 /* ViewController.swift */,
-				4F88AE362486D4C000CA20D7 /* Main.storyboard */,
+				4F88AE452486D5AD00CA20D7 /* source */,
 				4F88AE392486D4C300CA20D7 /* Assets.xcassets */,
-				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
-				4F88AE3E2486D4C300CA20D7 /* Info.plist */,
 			);
 			path = "irish-rail-poc";
+			sourceTree = "<group>";
+		};
+		4F88AE452486D5AD00CA20D7 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
+				4F88AE462486D5E400CA20D7 /* SupportFiles */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		4F88AE462486D5E400CA20D7 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE3E2486D4C300CA20D7 /* Info.plist */,
+				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +135,6 @@
 			files = (
 				4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */,
 				4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */,
-				4F88AE382486D4C000CA20D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,23 +165,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F88AE352486D4C000CA20D7 /* ViewController.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
-				4F88AE332486D4C000CA20D7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4F88AE362486D4C000CA20D7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F88AE372486D4C000CA20D7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -307,7 +303,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
-				INFOPLIST_FILE = "irish-rail-poc/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
-				INFOPLIST_FILE = "irish-rail-poc/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
