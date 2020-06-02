@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
+		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
+		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
+		4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */; };
+		4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE502486DB1F00CA20D7 /* RootModel.swift */; };
+		4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 4F88AE532486DB7400CA20D7 /* SimpleLogger */; };
+		4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE552486DBF600CA20D7 /* RootViewModel.swift */; };
+		4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE572486DC2100CA20D7 /* RootViewController.swift */; };
+		4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE582486DC2100CA20D7 /* RootViewController.xib */; };
+		4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "irish-rail-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F88AE302486D4C000CA20D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F88AE3C2486D4C300CA20D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F88AE3E2486D4C300CA20D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4F88AE502486DB1F00CA20D7 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
+		4F88AE552486DBF600CA20D7 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		4F88AE572486DC2100CA20D7 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		4F88AE582486DC2100CA20D7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F88AE2A2486D4C000CA20D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F88AE242486D4C000CA20D7 = {
+			isa = PBXGroup;
+			children = (
+				4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */,
+				4F88AE2E2486D4C000CA20D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F88AE2E2486D4C000CA20D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE452486D5AD00CA20D7 /* source */,
+				4F88AE392486D4C300CA20D7 /* Assets.xcassets */,
+			);
+			path = "irish-rail-poc";
+			sourceTree = "<group>";
+		};
+		4F88AE452486D5AD00CA20D7 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
+				4F88AE462486D5E400CA20D7 /* SupportFiles */,
+				4F88AE472486D9BC00CA20D7 /* ui-layer */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		4F88AE462486D5E400CA20D7 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE3E2486D4C300CA20D7 /* Info.plist */,
+				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		4F88AE472486D9BC00CA20D7 /* ui-layer */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE482486D9EA00CA20D7 /* _ui-base-classes */,
+				4F88AE4B2486DA8B00CA20D7 /* screens */,
+			);
+			path = "ui-layer";
+			sourceTree = "<group>";
+		};
+		4F88AE482486D9EA00CA20D7 /* _ui-base-classes */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */,
+			);
+			path = "_ui-base-classes";
+			sourceTree = "<group>";
+		};
+		4F88AE4B2486DA8B00CA20D7 /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE4C2486DA9F00CA20D7 /* root */,
+			);
+			path = screens;
+			sourceTree = "<group>";
+		};
+		4F88AE4C2486DA9F00CA20D7 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE4D2486DAAA00CA20D7 /* model */,
+				4F88AE4E2486DAAF00CA20D7 /* view */,
+				4F88AE4F2486DAB400CA20D7 /* view-model */,
+				4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */,
+			);
+			path = root;
+			sourceTree = "<group>";
+		};
+		4F88AE4D2486DAAA00CA20D7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE502486DB1F00CA20D7 /* RootModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		4F88AE4E2486DAAF00CA20D7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE572486DC2100CA20D7 /* RootViewController.swift */,
+				4F88AE582486DC2100CA20D7 /* RootViewController.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4F88AE4F2486DAB400CA20D7 /* view-model */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE552486DBF600CA20D7 /* RootViewModel.swift */,
+			);
+			path = "view-model";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F88AE412486D4C300CA20D7 /* Build configuration list for PBXNativeTarget "irish-rail-poc" */;
+			buildPhases = (
+				4F88AE292486D4C000CA20D7 /* Sources */,
+				4F88AE2A2486D4C000CA20D7 /* Frameworks */,
+				4F88AE2B2486D4C000CA20D7 /* Resources */,
+				4F88AE442486D55F00CA20D7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "irish-rail-poc";
+			packageProductDependencies = (
+				4F88AE532486DB7400CA20D7 /* SimpleLogger */,
+			);
+			productName = "irish-rail-poc";
+			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F88AE252486D4C000CA20D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "boyankov@yahoo.com";
+				TargetAttributes = {
+					4F88AE2C2486D4C000CA20D7 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 4F88AE282486D4C000CA20D7 /* Build configuration list for PBXProject "irish-rail-poc" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F88AE242486D4C000CA20D7;
+			packageReferences = (
+				4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */,
+			);
+			productRefGroup = 4F88AE2E2486D4C000CA20D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F88AE2B2486D4C000CA20D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */,
+				4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */,
+				4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F88AE442486D55F00CA20D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F88AE292486D4C000CA20D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
+				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
+				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
+				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
+				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
+				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F88AE3C2486D4C300CA20D7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F88AE3F2486D4C300CA20D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4F88AE402486D4C300CA20D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F88AE422486D4C300CA20D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J48Y9TAH25;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.boyankov.irish-rail-poc";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F88AE432486D4C300CA20D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J48Y9TAH25;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.boyankov.irish-rail-poc";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F88AE282486D4C000CA20D7 /* Build configuration list for PBXProject "irish-rail-poc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F88AE3F2486D4C300CA20D7 /* Debug */,
+				4F88AE402486D4C300CA20D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F88AE412486D4C300CA20D7 /* Build configuration list for PBXNativeTarget "irish-rail-poc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F88AE422486D4C300CA20D7 /* Debug */,
+				4F88AE432486D4C300CA20D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thinkaboutiter/SimpleLogger.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F88AE532486DB7400CA20D7 /* SimpleLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */;
+			productName = SimpleLogger;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4F88AE252486D4C000CA20D7 /* Project object */;
+}
