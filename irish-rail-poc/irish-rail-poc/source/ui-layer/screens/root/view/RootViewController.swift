@@ -48,9 +48,76 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
+        self.poc_fetchStations()
     }
     
     private func configureUi() {
         self.titleLabel.text = "\(String(describing: RootViewController.self))"
+    }
+}
+
+// MARK: - XML Parsing Poc
+private extension RootViewController {
+    
+    enum Constants {
+        enum APIEndpointUrlString {
+            static let getAllStations: String = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
+        }
+        static let timeoutInterval: TimeInterval = 30.0
+    }
+    
+    func poc_fetchStations() {
+        let session: URLSession = URLSession(configuration: .default)
+        let urlString: String = Constants.APIEndpointUrlString.getAllStations
+        guard let url: URL = URL(string: urlString) else {
+            let message: String = "Unable to create valid \(String(describing: URL.self)) object from url_string=\(urlString)!"
+            Logger.error.message(message)
+            return
+        }
+        var request: URLRequest = URLRequest(url: url,
+                                             cachePolicy: .reloadIgnoringCacheData,
+                                             timeoutInterval: Constants.timeoutInterval)
+        request.httpMethod = "GET"
+        let task: URLSessionDataTask = session
+            .dataTask(with: request)
+            { (data: Data?, response: URLResponse?, error: Error?) in
+                self.handle(data, response: response, error: error)
+        }
+        task.resume()
+    }
+    
+    func handle(_ data: Data?, response: URLResponse?, error: Error?) {
+        guard error == nil else {
+            let message: String = "Error receiving response!"
+            Logger.error.message(message).object(error! as NSError)
+            return
+        }
+        guard let httpResponse: HTTPURLResponse = response as? HTTPURLResponse else {
+            let message: String = "Unable to obtain \(String(describing: HTTPURLResponse.self)) object!"
+            Logger.error.message(message)
+            return
+        }
+        let statusCode: Int = httpResponse.statusCode
+        let successRange: Range<Int> = 200..<300
+        guard successRange ~= statusCode else {
+            let message: String = "Wrong status_code=\(statusCode)!"
+            Logger.error.message(message)
+            return
+        }
+        guard let data: Data = data else {
+            let message: String = "Unable to obtain response \(String(describing: Data.self)) object!"
+            Logger.error.message(message)
+            return
+        }
+        guard let xmlString: String = String(data: data, encoding: .utf8) else {
+            let message: String = "Unable to parse received data as \(String(describing: String.self)) object!"
+            Logger.error.message(message)
+            return
+        }
+        self.parseXmlString(xmlString)
+    }
+    
+    func parseXmlString(_ xmlString: String) {
+        Logger.debug.message().object(xmlString)
     }
 }
