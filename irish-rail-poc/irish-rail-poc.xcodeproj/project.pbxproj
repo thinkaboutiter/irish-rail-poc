@@ -10,6 +10,7 @@
 		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
+		4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F88AE3C2486D4C300CA20D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F88AE3E2486D4C300CA20D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		4F88AE452486D5AD00CA20D7 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				4F88AE472486D9BC00CA20D7 /* ui-layer */,
 				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
 				4F88AE462486D5E400CA20D7 /* SupportFiles */,
 			);
@@ -72,6 +75,22 @@
 				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		4F88AE472486D9BC00CA20D7 /* ui-layer */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE482486D9EA00CA20D7 /* _ui-base-classes */,
+			);
+			path = "ui-layer";
+			sourceTree = "<group>";
+		};
+		4F88AE482486D9EA00CA20D7 /* _ui-base-classes */ = {
+			isa = PBXGroup;
+			children = (
+				4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */,
+			);
+			path = "_ui-base-classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
+				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
