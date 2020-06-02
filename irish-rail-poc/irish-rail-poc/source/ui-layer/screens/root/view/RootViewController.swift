@@ -126,7 +126,7 @@ private extension RootViewController {
             Logger.debug.message().object(stations)
         }
         catch {
-            Logger.error.message("\(error as NSError)")
+            Logger.error.message().object(error as NSError)
         }
     }
 }
