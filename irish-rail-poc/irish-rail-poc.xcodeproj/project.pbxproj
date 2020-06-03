@@ -27,6 +27,7 @@
 		4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97F248831820040C1BD /* WebServiceConstants.swift */; };
 		4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98224883C9B0040C1BD /* AppConstants.swift */; };
 		4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98424883CA70040C1BD /* ErrorCreator.swift */; };
+		4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		4FB5E97F248831820040C1BD /* WebServiceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceConstants.swift; sourceTree = "<group>"; };
 		4FB5E98224883C9B0040C1BD /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4FB5E98424883CA70040C1BD /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
+		4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllStationsWebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		4FB5E97924882D1B0040C1BD /* networking */ = {
 			isa = PBXGroup;
 			children = (
+				4FB5E98C248845050040C1BD /* web-services */,
 				4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */,
 				4FB5E97B24882E170040C1BD /* WebService.swift */,
 				4FB5E97F248831820040C1BD /* WebServiceConstants.swift */,
@@ -208,6 +211,14 @@
 				4FB5E98424883CA70040C1BD /* ErrorCreator.swift */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		4FB5E98C248845050040C1BD /* web-services */ = {
+			isa = PBXGroup;
+			children = (
+				4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */,
+			);
+			path = "web-services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
+				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
 				4FB5E97C24882E170040C1BD /* WebService.swift in Sources */,
