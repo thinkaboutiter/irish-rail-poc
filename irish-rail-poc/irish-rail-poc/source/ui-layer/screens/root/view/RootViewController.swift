@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleLogger
+import SWXMLHash
 
 /// APIs for `DependecyContainer` to expose.
 protocol RootViewControllerFactory {
@@ -48,7 +49,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
-        self.poc_fetchStations()
+        self.poc_getAllStations()
     }
     
     private func configureUi() {
@@ -56,19 +57,11 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     }
 }
 
-// MARK: - XML Parsing Poc
+// MARK: - get all stations
 private extension RootViewController {
     
-    enum Constants {
-        enum APIEndpointUrlString {
-            static let getAllStations: String = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
-        }
-        static let timeoutInterval: TimeInterval = 30.0
-    }
-    
-    func poc_fetchStations() {
-        let session: URLSession = URLSession(configuration: .default)
-        let urlString: String = Constants.APIEndpointUrlString.getAllStations
+    func poc_getAllStations() {
+        let urlString: String = Constants.ApiUrlString.getAllStations
         guard let url: URL = URL(string: urlString) else {
             let message: String = "Unable to create valid \(String(describing: URL.self)) object from url_string=\(urlString)!"
             Logger.error.message(message)
@@ -76,14 +69,50 @@ private extension RootViewController {
         }
         var request: URLRequest = URLRequest(url: url,
                                              cachePolicy: .reloadIgnoringCacheData,
-                                             timeoutInterval: Constants.timeoutInterval)
+                                             timeoutInterval: Constants.requestTimeoutInterval)
         request.httpMethod = "GET"
-        let task: URLSessionDataTask = session
+        let task: URLSessionDataTask = Constants.session
             .dataTask(with: request)
             { (data: Data?, response: URLResponse?, error: Error?) in
                 self.handle(data, response: response, error: error)
         }
         task.resume()
+    }
+}
+
+// MARK: - XML Utils
+private extension RootViewController {
+    
+    enum Constants {
+        static let requestTimeoutInterval: TimeInterval = 30.0
+        static var session: URLSession {
+            return URLSession.shared
+        }
+        
+        enum ApiUrlString {
+            private static let base: String = "http://api.irishrail.ie/realtime/realtime.asmx"
+            
+            static var getAllStations: String {
+                return ApiUrlString.base + Endpoint.getAllStations
+            }
+            static var getStationDataByCode: String {
+                return ApiUrlString.base + Endpoint.getStationDataByCode
+            }
+            
+            private enum Endpoint {
+                static let getAllStations: String = "/getAllStationsXML"
+                static let getStationDataByCode: String = "/getStationDataByCodeXML"
+            }
+        }
+        
+        enum RequestParameters {
+            enum Key {
+                static let stationCode: String = "StationCode"
+            }
+            enum Value {
+                static let malahideCode: String = "mhide"
+            }
+        }        
     }
     
     func handle(_ data: Data?, response: URLResponse?, error: Error?) {
@@ -128,26 +157,5 @@ private extension RootViewController {
         catch {
             Logger.error.message().object(error as NSError)
         }
-    }
-}
-
-import SWXMLHash
-
-struct Station: XMLIndexerDeserializable {
-    let desc: String
-    let alias: String?
-    let latitude: Double
-    let longitude: Double
-    let code: String
-    let id: Int
-    
-    static func deserialize(_ element: XMLIndexer) throws -> Station {
-        return try Station(
-            desc: element["StationDesc"].value(),
-            alias: element["StationAlias"].value(),
-            latitude: element["StationLatitude"].value(),
-            longitude: element["StationLongitude"].value(),
-            code: element["StationCode"].value(),
-            id: element["StationId"].value())
     }
 }
