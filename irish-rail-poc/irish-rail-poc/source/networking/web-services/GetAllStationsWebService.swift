@@ -11,6 +11,7 @@ import SWXMLHash
 
 class GetAllStationsWebService: BaseWebService {
     
+    // MARK: - Fetching
     func getAllStations(success: @escaping (_ stations: [Station]) -> Void,
                         failure: @escaping (_ error: Swift.Error) -> Void)
     {
@@ -27,6 +28,7 @@ class GetAllStationsWebService: BaseWebService {
         }
     }
     
+    // MARK: - Parsing
     private func stations(from xmlString: String) throws -> [Station] {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
