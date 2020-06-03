@@ -20,6 +20,7 @@
 		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
+		4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97424881C550040C1BD /* TrainMovement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
+		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				4FB5E970248782F00040C1BD /* Station.swift */,
 				4FB5E97224878BBF0040C1BD /* StationData.swift */,
+				4FB5E97424881C550040C1BD /* TrainMovement.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */,
+				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
