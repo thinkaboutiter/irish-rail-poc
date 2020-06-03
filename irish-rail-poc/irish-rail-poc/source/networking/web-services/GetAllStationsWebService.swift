@@ -8,7 +8,6 @@
 
 import Foundation
 import SWXMLHash
-import SimpleLogger
 
 class GetAllStationsWebService: BaseWebService {
     
