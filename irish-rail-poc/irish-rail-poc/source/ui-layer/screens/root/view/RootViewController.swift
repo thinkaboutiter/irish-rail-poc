@@ -20,6 +20,9 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     // MARK: - Properties
     private let viewModel: RootViewModel
     @IBOutlet private weak var titleLabel: UILabel!
+    private lazy var getAllStationsWebService: GetAllStationsWebService = {
+        return GetAllStationsWebService(endpoint: WebServiceConstants.Endpoint.getAllStations)
+    }()
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -49,9 +52,26 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
+        self.dev_exerciseWebServices()
     }
     
     private func configureUi() {
         self.titleLabel.text = "\(String(describing: RootViewController.self))"
+    }
+}
+
+// MARK: - Exercising WebServices
+private extension RootViewController {
+    
+    func dev_exerciseWebServices() {
+        self.dev_exerciseGetAllStationsWebService()
+    }
+    
+    func dev_exerciseGetAllStationsWebService() {
+        self.getAllStationsWebService.getAllStations(success: { (stations: [Station]) in
+            Logger.success.message().object(stations)
+        }) { (error) in
+            Logger.error.message().object(error as NSError)
+        }
     }
 }
