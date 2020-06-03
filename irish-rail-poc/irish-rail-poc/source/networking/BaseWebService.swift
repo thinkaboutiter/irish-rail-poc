@@ -34,11 +34,11 @@ class BaseWebService: WebService {
         return result
     }
     
-    func instanceEndpoint() -> String {
+    final func instanceEndpoint() -> String {
         return self.endpoint
     }
     
-    func serviceEndpoint() -> String {
+    final func serviceEndpoint() -> String {
         let baseEndpoint: String = type(of: self).baseEndpoint()
         let instanceEndpoint: String = self.instanceEndpoint()
         let result: String = "\(baseEndpoint)\(instanceEndpoint)"
