@@ -49,7 +49,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
-        self.poc_fetchStations()
+        self.poc_getAllStations()
     }
     
     private func configureUi() {
@@ -57,17 +57,10 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     }
 }
 
-// MARK: - XML Parsing Poc
+// MARK: - get all stations
 private extension RootViewController {
     
-    enum Constants {
-        enum APIEndpointUrlString {
-            static let getAllStations: String = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
-        }
-        static let timeoutInterval: TimeInterval = 30.0
-    }
-    
-    func poc_fetchStations() {
+    func poc_getAllStations() {
         let session: URLSession = URLSession(configuration: .default)
         let urlString: String = Constants.APIEndpointUrlString.getAllStations
         guard let url: URL = URL(string: urlString) else {
@@ -85,6 +78,17 @@ private extension RootViewController {
                 self.handle(data, response: response, error: error)
         }
         task.resume()
+    }
+}
+
+// MARK: - XML Utils
+private extension RootViewController {
+    
+    enum Constants {
+        enum APIEndpointUrlString {
+            static let getAllStations: String = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
+        }
+        static let timeoutInterval: TimeInterval = 30.0
     }
     
     func handle(_ data: Data?, response: URLResponse?, error: Error?) {
