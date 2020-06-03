@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleLogger
+import SWXMLHash
 
 /// APIs for `DependecyContainer` to expose.
 protocol RootViewControllerFactory {
@@ -128,26 +129,5 @@ private extension RootViewController {
         catch {
             Logger.error.message().object(error as NSError)
         }
-    }
-}
-
-import SWXMLHash
-
-struct Station: XMLIndexerDeserializable {
-    let desc: String
-    let alias: String?
-    let latitude: Double
-    let longitude: Double
-    let code: String
-    let id: Int
-    
-    static func deserialize(_ element: XMLIndexer) throws -> Station {
-        return try Station(
-            desc: element["StationDesc"].value(),
-            alias: element["StationAlias"].value(),
-            latitude: element["StationLatitude"].value(),
-            longitude: element["StationLongitude"].value(),
-            code: element["StationCode"].value(),
-            id: element["StationId"].value())
     }
 }
