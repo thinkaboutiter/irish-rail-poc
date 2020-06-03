@@ -21,6 +21,7 @@
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
 		4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97424881C550040C1BD /* TrainMovement.swift */; };
+		4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E97724882C9A0040C1BD /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */,
 				4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */,
 				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
 			);
@@ -197,6 +199,7 @@
 			packageProductDependencies = (
 				4F88AE532486DB7400CA20D7 /* SimpleLogger */,
 				4FB5E96C2486E2720040C1BD /* SWXMLHash */,
+				4FB5E97724882C9A0040C1BD /* Alamofire */,
 			);
 			productName = "irish-rail-poc";
 			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
@@ -229,6 +232,7 @@
 			packageReferences = (
 				4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */,
 				4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4F88AE2E2486D4C000CA20D7 /* Products */;
 			projectDirPath = "";
@@ -495,6 +499,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thinkaboutiter/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -507,6 +519,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
+		};
+		4FB5E97724882C9A0040C1BD /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
