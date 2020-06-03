@@ -29,6 +29,7 @@
 		4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98224883C9B0040C1BD /* AppConstants.swift */; };
 		4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98424883CA70040C1BD /* ErrorCreator.swift */; };
 		4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */; };
+		4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		4FB5E98224883C9B0040C1BD /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4FB5E98424883CA70040C1BD /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
 		4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllStationsWebService.swift; sourceTree = "<group>"; };
+		4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTrainMovementsWebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 			children = (
 				4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */,
 				4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */,
+				4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */,
 			);
 			path = "web-services";
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
 				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
+				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
 				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
