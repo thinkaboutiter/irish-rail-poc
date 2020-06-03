@@ -37,17 +37,19 @@ struct TrainMovement: XMLIndexerDeserializable {
     let locationCode: String
     let locationFullName: String
     let locationOrder: Int
-    let locationType: Int
+    let locationType: String
     let trainOrigin: String
     let trainDestination: String
     let scheduledArrival: String
     let scheduledDeparture: String
     let expectedArrival: String
     let expectedDeparture: String
-    let arrival: String
-    let departure: String
-    let autoArrival: Int
-    let autoDeparture: Int
+    
+    // Response is sometimes broken on these ones
+//    let arrival: String
+//    let departure: String
+//    let autoArrival: Int
+//    let autoDeparture: Int
     let stopType: String
     
     static func deserialize(_ element: XMLIndexer) throws -> TrainMovement {
@@ -64,10 +66,10 @@ struct TrainMovement: XMLIndexerDeserializable {
             scheduledDeparture: element["ScheduledDeparture"].value(),
             expectedArrival: element["ExpectedArrival"].value(),
             expectedDeparture: element["ExpectedDeparture"].value(),
-            arrival: element["Arrival"].value(),
-            departure: element["Departure"].value(),
-            autoArrival: element["AutoArrival"].value(),
-            autoDeparture: element["AutoDepart"].value(),
+//            arrival: element["Arrival"].value(),
+//            departure: element["Departure"].value(),
+//            autoArrival: element["AutoArrival"].value(),
+//            autoDeparture: element["AutoDepart"].value(),
             stopType: element["StopType"].value())
     }
 }
