@@ -20,17 +20,19 @@ class GetAllStationsWebService: BaseWebService {
     func getAllStations(success: @escaping (_ stations: [Station]) -> Void,
                         failure: @escaping (_ error: Swift.Error) -> Void)
     {
-        super.fetch(success: { (xmlString: String) in
-            do {
-                let result: [Station] = try self.stations(from: xmlString)
-                success(result)
-            }
-            catch {
+        super.fetch(
+            success: { (xmlString: String) in
+                do {
+                    let result: [Station] = try self.stations(from: xmlString)
+                    success(result)
+                }
+                catch {
+                    failure(error)
+                }
+        },
+            failure: { (error) in
                 failure(error)
-            }
-        }) { (error: Error) in
-            failure(error)
-        }
+        })
     }
     
     // MARK: - Parsing
