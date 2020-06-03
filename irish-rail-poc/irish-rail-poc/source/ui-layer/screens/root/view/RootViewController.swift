@@ -26,6 +26,9 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     private lazy var getStationDataByCodeWebService: GetStationDataByCodeWebService = {
         return GetStationDataByCodeWebService(stationCode: "mhide")
     }()
+    private lazy var getTrainMovementsWebService: GetTrainMovementsWebService = {
+        return GetTrainMovementsWebService(trainId: "e109", trainDate: "21 dec 2011")
+    }()
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -68,7 +71,8 @@ private extension RootViewController {
     
     func dev_exerciseWebServices() {
 //        self.dev_exerciseGetAllStationsWebService()
-        self.dev_exerciseGetStationDataByCodeWebService()
+//        self.dev_exerciseGetStationDataByCodeWebService()
+        self.dev_exerciseGetTrainMovementsWebService()
     }
     
     func dev_exerciseGetAllStationsWebService() {
@@ -82,6 +86,14 @@ private extension RootViewController {
     func dev_exerciseGetStationDataByCodeWebService() {
         self.getStationDataByCodeWebService.getStationData(success: { (stationData: [StationData]) in
             Logger.success.message().object(stationData)
+        }) { (error) in
+            Logger.error.message().object(error as NSError)
+        }
+    }
+    
+    func dev_exerciseGetTrainMovementsWebService() {
+        self.getTrainMovementsWebService.getTrainMovements(success: { (trainMovements: [TrainMovement]) in
+            Logger.success.message().object(trainMovements)
         }) { (error) in
             Logger.error.message().object(error as NSError)
         }
