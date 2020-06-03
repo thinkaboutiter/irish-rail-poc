@@ -61,7 +61,6 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
 private extension RootViewController {
     
     func poc_getAllStations() {
-        let session: URLSession = URLSession(configuration: .default)
         let urlString: String = Constants.ApiUrlString.getAllStations
         guard let url: URL = URL(string: urlString) else {
             let message: String = "Unable to create valid \(String(describing: URL.self)) object from url_string=\(urlString)!"
@@ -72,7 +71,7 @@ private extension RootViewController {
                                              cachePolicy: .reloadIgnoringCacheData,
                                              timeoutInterval: Constants.requestTimeoutInterval)
         request.httpMethod = "GET"
-        let task: URLSessionDataTask = session
+        let task: URLSessionDataTask = Constants.session
             .dataTask(with: request)
             { (data: Data?, response: URLResponse?, error: Error?) in
                 self.handle(data, response: response, error: error)
@@ -86,6 +85,9 @@ private extension RootViewController {
     
     enum Constants {
         static let requestTimeoutInterval: TimeInterval = 30.0
+        static var session: URLSession {
+            return URLSession.shared
+        }
         
         enum ApiUrlString {
             private static let base: String = "http://api.irishrail.ie/realtime/realtime.asmx"
