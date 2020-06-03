@@ -62,8 +62,8 @@ class BaseWebService: WebService {
     }
     
     // MARK: - Fetching
-    func fetch(success: @escaping (_ xmlString: String) -> Void,
-               failure: @escaping (_ error: Swift.Error) -> Void)
+    final func fetch(success: @escaping (_ xmlString: String) -> Void,
+                     failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
         self.request = AF
@@ -104,7 +104,7 @@ class BaseWebService: WebService {
     }
     
     // MARK: - Validation
-    func validateResponse<T>(_ response: AFDataResponse<T>) throws {
+    private func validateResponse<T>(_ response: AFDataResponse<T>) throws {
         // check error
         guard response.error == nil else {
             throw response.error! as NSError
