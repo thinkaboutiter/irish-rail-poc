@@ -11,6 +11,11 @@ import SWXMLHash
 
 class GetAllStationsWebService: BaseWebService {
     
+    // MARK: - Initialization
+    init() {
+        super.init(endpoint: WebServiceConstants.Endpoint.getAllStations)
+    }
+    
     // MARK: - Fetching
     func getAllStations(success: @escaping (_ stations: [Station]) -> Void,
                         failure: @escaping (_ error: Swift.Error) -> Void)

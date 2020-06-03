@@ -21,7 +21,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     private let viewModel: RootViewModel
     @IBOutlet private weak var titleLabel: UILabel!
     private lazy var getAllStationsWebService: GetAllStationsWebService = {
-        return GetAllStationsWebService(endpoint: WebServiceConstants.Endpoint.getAllStations)
+        return GetAllStationsWebService()
     }()
     
     // MARK: - Initialization
