@@ -37,12 +37,12 @@ import SWXMLHash
 
 struct StationData: XMLIndexerDeserializable {
     
-    let serverTimeString: String
+    let serverTime: String
     let trainCode: String
     let stationFullName: String
     let stationCode: String
     let queryTime: String
-    let trainDateString: String
+    let trainDate: String
     let origin: String
     let destination: String
     let originTime: String
@@ -61,12 +61,12 @@ struct StationData: XMLIndexerDeserializable {
     
     static func deserialize(_ element: XMLIndexer) throws -> StationData {
         return try StationData(
-            serverTimeString: element["Servertime"].value(),
+            serverTime: element["Servertime"].value(),
             trainCode: element["Traincode"].value(),
             stationFullName: element["Stationfullname"].value(),
             stationCode: element["Stationcode"].value(),
             queryTime: element["Querytime"].value(),
-            trainDateString: element["Traindate"].value(),
+            trainDate: element["Traindate"].value(),
             origin: element["Origin"].value(),
             destination: element["Destination"].value(),
             originTime: element["Origintime"].value(),
