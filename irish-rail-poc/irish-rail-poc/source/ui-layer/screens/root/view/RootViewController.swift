@@ -62,7 +62,7 @@ private extension RootViewController {
     
     func poc_getAllStations() {
         let session: URLSession = URLSession(configuration: .default)
-        let urlString: String = Constants.APIEndpointUrlString.getAllStations
+        let urlString: String = Constants.ApiUrlString.getAllStations
         guard let url: URL = URL(string: urlString) else {
             let message: String = "Unable to create valid \(String(describing: URL.self)) object from url_string=\(urlString)!"
             Logger.error.message(message)
@@ -70,7 +70,7 @@ private extension RootViewController {
         }
         var request: URLRequest = URLRequest(url: url,
                                              cachePolicy: .reloadIgnoringCacheData,
-                                             timeoutInterval: Constants.timeoutInterval)
+                                             timeoutInterval: Constants.requestTimeoutInterval)
         request.httpMethod = "GET"
         let task: URLSessionDataTask = session
             .dataTask(with: request)
@@ -85,10 +85,32 @@ private extension RootViewController {
 private extension RootViewController {
     
     enum Constants {
-        enum APIEndpointUrlString {
-            static let getAllStations: String = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
+        static let requestTimeoutInterval: TimeInterval = 30.0
+        
+        enum ApiUrlString {
+            private static let base: String = "http://api.irishrail.ie/realtime/realtime.asmx"
+            
+            static var getAllStations: String {
+                return ApiUrlString.base + Endpoint.getAllStations
+            }
+            static var getStationDataByCode: String {
+                return ApiUrlString.base + Endpoint.getStationDataByCode
+            }
+            
+            private enum Endpoint {
+                static let getAllStations: String = "/getAllStationsXML"
+                static let getStationDataByCode: String = "/getStationDataByCodeXML"
+            }
         }
-        static let timeoutInterval: TimeInterval = 30.0
+        
+        enum RequestParameters {
+            enum Key {
+                static let stationCode: String = "StationCode"
+            }
+            enum Value {
+                static let malahideCode: String = "mhide"
+            }
+        }        
     }
     
     func handle(_ data: Data?, response: URLResponse?, error: Error?) {
