@@ -9,7 +9,7 @@
 import Foundation
 import SWXMLHash
 
-/** Sample response of StationData
+/** StationData XML object
 <objStationData>
     <Servertime>2020-06-03T08:37:37.363</Servertime>
     <Traincode>E872 </Traincode>

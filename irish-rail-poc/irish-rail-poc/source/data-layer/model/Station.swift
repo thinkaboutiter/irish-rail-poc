@@ -9,7 +9,7 @@
 import Foundation
 import SWXMLHash
 
-/** Sample response of Station
+/** Station XML object
  <objStation>
      <StationDesc>Belfast</StationDesc>
      <StationAlias />
