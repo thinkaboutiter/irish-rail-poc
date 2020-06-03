@@ -23,6 +23,7 @@
 		4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97424881C550040C1BD /* TrainMovement.swift */; };
 		4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E97724882C9A0040C1BD /* Alamofire */; };
 		4FB5E97C24882E170040C1BD /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97B24882E170040C1BD /* WebService.swift */; };
+		4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */; };
 		4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97F248831820040C1BD /* WebServiceConstants.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
 		4FB5E97B24882E170040C1BD /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebService.swift; sourceTree = "<group>"; };
 		4FB5E97F248831820040C1BD /* WebServiceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				4FB5E97B24882E170040C1BD /* WebService.swift */,
+				4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */,
 				4FB5E97F248831820040C1BD /* WebServiceConstants.swift */,
 			);
 			path = networking;
@@ -300,6 +303,7 @@
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
 				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
+				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
