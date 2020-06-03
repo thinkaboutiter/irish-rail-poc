@@ -194,8 +194,8 @@
 		4FB5E97924882D1B0040C1BD /* networking */ = {
 			isa = PBXGroup;
 			children = (
-				4FB5E97B24882E170040C1BD /* WebService.swift */,
 				4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */,
+				4FB5E97B24882E170040C1BD /* WebService.swift */,
 				4FB5E97F248831820040C1BD /* WebServiceConstants.swift */,
 			);
 			path = networking;
