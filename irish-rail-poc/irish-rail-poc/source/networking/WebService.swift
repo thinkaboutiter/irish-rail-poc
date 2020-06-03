@@ -25,7 +25,7 @@ protocol WebService {
     func httpVerb() -> Alamofire.HTTPMethod
     
     /// Request headers.
-    func requestHeaders() -> [String: String]?
+    func requestHeaders() -> Alamofire.HTTPHeaders?
     
     /// Add parameters to the request.
     func requestParameters() -> Parameters?
