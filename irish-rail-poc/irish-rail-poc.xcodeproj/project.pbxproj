@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
 		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
 		4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "irish-rail-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F88AE302486D4C000CA20D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */,
+				4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */,
 			);
 			path = "web-services";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */,
 				4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */,
 				4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */,
 				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
