@@ -25,6 +25,8 @@
 		4FB5E97C24882E170040C1BD /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97B24882E170040C1BD /* WebService.swift */; };
 		4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */; };
 		4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97F248831820040C1BD /* WebServiceConstants.swift */; };
+		4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98224883C9B0040C1BD /* AppConstants.swift */; };
+		4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98424883CA70040C1BD /* ErrorCreator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		4FB5E97B24882E170040C1BD /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebService.swift; sourceTree = "<group>"; };
 		4FB5E97F248831820040C1BD /* WebServiceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceConstants.swift; sourceTree = "<group>"; };
+		4FB5E98224883C9B0040C1BD /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		4FB5E98424883CA70040C1BD /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,8 @@
 		4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */ = {
 			isa = PBXGroup;
 			children = (
-				4F88AE452486D5AD00CA20D7 /* source */,
 				4F88AE392486D4C300CA20D7 /* Assets.xcassets */,
+				4F88AE452486D5AD00CA20D7 /* source */,
 			);
 			path = "irish-rail-poc";
 			sourceTree = "<group>";
@@ -94,6 +98,7 @@
 				4FB5E97924882D1B0040C1BD /* networking */,
 				4F88AE462486D5E400CA20D7 /* SupportFiles */,
 				4F88AE472486D9BC00CA20D7 /* ui-layer */,
+				4FB5E98124883C850040C1BD /* utilities */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -194,6 +199,15 @@
 				4FB5E97F248831820040C1BD /* WebServiceConstants.swift */,
 			);
 			path = networking;
+			sourceTree = "<group>";
+		};
+		4FB5E98124883C850040C1BD /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4FB5E98224883C9B0040C1BD /* AppConstants.swift */,
+				4FB5E98424883CA70040C1BD /* ErrorCreator.swift */,
+			);
+			path = utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */,
+				4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */,
 				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
@@ -308,6 +323,7 @@
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
+				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
 				4FB5E97C24882E170040C1BD /* WebService.swift in Sources */,
 				4FB5E971248782F00040C1BD /* Station.swift in Sources */,
 			);
