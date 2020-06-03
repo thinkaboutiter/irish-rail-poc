@@ -55,20 +55,3 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         self.titleLabel.text = "\(String(describing: RootViewController.self))"
     }
 }
-
-// MARK: - XML Utils
-private extension RootViewController {
-    
-    func parseXmlString(_ xmlString: String) {
-        do {
-            let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-                options.shouldProcessLazily = true
-            }.parse(xmlString)
-            let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
-            Logger.debug.message().object(stations)
-        }
-        catch {
-            Logger.error.message().object(error as NSError)
-        }
-    }
-}
