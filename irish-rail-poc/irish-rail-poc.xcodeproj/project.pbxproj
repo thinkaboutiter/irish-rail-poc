@@ -17,6 +17,7 @@
 		4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE572486DC2100CA20D7 /* RootViewController.swift */; };
 		4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE582486DC2100CA20D7 /* RootViewController.xib */; };
 		4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */; };
+		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */,
 				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +171,7 @@
 			name = "irish-rail-poc";
 			packageProductDependencies = (
 				4F88AE532486DB7400CA20D7 /* SimpleLogger */,
+				4FB5E96C2486E2720040C1BD /* SWXMLHash */,
 			);
 			productName = "irish-rail-poc";
 			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
@@ -200,6 +203,7 @@
 			mainGroup = 4F88AE242486D4C000CA20D7;
 			packageReferences = (
 				4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */,
+				4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 			);
 			productRefGroup = 4F88AE2E2486D4C000CA20D7 /* Products */;
 			projectDirPath = "";
@@ -452,7 +456,15 @@
 			repositoryURL = "https://github.com/thinkaboutiter/SimpleLogger.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
+				minimumVersion = 2.4.2;
+			};
+		};
+		4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thinkaboutiter/SWXMLHash";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -462,6 +474,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */;
 			productName = SimpleLogger;
+		};
+		4FB5E96C2486E2720040C1BD /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
