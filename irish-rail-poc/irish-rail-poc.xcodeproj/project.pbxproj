@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
 		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
@@ -21,9 +22,18 @@
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
 		4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97424881C550040C1BD /* TrainMovement.swift */; };
+		4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E97724882C9A0040C1BD /* Alamofire */; };
+		4FB5E97C24882E170040C1BD /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97B24882E170040C1BD /* WebService.swift */; };
+		4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */; };
+		4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97F248831820040C1BD /* WebServiceConstants.swift */; };
+		4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98224883C9B0040C1BD /* AppConstants.swift */; };
+		4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98424883CA70040C1BD /* ErrorCreator.swift */; };
+		4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */; };
+		4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
 		4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "irish-rail-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F88AE302486D4C000CA20D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +48,13 @@
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
+		4FB5E97B24882E170040C1BD /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebService.swift; sourceTree = "<group>"; };
+		4FB5E97F248831820040C1BD /* WebServiceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceConstants.swift; sourceTree = "<group>"; };
+		4FB5E98224883C9B0040C1BD /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		4FB5E98424883CA70040C1BD /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
+		4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllStationsWebService.swift; sourceTree = "<group>"; };
+		4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTrainMovementsWebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */,
 				4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */,
 				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
 			);
@@ -72,8 +90,8 @@
 		4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */ = {
 			isa = PBXGroup;
 			children = (
-				4F88AE452486D5AD00CA20D7 /* source */,
 				4F88AE392486D4C300CA20D7 /* Assets.xcassets */,
+				4F88AE452486D5AD00CA20D7 /* source */,
 			);
 			path = "irish-rail-poc";
 			sourceTree = "<group>";
@@ -81,10 +99,12 @@
 		4F88AE452486D5AD00CA20D7 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				4FB5E96E248782910040C1BD /* data-layer */,
 				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
+				4FB5E96E248782910040C1BD /* data-layer */,
+				4FB5E97924882D1B0040C1BD /* networking */,
 				4F88AE462486D5E400CA20D7 /* SupportFiles */,
 				4F88AE472486D9BC00CA20D7 /* ui-layer */,
+				4FB5E98124883C850040C1BD /* utilities */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -177,6 +197,36 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		4FB5E97924882D1B0040C1BD /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				4FB5E98C248845050040C1BD /* web-services */,
+				4FB5E97D24882FCF0040C1BD /* BaseWebService.swift */,
+				4FB5E97B24882E170040C1BD /* WebService.swift */,
+				4FB5E97F248831820040C1BD /* WebServiceConstants.swift */,
+			);
+			path = networking;
+			sourceTree = "<group>";
+		};
+		4FB5E98124883C850040C1BD /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4FB5E98224883C9B0040C1BD /* AppConstants.swift */,
+				4FB5E98424883CA70040C1BD /* ErrorCreator.swift */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		4FB5E98C248845050040C1BD /* web-services */ = {
+			isa = PBXGroup;
+			children = (
+				4FB5E98D248845650040C1BD /* GetAllStationsWebService.swift */,
+				4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */,
+				4FBA162C24885F9E0087D9B5 /* GetTrainMovementsWebService.swift */,
+			);
+			path = "web-services";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,6 +247,7 @@
 			packageProductDependencies = (
 				4F88AE532486DB7400CA20D7 /* SimpleLogger */,
 				4FB5E96C2486E2720040C1BD /* SWXMLHash */,
+				4FB5E97724882C9A0040C1BD /* Alamofire */,
 			);
 			productName = "irish-rail-poc";
 			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
@@ -229,6 +280,7 @@
 			packageReferences = (
 				4F88AE522486DB7400CA20D7 /* XCRemoteSwiftPackageReference "SimpleLogger" */,
 				4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4F88AE2E2486D4C000CA20D7 /* Products */;
 			projectDirPath = "";
@@ -277,14 +329,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */,
 				4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */,
+				4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */,
 				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
+				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
+				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
+				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
+				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
+				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
+				4FB5E97C24882E170040C1BD /* WebService.swift in Sources */,
 				4FB5E971248782F00040C1BD /* Station.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +555,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thinkaboutiter/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -507,6 +575,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4FB5E96B2486E2720040C1BD /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
+		};
+		4FB5E97724882C9A0040C1BD /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

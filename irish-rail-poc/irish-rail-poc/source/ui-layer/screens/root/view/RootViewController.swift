@@ -20,6 +20,15 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     // MARK: - Properties
     private let viewModel: RootViewModel
     @IBOutlet private weak var titleLabel: UILabel!
+    private lazy var getAllStationsWebService: GetAllStationsWebService = {
+        return GetAllStationsWebService()
+    }()
+    private lazy var getStationDataByCodeWebService: GetStationDataByCodeWebService = {
+        return GetStationDataByCodeWebService(stationCode: "mhide")
+    }()
+    private lazy var getTrainMovementsWebService: GetTrainMovementsWebService = {
+        return GetTrainMovementsWebService(trainId: "e109", trainDate: "21 dec 2011")
+    }()
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -49,7 +58,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
-        self.poc_getAllStations()
+        self.dev_exerciseWebServices()
     }
     
     private func configureUi() {
@@ -57,104 +66,35 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     }
 }
 
-// MARK: - get all stations
+// MARK: - Exercising WebServices
 private extension RootViewController {
     
-    func poc_getAllStations() {
-        let urlString: String = Constants.ApiUrlString.getAllStations
-        guard let url: URL = URL(string: urlString) else {
-            let message: String = "Unable to create valid \(String(describing: URL.self)) object from url_string=\(urlString)!"
-            Logger.error.message(message)
-            return
-        }
-        var request: URLRequest = URLRequest(url: url,
-                                             cachePolicy: .reloadIgnoringCacheData,
-                                             timeoutInterval: Constants.requestTimeoutInterval)
-        request.httpMethod = "GET"
-        let task: URLSessionDataTask = Constants.session
-            .dataTask(with: request)
-            { (data: Data?, response: URLResponse?, error: Error?) in
-                self.handle(data, response: response, error: error)
-        }
-        task.resume()
-    }
-}
-
-// MARK: - XML Utils
-private extension RootViewController {
-    
-    enum Constants {
-        static let requestTimeoutInterval: TimeInterval = 30.0
-        static var session: URLSession {
-            return URLSession.shared
-        }
-        
-        enum ApiUrlString {
-            private static let base: String = "http://api.irishrail.ie/realtime/realtime.asmx"
-            
-            static var getAllStations: String {
-                return ApiUrlString.base + Endpoint.getAllStations
-            }
-            static var getStationDataByCode: String {
-                return ApiUrlString.base + Endpoint.getStationDataByCode
-            }
-            
-            private enum Endpoint {
-                static let getAllStations: String = "/getAllStationsXML"
-                static let getStationDataByCode: String = "/getStationDataByCodeXML"
-            }
-        }
-        
-        enum RequestParameters {
-            enum Key {
-                static let stationCode: String = "StationCode"
-            }
-            enum Value {
-                static let malahideCode: String = "mhide"
-            }
-        }        
+    func dev_exerciseWebServices() {
+//        self.dev_exerciseGetAllStationsWebService()
+//        self.dev_exerciseGetStationDataByCodeWebService()
+        self.dev_exerciseGetTrainMovementsWebService()
     }
     
-    func handle(_ data: Data?, response: URLResponse?, error: Error?) {
-        guard error == nil else {
-            let message: String = "Error receiving response!"
-            Logger.error.message(message).object(error! as NSError)
-            return
+    func dev_exerciseGetAllStationsWebService() {
+        self.getAllStationsWebService.getAllStations(success: { (stations: [Station]) in
+            Logger.success.message().object(stations)
+        }) { (error) in
+            Logger.error.message().object(error as NSError)
         }
-        guard let httpResponse: HTTPURLResponse = response as? HTTPURLResponse else {
-            let message: String = "Unable to obtain \(String(describing: HTTPURLResponse.self)) object!"
-            Logger.error.message(message)
-            return
-        }
-        let statusCode: Int = httpResponse.statusCode
-        let successRange: Range<Int> = 200..<300
-        guard successRange ~= statusCode else {
-            let message: String = "Wrong status_code=\(statusCode)!"
-            Logger.error.message(message)
-            return
-        }
-        guard let data: Data = data else {
-            let message: String = "Unable to obtain response \(String(describing: Data.self)) object!"
-            Logger.error.message(message)
-            return
-        }
-        guard let xmlString: String = String(data: data, encoding: .utf8) else {
-            let message: String = "Unable to parse received data as \(String(describing: String.self)) object!"
-            Logger.error.message(message)
-            return
-        }
-        self.parseXmlString(xmlString)
     }
     
-    func parseXmlString(_ xmlString: String) {
-        do {
-            let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-                options.shouldProcessLazily = true
-            }.parse(xmlString)
-            let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
-            Logger.debug.message().object(stations)
+    func dev_exerciseGetStationDataByCodeWebService() {
+        self.getStationDataByCodeWebService.getStationData(success: { (stationData: [StationData]) in
+            Logger.success.message().object(stationData)
+        }) { (error) in
+            Logger.error.message().object(error as NSError)
         }
-        catch {
+    }
+    
+    func dev_exerciseGetTrainMovementsWebService() {
+        self.getTrainMovementsWebService.getTrainMovements(success: { (trainMovements: [TrainMovement]) in
+            Logger.success.message().object(trainMovements)
+        }) { (error) in
             Logger.error.message().object(error as NSError)
         }
     }

@@ -36,12 +36,13 @@ import SWXMLHash
 */
 
 struct StationData: XMLIndexerDeserializable {
-    let serverTime: Date?
+    
+    let serverTime: String
     let trainCode: String
     let stationFullName: String
     let stationCode: String
     let queryTime: String
-    let trainDate: Date?
+    let trainDate: String
     let origin: String
     let destination: String
     let originTime: String
@@ -81,29 +82,5 @@ struct StationData: XMLIndexerDeserializable {
             direction: element["Direction"].value(),
             trainType: element["Traintype"].value(),
             locationType: element["Locationtype"].value())
-    }
-}
-
-extension Date: XMLElementDeserializable, XMLAttributeDeserializable {
-    public static func deserialize(_ element: XMLElement) throws -> Date {
-        let date = Date.from(element.text)
-        guard let validDate = date else {
-            throw XMLDeserializationError.typeConversionFailed(type: "Date", element: element)
-        }
-        return validDate
-    }
-
-    public static func deserialize(_ attribute: XMLAttribute) throws -> Date {
-        let date = Date.from(attribute.text)
-        guard let validDate = date else {
-            throw XMLDeserializationError.attributeDeserializationFailed(type: "Date", attribute: attribute)
-        }
-        return validDate
-    }
-    
-    private static func from(_ candidate: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
-        return dateFormatter.date(from: candidate)
     }
 }
