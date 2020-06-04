@@ -22,6 +22,15 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             self.mapView.delegate = self
+            let latitude: Double = self.viewModel.initialLatitude()
+            let longitude: Double = self.viewModel.initialLongitude()
+            let radius: Double = self.viewModel.initialRadius()
+            let coordinate2d: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude,
+                                                                              longitude: longitude)
+            let region: MKCoordinateRegion = MKCoordinateRegion(center: coordinate2d,
+                                                                latitudinalMeters: radius,
+                                                                longitudinalMeters: radius)
+            self.mapView.setRegion(region, animated: true)
         }
     }
     

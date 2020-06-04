@@ -53,7 +53,7 @@ private extension MapDependencyContainerImpl {
         enum Ireland {
             static let latitude: Double = 53.344276
             static let longitude: Double = -8.001062
-            static let radius: Double = 100_000
+            static let radius: Double = 400_000
         }
     }
 }
