@@ -53,10 +53,30 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
+        self.embedMapViewController()
     }
+}
+
+// MARK: - Configurations
+private extension RootViewController {
     
-    // MARK: - Configurations
-    private func configureUi() {
+    func configureUi() {
         self.titleLabel.text = "\(String(describing: RootViewController.self))"
+    }
+}
+
+// MARK: - Embedding
+private extension RootViewController {
+    
+    func embedMapViewController() {
+        let vc: MapViewController = self.mapViewControllerFactory.makeMapViewController()
+        do {
+            try self.embed(vc,
+                           containerView: self.view,
+                           positionChildViewIntoContainerView: nil)
+        }
+        catch {
+            Logger.error.message().object(error as NSError)
+        }
     }
 }
