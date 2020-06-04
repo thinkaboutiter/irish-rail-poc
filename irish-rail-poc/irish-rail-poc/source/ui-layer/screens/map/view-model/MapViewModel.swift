@@ -15,6 +15,15 @@ protocol MapViewModelConsumer: AnyObject {}
 /// APIs for `ViewModel` to expose to `View`
 protocol MapViewModel: AnyObject {
     func setViewModelConsumer(_ newValue: MapViewModelConsumer)
+    
+    /// In degrees
+    func initialLatitude() -> Double
+    
+    /// In degrees
+    func initialLongitude() -> Double
+    
+    /// In meters
+    func initialRadius() -> Double
 }
 
 class MapViewModelImpl: MapViewModel, MapModelConsumer {
@@ -37,6 +46,18 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer {
     // MARK: - MapViewModel protocol
     func setViewModelConsumer(_ newValue: MapViewModelConsumer) {
         self.viewModelConsumer = newValue
+    }
+    
+    func initialLatitude() -> Double {
+        return self.model.initialLatitude()
+    }
+    
+    func initialLongitude() -> Double {
+        return self.model.initialLongitude()
+    }
+    
+    func initialRadius() -> Double {
+        return self.model.initialRadius()
     }
     
     // MARK: - MapModelConsumer protocol
