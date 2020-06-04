@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import SWXMLHash
 
 class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     
@@ -35,10 +34,6 @@ class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     
     // MARK: - Parsing
     override func parse(_ xmlString: String) throws -> [TrainMovement] {
-        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-            options.shouldProcessLazily = true
-        }.parse(xmlString)
-        let trainMovements: [TrainMovementImpl] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
-        return trainMovements
+        return try TrainMovementParser.parse(xmlString)
     }
 }

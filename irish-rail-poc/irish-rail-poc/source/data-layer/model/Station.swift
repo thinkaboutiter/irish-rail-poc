@@ -29,6 +29,16 @@ protocol Station {
     var id: Int { get }
 }
 
+enum StationParser {
+    static func parse(_ xmlString: String) throws -> [Station] {
+        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
+            options.shouldProcessLazily = true
+        }.parse(xmlString)
+        let stations: [StationImpl] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
+        return stations
+    }
+}
+
 struct StationImpl: XMLIndexerDeserializable, Station {
     let desc: String
     let alias: String?

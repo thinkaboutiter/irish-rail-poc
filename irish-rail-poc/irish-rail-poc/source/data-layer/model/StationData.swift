@@ -59,6 +59,16 @@ protocol StationData {
     var locationType: String { get }
 }
 
+enum StationDataParser {
+    static func parse(_ xmlString: String) throws -> [StationData] {
+        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
+            options.shouldProcessLazily = true
+        }.parse(xmlString)
+        let stationData: [StationDataImpl] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
+        return stationData
+    }
+}
+
 struct StationDataImpl: XMLIndexerDeserializable, StationData {
     
     let serverTime: String
