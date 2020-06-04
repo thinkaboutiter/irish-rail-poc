@@ -19,6 +19,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: RootViewModel
+    private let mapViewControllerFactory: MapViewControllerFactory
     @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Initialization
@@ -32,8 +33,11 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: RootViewModel) {
+    init(viewModel: RootViewModel,
+         mapViewControllerFactory: MapViewControllerFactory)
+    {
         self.viewModel = viewModel
+        self.mapViewControllerFactory = mapViewControllerFactory
         super.init(nibName: String(describing: RootViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
