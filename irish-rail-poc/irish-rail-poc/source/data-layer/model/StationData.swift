@@ -35,7 +35,31 @@ import SWXMLHash
 </objStationData>
 */
 
-struct StationData: XMLIndexerDeserializable {
+protocol StationData {
+    var serverTime: String { get }
+    var trainCode: String { get }
+    var stationFullName: String { get }
+    var stationCode: String { get }
+    var queryTime: String { get }
+    var trainDate: String { get }
+    var origin: String { get }
+    var destination: String { get }
+    var originTime: String { get }
+    var destinationTime: String { get }
+    var status: String { get }
+    var lastLocation: String { get }
+    var dueIn: Int { get }
+    var late: Int { get }
+    var expectedArrival: String { get }
+    var expectedDeparture: String { get }
+    var sheduleArrival: String { get }
+    var sheduleDeparture: String { get }
+    var direction: String { get }
+    var trainType: String { get }
+    var locationType: String { get }
+}
+
+struct StationDataImpl: XMLIndexerDeserializable, StationData {
     
     let serverTime: String
     let trainCode: String
@@ -59,8 +83,8 @@ struct StationData: XMLIndexerDeserializable {
     let trainType: String
     let locationType: String
     
-    static func deserialize(_ element: XMLIndexer) throws -> StationData {
-        return try StationData(
+    static func deserialize(_ element: XMLIndexer) throws -> StationDataImpl {
+        return try StationDataImpl(
             serverTime: element["Servertime"].value(),
             trainCode: element["Traincode"].value(),
             stationFullName: element["Stationfullname"].value(),

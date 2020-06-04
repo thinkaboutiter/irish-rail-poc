@@ -20,7 +20,16 @@ import SWXMLHash
  </objStation>
  */
 
-struct Station: XMLIndexerDeserializable {
+protocol Station {
+    var desc: String { get }
+    var alias: String? { get }
+    var latitude: Double { get }
+    var longitude: Double { get }
+    var code: String { get }
+    var id: Int { get }
+}
+
+struct StationImpl: XMLIndexerDeserializable, Station {
     let desc: String
     let alias: String?
     let latitude: Double
@@ -28,8 +37,8 @@ struct Station: XMLIndexerDeserializable {
     let code: String
     let id: Int
     
-    static func deserialize(_ element: XMLIndexer) throws -> Station {
-        return try Station(
+    static func deserialize(_ element: XMLIndexer) throws -> StationImpl {
+        return try StationImpl(
             desc: element["StationDesc"].value(),
             alias: element["StationAlias"].value(),
             latitude: element["StationLatitude"].value(),

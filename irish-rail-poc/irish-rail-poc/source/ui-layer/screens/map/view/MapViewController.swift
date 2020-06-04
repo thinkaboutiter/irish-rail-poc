@@ -65,6 +65,4 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
 }
 
 // MARK: - MKMapViewDelegate protocol
-extension MapViewController: MKMapViewDelegate {
-    
-}
+extension MapViewController: MKMapViewDelegate {}
