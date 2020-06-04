@@ -47,7 +47,7 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     
     // MARK: - TrainMovementRepository protocol
     func fetchTrainMovement() {
-        self.fetchData(
+        self.fetchResources(
             success: {
                 self.consumer.didFetchTrainMovement(on: self)
         },

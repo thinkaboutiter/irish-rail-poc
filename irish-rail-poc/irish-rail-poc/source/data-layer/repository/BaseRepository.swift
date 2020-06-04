@@ -35,8 +35,8 @@ class BaseRepository<ApiResponseType> {
     }
     
     // MARK: - Fetching
-    final func fetchData(success: @escaping () -> Void,
-                         failure: @escaping (_ error: Swift.Error) -> Void)
+    final func fetchResources(success: @escaping () -> Void,
+                              failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.webService.fetch(
             success: { (objects: [ApiResponseType]) in

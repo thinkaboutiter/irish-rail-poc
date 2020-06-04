@@ -62,14 +62,14 @@ class BaseWebService<ApiResponseType>: WebService {
     }
     
     // MARK: - Fetching
-    func fetch(success: @escaping (_ result: [ApiResponseType]) -> Void,
+    func fetch(success: @escaping (_ resources: [ApiResponseType]) -> Void,
                failure: @escaping (_ error: Swift.Error) -> Void)
     {
-        self.fetch(
+        self.fetchXml(
             success: { (xmlString: String) in
                 do {
-                    let parsed: [ApiResponseType] = try self.parse(xmlString)
-                    success(parsed)
+                    let parsedResources: [ApiResponseType] = try self.parse(xmlString)
+                    success(parsedResources)
                 }
                 catch {
                     failure(error)
@@ -80,8 +80,8 @@ class BaseWebService<ApiResponseType>: WebService {
         })
     }
     
-    private func fetch(success: @escaping (_ xmlString: String) -> Void,
-                       failure: @escaping (_ error: Swift.Error) -> Void)
+    private func fetchXml(success: @escaping (_ xmlString: String) -> Void,
+                          failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
         self.request = AF

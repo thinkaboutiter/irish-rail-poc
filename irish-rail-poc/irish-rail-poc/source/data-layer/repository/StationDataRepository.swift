@@ -47,7 +47,7 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     
     // MARK: - StationDataRepository protocol
     func fetchStationData() {
-        self.fetchData(
+        self.fetchResources(
             success: {
                 self.consumer.didFetchStationData(on: self)
         },
