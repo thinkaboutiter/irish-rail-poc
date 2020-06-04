@@ -40,7 +40,7 @@ class GetAllStationsWebService: BaseWebService {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
+        let stations: [StationImpl] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
         return stations
     }
 }
