@@ -17,16 +17,16 @@ protocol StationRepositoryConsumer: AnyObject {
 
 protocol StationRepository: AnyObject {
     
-    /// Obtains `Station` objects.
+    /// Obtain `Station` objects.
     func fetchStations()
     
-    /// Resets local cache and initiate fetch again.
+    /// Reset local cache and initiate fetch again.
     func refresh()
     
-    /// Provides fetched data from the cache.
+    /// Provide fetched data from the cache.
     func stations() -> [Station]
     
-    /// Sets `StationRepositoryConsumer` object
+    /// Set `StationRepositoryConsumer` object
     /// - Parameter newValue: the new `StationRepositoryConsumer` object
     func setRepositoryConsumer(_ newValue: StationRepositoryConsumer)
     
@@ -35,83 +35,36 @@ protocol StationRepository: AnyObject {
     func filteredStations(by term: String) -> [Station]
 }
 
-class StationRepositoryImpl: StationRepository {
+class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     
     // MARK: - Properties
-    private let webService: GetAllStationsWebService
     private weak var consumer: StationRepositoryConsumer!
-    private let concurrentCacheQueue = DispatchQueue(label: Constants.concurrentQueueLabel,
-                                                     qos: .default,
-                                                     attributes: .concurrent)
-    private var cache: NSMutableOrderedSet = []
-    private func clearCache() {
-        self.concurrentCacheQueue.async(qos: .default,
-                                        flags: .barrier)
-        { [weak self] in
-            guard let valid_self = self else {
-                return
-            }
-            valid_self.cache.removeAllObjects()
-        }
-    }
     
     // MARK: - Initialization
-    init(webService: GetAllStationsWebService) {
-        self.webService = webService
-        Logger.success.message()
-    }
-    
     deinit {
         Logger.fatal.message()
     }
     
     // MARK: - StationRepository protocol
     func fetchStations() {
-        self.webService.fetch(
-            success: { (stations: [Station]) in
-                self.consume(stations)
+        self.fetchData(
+            success: {
+                self.consumer.didFetchStations(on: self)
         },
             failure: { (error: Error) in
-                self.consumer.didFailToFetchStations(on: self, with: error)
+                self.consumer.didFailToFetchStations(on: self,
+                                                     with: error)
         })
     }
     
-    private func consume(_ stations: [Station]) {
-        self.concurrentCacheQueue.async(qos: .default,
-                                        flags: .barrier)
-        { [weak self] in
-            guard let valid_self = self else {
-                return
-            }
-            valid_self.cache.addObjects(from: stations)
-            DispatchQueue.main.async { [weak self] in
-                guard let valid_self = self else {
-                    return
-                }
-                valid_self.consumer.didFetchStations(on: valid_self)
-            }
-        }
-    }
-    
-    func refresh() {
-        self.clearCache()
+    override func refresh() {
+        super.refresh()
         self.fetchStations()
     }
     
     func stations() -> [Station] {
-        var result: [Station]!
-        self.concurrentCacheQueue.sync { [weak self] in
-            guard let valid_self = self else {
-                return
-            }
-            result = valid_self.cache.compactMap { (element: Any) -> Station? in
-                guard let valid_entity: Station = element as? Station else {
-                    return nil
-                }
-                return valid_entity
-            }
-        }
-        return result ?? []
+        let result: [Station] = self.objects()
+        return result
     }
     
     func setRepositoryConsumer(_ newValue: StationRepositoryConsumer) {
@@ -125,12 +78,5 @@ class StationRepositoryImpl: StationRepository {
                 || station.code.contains(term))
         }
         return result
-    }
-}
-
-// MARK: - Constants
-private extension StationRepositoryImpl {
-    enum Constants {
-        static let concurrentQueueLabel: String = "\(AppConstants.projectName)-\(String(describing: StationRepositoryImpl.self))-concurrent-queue"
     }
 }
