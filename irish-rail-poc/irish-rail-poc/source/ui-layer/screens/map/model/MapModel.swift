@@ -15,15 +15,30 @@ protocol MapModelConsumer: AnyObject {}
 /// APIs for `Model` to expose to `ViewModel`
 protocol MapModel: AnyObject {
     func setModelConsumer(_ newValue: MapModelConsumer)
+    
+    /// In degrees
+    func initialLatitude() -> Double
+    
+    /// In degrees
+    func initialLongitude() -> Double
+    
+    /// In meters
+    func initialRadius() -> Double
 }
 
 class MapModelImpl: MapModel {
     
     // MARK: - Properties
     private weak var modelConsumer: MapModelConsumer!
+    private let latitude: Double
+    private let longitude: Double
+    private let radius: Double
     
     // MARK: - Initialization
-    init() {
+    init(latitude: Double, longitude: Double, radius: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.radius = radius
         Logger.success.message()
     }
     
@@ -34,5 +49,17 @@ class MapModelImpl: MapModel {
     // MARK: - MapModel protocol
     func setModelConsumer(_ newValue: MapModelConsumer) {
         self.modelConsumer = newValue
+    }
+    
+    func initialLatitude() -> Double {
+        return self.latitude
+    }
+    
+    func initialLongitude() -> Double {
+        return self.longitude
+    }
+    
+    func initialRadius() -> Double {
+        return self.radius
     }
 }

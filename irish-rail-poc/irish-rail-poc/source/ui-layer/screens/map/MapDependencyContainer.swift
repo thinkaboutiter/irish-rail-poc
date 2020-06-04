@@ -34,8 +34,26 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     }
     
     private func makeMapViewModel() -> MapViewModel {
-        let model: MapModel = MapModelImpl()
+        let model: MapModel = self.makeMapModel()
         let result: MapViewModel = MapViewModelImpl(model: model)
         return result
+    }
+    
+    private func makeMapModel() -> MapModel {
+        let result: MapModel = MapModelImpl(latitude: Location.Ireland.latitude,
+                                            longitude: Location.Ireland.longitude,
+                                            radius: Location.Ireland.radius)
+        return result
+    }
+}
+
+private extension MapDependencyContainerImpl {
+    
+    enum Location {
+        enum Ireland {
+            static let latitude: Double = 53.344276
+            static let longitude: Double = -8.001062
+            static let radius: Double = 100_000
+        }
     }
 }
