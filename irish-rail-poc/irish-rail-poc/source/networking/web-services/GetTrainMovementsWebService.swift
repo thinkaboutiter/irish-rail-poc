@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SWXMLHash
 
-class GetTrainMovementsWebService: BaseWebService {
+class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     
     // MARK: - Properties
     private let trainId: String
@@ -25,34 +25,16 @@ class GetTrainMovementsWebService: BaseWebService {
         super.init(endpoint: WebServiceConstants.Endpoint.getTrainMovements)
     }
     
+    // MARK: - WebService protocol
     override func requestParameters() -> Parameters? {
         return [
             WebServiceConstants.RequestParameterKey.trainId: self.trainId,
             WebServiceConstants.RequestParameterKey.trainDate: self.trainDate
         ]
     }
-
-    // MARK: - Fetching
-    func getTrainMovements(success: @escaping (_ trainMovements: [TrainMovement]) -> Void,
-                           failure: @escaping (_ error: Swift.Error) -> Void)
-    {
-        super.fetch(
-            success: { (xmlString) in
-                do {
-                    let trainMovements: [TrainMovement] = try self.trainMovements(from: xmlString)
-                    success(trainMovements)
-                }
-                catch {
-                    failure(error)
-                }
-        },
-            failure: { (error) in
-                failure(error)
-        })
-    }
     
     // MARK: - Parsing
-    private func trainMovements(from xmlString: String) throws -> [TrainMovement] {
+    override func parse(_ xmlString: String) throws -> [TrainMovement] {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)

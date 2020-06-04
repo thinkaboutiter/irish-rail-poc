@@ -13,7 +13,7 @@ import SimpleLogger
 
 /// Abstract.
 /// Base class for all web service objects
-class BaseWebService: WebService {
+class BaseWebService<ApiResponseType>: WebService {
     
     // MARK: - Properties
     let endpoint: String
@@ -62,7 +62,25 @@ class BaseWebService: WebService {
     }
     
     // MARK: - Fetching
-    final func fetch(success: @escaping (_ xmlString: String) -> Void,
+    func fetch(success: @escaping (_ result: [ApiResponseType]) -> Void,
+               failure: @escaping (_ error: Swift.Error) -> Void)
+    {
+        self.fetch(
+            success: { (xmlString: String) in
+                do {
+                    let parsed: [ApiResponseType] = try self.parse(xmlString)
+                    success(parsed)
+                }
+                catch {
+                    failure(error)
+                }
+        },
+            failure: { (error) in
+                failure(error)
+        })
+    }
+    
+    private func fetch(success: @escaping (_ xmlString: String) -> Void,
                      failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
@@ -83,8 +101,8 @@ class BaseWebService: WebService {
                     guard let data: Data = response.data else {
                         let message: String = "Unable to obtain response object!"
                         let error: NSError = ErrorCreator
-                            .custom(domain: BaseWebService.Error.domain,
-                                    code: BaseWebService.Error.Code.unableToObtainResponseObject,
+                            .custom(domain: WebServiceConstants.Error.domain,
+                                    code: WebServiceConstants.Error.Code.unableToObtainResponseObject,
                                     localizedMessage: message)
                             .error()
                         failure(error)
@@ -103,8 +121,14 @@ class BaseWebService: WebService {
             })
     }
     
+    // MARK: - Parsing
+    func parse(_ xmlString: String) throws -> [ApiResponseType] {
+        assert(false, "subclass should override!")
+        return []
+    }
+    
     // MARK: - Validation
-    private func validateResponse<T>(_ response: AFDataResponse<T>) throws {
+    private func validateResponse(_ response: AFDataResponse<Data>) throws {
         // check error
         guard response.error == nil else {
             throw response.error! as NSError
@@ -114,8 +138,8 @@ class BaseWebService: WebService {
         guard let httpUrlResponse: HTTPURLResponse = response.response else {
             let message: String = "Invalid response object"
             let error: NSError = ErrorCreator
-                .custom(domain: BaseWebService.Error.domain,
-                        code: BaseWebService.Error.Code.invalidResponseObject,
+                .custom(domain: WebServiceConstants.Error.domain,
+                        code: WebServiceConstants.Error.Code.invalidResponseObject,
                         localizedMessage: message)
                 .error()
             throw error
@@ -125,25 +149,11 @@ class BaseWebService: WebService {
         guard 200...299 ~= httpUrlResponse.statusCode else {
             let message: String = "Invalid status code=\(httpUrlResponse.statusCode)"
             let error: NSError = ErrorCreator
-                .custom(domain: BaseWebService.Error.domain,
-                        code: BaseWebService.Error.Code.invalidStatusCode,
+                .custom(domain: WebServiceConstants.Error.domain,
+                        code: WebServiceConstants.Error.Code.invalidStatusCode,
                         localizedMessage: message)
                 .error()
             throw error
-        }
-    }
-}
-
-// MARK: - Error
-private extension BaseWebService {
-    
-    enum Error {
-        static let domain: String = "\(AppConstants.projectName).\(String(describing: BaseWebService.Error.self))"
-        
-        enum Code {
-            static let invalidResponseObject: Int = 9000
-            static let invalidStatusCode: Int = 9001
-            static let unableToObtainResponseObject: Int = 9002
         }
     }
 }
