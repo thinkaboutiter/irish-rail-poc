@@ -58,7 +58,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
-        self.dev_exerciseWebServices()
+//        self.dev_exerciseWebServices()
     }
     
     private func configureUi() {
@@ -72,7 +72,7 @@ private extension RootViewController {
     func dev_exerciseWebServices() {
 //        self.dev_exerciseGetAllStationsWebService()
 //        self.dev_exerciseGetStationDataByCodeWebService()
-        self.dev_exerciseGetTrainMovementsWebService()
+//        self.dev_exerciseGetTrainMovementsWebService()
     }
     
     func dev_exerciseGetAllStationsWebService() {
