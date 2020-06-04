@@ -81,7 +81,7 @@ class BaseWebService<ApiResponseType>: WebService {
     }
     
     private func fetch(success: @escaping (_ xmlString: String) -> Void,
-                     failure: @escaping (_ error: Swift.Error) -> Void)
+                       failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
         self.request = AF
