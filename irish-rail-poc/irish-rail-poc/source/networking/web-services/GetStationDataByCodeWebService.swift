@@ -49,7 +49,7 @@ class GetStationDataByCodeWebService: BaseWebService {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let stationData: [StationData] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
+        let stationData: [StationDataImpl] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
         return stationData
     }
 }
