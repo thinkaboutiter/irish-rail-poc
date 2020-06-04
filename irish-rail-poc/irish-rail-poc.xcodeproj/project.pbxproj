@@ -10,6 +10,7 @@
 		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
 		4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8842F624899F9500BCFACE /* StationRepository.swift */; };
 		4F8842F92489AB6700BCFACE /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8842F82489AB6700BCFACE /* BaseRepository.swift */; };
+		4F8842FB2489B72600BCFACE /* StationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8842FA2489B72600BCFACE /* StationDataRepository.swift */; };
 		4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE302486D4C000CA20D7 /* AppDelegate.swift */; };
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
@@ -44,6 +45,7 @@
 		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
 		4F8842F624899F9500BCFACE /* StationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
 		4F8842F82489AB6700BCFACE /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
+		4F8842FA2489B72600BCFACE /* StationDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataRepository.swift; sourceTree = "<group>"; };
 		4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "irish-rail-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F88AE302486D4C000CA20D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F88AE392486D4C300CA20D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				4F8842F82489AB6700BCFACE /* BaseRepository.swift */,
 				4F8842F624899F9500BCFACE /* StationRepository.swift */,
+				4F8842FA2489B72600BCFACE /* StationDataRepository.swift */,
 			);
 			path = repository;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
+				4F8842FB2489B72600BCFACE /* StationDataRepository.swift in Sources */,
 				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
 				4FBA1633248940B70087D9B5 /* MapModel.swift in Sources */,
 				4FBA1635248940E60087D9B5 /* MapViewModel.swift in Sources */,
