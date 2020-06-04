@@ -53,6 +53,16 @@ protocol TrainMovement {
     var stopType: String { get }
 }
 
+enum TrainMovementParser {
+    static func parse(_ xmlString: String) throws -> [TrainMovement] {
+        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
+            options.shouldProcessLazily = true
+        }.parse(xmlString)
+        let trainMovements: [TrainMovementImpl] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
+        return trainMovements
+    }
+}
+
 struct TrainMovementImpl: XMLIndexerDeserializable, TrainMovement {
     
     let trainCode: String

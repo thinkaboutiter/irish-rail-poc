@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import SWXMLHash
 
 class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
@@ -28,10 +27,6 @@ class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
     // MARK: - Parsing
     override func parse(_ xmlString: String) throws -> [StationData] {
-        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-            options.shouldProcessLazily = true
-        }.parse(xmlString)
-        let stationData: [StationDataImpl] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
-        return stationData
+        return try StationDataParser.parse(xmlString)
     }
 }
