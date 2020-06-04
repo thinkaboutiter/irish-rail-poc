@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleLogger
+import MapKit
 
 /// APIs for `DependecyContainer` to expose.
 protocol MapViewControllerFactory {
@@ -18,6 +19,11 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: MapViewModel
+    @IBOutlet private weak var mapView: MKMapView! {
+        didSet {
+            self.mapView.delegate = self
+        }
+    }
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -46,7 +52,10 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
+}
+
+// MARK: - MKMapViewDelegate protocol
+extension MapViewController: MKMapViewDelegate {
+    
 }

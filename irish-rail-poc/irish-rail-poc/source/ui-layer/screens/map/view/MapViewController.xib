@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="irish_rail_poc" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="139-CX-RcX" id="mYk-Dk-iS9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,17 +18,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edx-1n-s3U">
-                    <rect key="frame" x="190" y="437.5" width="34" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="139-CX-RcX" userLabel="map-view">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </mapView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="edx-1n-s3U" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EQp-xa-T3S"/>
-                <constraint firstItem="edx-1n-s3U" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="O33-tk-Dad"/>
+                <constraint firstAttribute="trailing" secondItem="139-CX-RcX" secondAttribute="trailing" id="7TD-dg-7fJ"/>
+                <constraint firstItem="139-CX-RcX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AEa-6L-hIu"/>
+                <constraint firstAttribute="bottom" secondItem="139-CX-RcX" secondAttribute="bottom" id="ohF-gg-Z4v"/>
+                <constraint firstItem="139-CX-RcX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qgX-xs-d99"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="132" y="153"/>
