@@ -19,16 +19,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: RootViewModel
-    @IBOutlet private weak var titleLabel: UILabel!
-    private lazy var getAllStationsWebService: GetAllStationsWebService = {
-        return GetAllStationsWebService()
-    }()
-    private lazy var getStationDataByCodeWebService: GetStationDataByCodeWebService = {
-        return GetStationDataByCodeWebService(stationCode: "mhide")
-    }()
-    private lazy var getTrainMovementsWebService: GetTrainMovementsWebService = {
-        return GetTrainMovementsWebService(trainId: "e109", trainDate: "21 dec 2011")
-    }()
+    private let mapViewControllerFactory: MapViewControllerFactory
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -41,8 +32,11 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: RootViewModel) {
+    init(viewModel: RootViewModel,
+         mapViewControllerFactory: MapViewControllerFactory)
+    {
         self.viewModel = viewModel
+        self.mapViewControllerFactory = mapViewControllerFactory
         super.init(nibName: String(describing: RootViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -57,44 +51,21 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
-        self.dev_exerciseWebServices()
-    }
-    
-    private func configureUi() {
-        self.titleLabel.text = "\(String(describing: RootViewController.self))"
+        self.embedMapViewController()
     }
 }
 
-// MARK: - Exercising WebServices
+// MARK: - Embedding
 private extension RootViewController {
     
-    func dev_exerciseWebServices() {
-//        self.dev_exerciseGetAllStationsWebService()
-//        self.dev_exerciseGetStationDataByCodeWebService()
-        self.dev_exerciseGetTrainMovementsWebService()
-    }
-    
-    func dev_exerciseGetAllStationsWebService() {
-        self.getAllStationsWebService.getAllStations(success: { (stations: [Station]) in
-            Logger.success.message().object(stations)
-        }) { (error) in
-            Logger.error.message().object(error as NSError)
+    func embedMapViewController() {
+        let vc: MapViewController = self.mapViewControllerFactory.makeMapViewController()
+        do {
+            try self.embed(vc,
+                           containerView: self.view,
+                           positionChildViewIntoContainerView: nil)
         }
-    }
-    
-    func dev_exerciseGetStationDataByCodeWebService() {
-        self.getStationDataByCodeWebService.getStationData(success: { (stationData: [StationData]) in
-            Logger.success.message().object(stationData)
-        }) { (error) in
-            Logger.error.message().object(error as NSError)
-        }
-    }
-    
-    func dev_exerciseGetTrainMovementsWebService() {
-        self.getTrainMovementsWebService.getTrainMovements(success: { (trainMovements: [TrainMovement]) in
-            Logger.success.message().object(trainMovements)
-        }) { (error) in
+        catch {
             Logger.error.message().object(error as NSError)
         }
     }
