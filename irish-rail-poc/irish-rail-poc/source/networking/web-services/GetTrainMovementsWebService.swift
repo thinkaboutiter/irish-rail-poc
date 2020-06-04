@@ -56,7 +56,7 @@ class GetTrainMovementsWebService: BaseWebService {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let trainMovements: [TrainMovement] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
+        let trainMovements: [TrainMovementImpl] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
         return trainMovements
     }
 }

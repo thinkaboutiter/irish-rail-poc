@@ -31,7 +31,30 @@ import SWXMLHash
  </objTrainMovements>
  */
 
-struct TrainMovement: XMLIndexerDeserializable {
+protocol TrainMovement {
+    var trainCode: String { get }
+    var trainDate: String { get }
+    var locationCode: String { get }
+    var locationFullName: String { get }
+    var locationOrder: Int { get }
+    var locationType: String { get }
+    var trainOrigin: String { get }
+    var trainDestination: String { get }
+    var scheduledArrival: String { get }
+    var scheduledDeparture: String { get }
+    var expectedArrival: String { get }
+    var expectedDeparture: String { get }
+    
+//    var arrival: String { get }
+//    var departure: String { get }
+//    var autoArrival: Int { get }
+//    var autoDeparture: Int { get }
+    
+    var stopType: String { get }
+}
+
+struct TrainMovementImpl: XMLIndexerDeserializable, TrainMovement {
+    
     let trainCode: String
     let trainDate: String
     let locationCode: String
@@ -45,15 +68,16 @@ struct TrainMovement: XMLIndexerDeserializable {
     let expectedArrival: String
     let expectedDeparture: String
     
-    // Response is sometimes broken on these ones
+    /* Response is sometimes broken on these ones */
 //    let arrival: String
 //    let departure: String
 //    let autoArrival: Int
 //    let autoDeparture: Int
+    
     let stopType: String
     
-    static func deserialize(_ element: XMLIndexer) throws -> TrainMovement {
-        return try TrainMovement(
+    static func deserialize(_ element: XMLIndexer) throws -> TrainMovementImpl {
+        return try TrainMovementImpl(
             trainCode: element["TrainCode"].value(),
             trainDate: element["TrainDate"].value(),
             locationCode: element["LocationCode"].value(),
