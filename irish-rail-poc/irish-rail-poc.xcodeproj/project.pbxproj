@@ -35,6 +35,7 @@
 		4FBA16382489411B0087D9B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA16362489411B0087D9B5 /* MapViewController.swift */; };
 		4FBA16392489411B0087D9B5 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA16372489411B0087D9B5 /* MapViewController.xib */; };
 		4FBA163B248941630087D9B5 /* MapDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */; };
+		4FBA163E248942060087D9B5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		4FBA16362489411B0087D9B5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4FBA16372489411B0087D9B5 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDependencyContainer.swift; sourceTree = "<group>"; };
+		4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				4F88AE302486D4C000CA20D7 /* AppDelegate.swift */,
 				4FB5E96E248782910040C1BD /* data-layer */,
+				4FBA163C248941EC0087D9B5 /* extensions */,
 				4FB5E97924882D1B0040C1BD /* networking */,
 				4F88AE462486D5E400CA20D7 /* SupportFiles */,
 				4F88AE472486D9BC00CA20D7 /* ui-layer */,
@@ -274,6 +277,14 @@
 			path = "view-model";
 			sourceTree = "<group>";
 		};
+		4FBA163C248941EC0087D9B5 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -383,6 +394,7 @@
 				4FB5E98524883CA70040C1BD /* ErrorCreator.swift in Sources */,
 				4FBA16382489411B0087D9B5 /* MapViewController.swift in Sources */,
 				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
+				4FBA163E248942060087D9B5 /* UIViewController+Extensions.swift in Sources */,
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
 				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
