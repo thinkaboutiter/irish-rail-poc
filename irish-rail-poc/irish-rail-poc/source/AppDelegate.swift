@@ -14,7 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
     var window: UIWindow?
-    private let rootViewControllerFactory: RootViewControllerFactory = RootDependencyContainerImpl()
+    private lazy var rootViewControllerFactory: RootViewControllerFactory = {
+        let stationRepository: StationRepository = StationRepositoryImpl()
+        let stationDataRepository: StationDataRepository = StationDataRepositoryImpl()
+        let trainMovementRepository: TrainMovementRepository = TrainMovementRepositoryImpl()
+        let result: RootViewControllerFactory = RootDependencyContainerImpl(
+            stationRepository: stationRepository,
+            stationDataRepository: stationDataRepository,
+            trainMovementRepository: trainMovementRepository)
+        return result
+    }()
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
