@@ -26,16 +26,21 @@ protocol MapViewModel: AnyObject {
     func initialRadius() -> Double
 }
 
-class MapViewModelImpl: MapViewModel, MapModelConsumer {
+class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsumer {
     
     // MARK: - Properties
     private let model: MapModel
+    private let repository: StationRepository
     private weak var viewModelConsumer: MapViewModelConsumer!
     
     // MARK: - Initialization
-    required init(model: MapModel) {
+    required init(model: MapModel,
+                  repository: StationRepository)
+    {
         self.model = model
+        self.repository = repository
         self.model.setModelConsumer(self)
+        self.repository.setRepositoryConsumer(self)
         Logger.success.message()
     }
     
@@ -61,4 +66,16 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer {
     }
     
     // MARK: - MapModelConsumer protocol
+    
+    // MARK: - StationRepositoryConsumer protocol
+    func didFetchStations(on repository: StationRepository) {
+        let stations: [Station] = repository.stations()
+        
+        // TODO: persist data in the model
+    }
+    
+    func didFailToFetchStations(on repository: StationRepository, with error: Error) {
+        
+        // TODO: trigger error UI on the view object (viewModelConsumer)
+    }
 }

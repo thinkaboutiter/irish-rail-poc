@@ -35,7 +35,9 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     
     private func makeMapViewModel() -> MapViewModel {
         let model: MapModel = self.makeMapModel()
-        let result: MapViewModel = MapViewModelImpl(model: model)
+        let repository: StationRepository = self.parent.getStationRepository()
+        let result: MapViewModel = MapViewModelImpl(model: model,
+                                                    repository: repository)
         return result
     }
     
