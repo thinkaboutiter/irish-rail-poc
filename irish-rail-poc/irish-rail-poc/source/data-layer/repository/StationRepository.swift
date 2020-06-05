@@ -17,6 +17,10 @@ protocol StationRepositoryConsumer: AnyObject {
 
 protocol StationRepository: AnyObject {
     
+    /// Set `StationRepositoryConsumer` object
+    /// - Parameter newValue: the new `StationRepositoryConsumer` object
+    func setRepositoryConsumer(_ newValue: StationRepositoryConsumer)
+    
     /// Obtain `Station` objects.
     func fetchStations()
     
@@ -25,10 +29,6 @@ protocol StationRepository: AnyObject {
     
     /// Provide fetched data from the cache.
     func stations() -> [Station]
-    
-    /// Set `StationRepositoryConsumer` object
-    /// - Parameter newValue: the new `StationRepositoryConsumer` object
-    func setRepositoryConsumer(_ newValue: StationRepositoryConsumer)
     
     /// Search for `Station` object.
     /// - Parameter term: term to search for.
@@ -46,6 +46,10 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     }
     
     // MARK: - StationRepository protocol
+    func setRepositoryConsumer(_ newValue: StationRepositoryConsumer) {
+        self.consumer = newValue
+    }
+    
     func fetchStations() {
         self.fetchResources(
             success: {
@@ -65,10 +69,6 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     func stations() -> [Station] {
         let result: [Station] = self.objects()
         return result
-    }
-    
-    func setRepositoryConsumer(_ newValue: StationRepositoryConsumer) {
-        self.consumer = newValue
     }
     
     func filteredStations(by term: String) -> [Station] {

@@ -17,6 +17,10 @@ protocol TrainMovementRepositoryConsumer: AnyObject {
 
 protocol TrainMovementRepository: AnyObject {
     
+    /// Set `TrainMovementRepositoryConsumer` object
+    /// - Parameter newValue: the new `TrainMovementRepositoryConsumer` object
+    func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer)
+    
     /// Obtain `TrainMovement` objects.
     func fetchTrainMovement()
     
@@ -25,10 +29,6 @@ protocol TrainMovementRepository: AnyObject {
     
     /// Provide fetched data from the cache.
     func trainMovements() -> [TrainMovement]
-    
-    /// Set `TrainMovementRepositoryConsumer` object
-    /// - Parameter newValue: the new `TrainMovementRepositoryConsumer` object
-    func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer)
     
     /// Search for `TrainMovement` object.
     /// - Parameter term: term to search for.
@@ -46,6 +46,10 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     }
     
     // MARK: - TrainMovementRepository protocol
+    func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer) {
+        self.consumer = newValue
+    }
+    
     func fetchTrainMovement() {
         self.fetchResources(
             success: {
@@ -65,10 +69,6 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     func trainMovements() -> [TrainMovement] {
         let result: [TrainMovement] = self.objects()
         return result
-    }
-    
-    func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer) {
-        self.consumer = newValue
     }
     
     func filteredTrainMovements(by term: String) -> [TrainMovement] {
