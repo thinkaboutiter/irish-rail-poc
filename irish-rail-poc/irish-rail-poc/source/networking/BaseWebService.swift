@@ -80,11 +80,17 @@ class BaseWebService<ApiResponseType>: WebService {
         })
     }
     
+    func performPreFetchParametersCheck() throws {
+        fatalError("subclasses should override")
+    }
+    
     private func fetchXml(success: @escaping (_ xmlString: String) -> Void,
                           failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
-        self.request = AF
+        do {
+            try self.performPreFetchParametersCheck()
+            self.request = AF
             .request(
                 self.serviceEndpoint(),
                 method: self.httpVerb(),
@@ -119,6 +125,10 @@ class BaseWebService<ApiResponseType>: WebService {
                     failure(error as NSError)
                 }
             })
+        }
+        catch {
+            failure(error)
+        }
     }
     
     // MARK: - Parsing

@@ -7,12 +7,23 @@
 //
 
 import Foundation
+import SimpleLogger
 
 class GetAllStationsWebService: BaseWebService<Station> {
     
     // MARK: - Initialization
     init() {
         super.init(endpoint: WebServiceConstants.Endpoint.getAllStations)
+        Logger.success.message()
+    }
+    
+    deinit {
+        Logger.fatal.message()
+    }
+    
+    // MARK: - Checks
+    override func performPreFetchParametersCheck() throws {
+        return
     }
     
     // MARK: - Parsing
