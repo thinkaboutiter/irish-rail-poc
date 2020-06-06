@@ -19,6 +19,10 @@ class StationDataCalloutAccessoryControl: UIControl, StationDataCalloutAccessory
     @IBOutlet private weak var trainIconImageView: UIImageView!
     
     // MARK: - Initialization
+    @available(*, unavailable, message: "Creating this control with `init()` is unsupported in favor of initializer dependency injection.")
+    init() {
+        fatalError("Creating this control with `init()` is unsupported in favor of initializer dependency injection.")
+    }
     @available(*, unavailable, message: "Creating this control with `init(coder:)` is unsupported in favor of initializer dependency injection.")
     required init?(coder aDecoder: NSCoder) {
         fatalError("Creating this control with `init(coder:)` is unsupported in favor of initializer dependency injection.")
