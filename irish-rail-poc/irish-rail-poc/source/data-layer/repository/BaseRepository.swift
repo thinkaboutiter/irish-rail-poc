@@ -21,10 +21,10 @@ class BaseRepository<ApiResponseType> {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let valid_self = self else {
+            guard let validSelf = self else {
                 return
             }
-            valid_self.cache.removeAllObjects()
+            validSelf.cache.removeAllObjects()
         }
     }
     
@@ -88,18 +88,33 @@ class BaseRepository<ApiResponseType> {
         self.clearCache()
     }
     
+    /// Get objects from cache, consuming them
+    /// - Returns: cahecd objects or empty collection
     final func objects() -> [ApiResponseType] {
+        let result: [ApiResponseType] = self.flushObjects()
+        return result
+    }
+    
+    /// Get all cached objects and clearing cache
+    /// - Returns: cached objects
+    private func flushObjects() -> [ApiResponseType] {
         var result: [ApiResponseType]!
         self.concurrentCacheQueue.sync { [weak self] in
-            guard let valid_self = self else {
+            guard let validSelf = self else {
                 return
             }
-            result = valid_self.cache.compactMap { (element: Any) -> ApiResponseType? in
-                guard let valid_entity: ApiResponseType = element as? ApiResponseType else {
+            result = validSelf.cache.compactMap { (element: Any) -> ApiResponseType? in
+                guard let object: ApiResponseType = element as? ApiResponseType else {
                     return nil
                 }
-                return valid_entity
+                return object
             }
+        }
+        
+        defer {
+            let message: String = "Flushed \(result.count) \(String(describing: ApiResponseType.self))-s"
+            Logger.debug.message(message)
+            self.clearCache()
         }
         return result ?? []
     }
