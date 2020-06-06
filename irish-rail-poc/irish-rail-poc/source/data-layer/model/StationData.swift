@@ -35,28 +35,28 @@ import SWXMLHash
 </objStationData>
 */
 
-protocol StationData {
-    var serverTime: String { get }
-    var trainCode: String { get }
-    var stationFullName: String { get }
-    var stationCode: String { get }
-    var queryTime: String { get }
-    var trainDate: String { get }
-    var origin: String { get }
-    var destination: String { get }
-    var originTime: String { get }
-    var destinationTime: String { get }
-    var status: String { get }
-    var lastLocation: String { get }
-    var dueIn: Int { get }
-    var late: Int { get }
-    var expectedArrival: String { get }
-    var expectedDeparture: String { get }
-    var sheduleArrival: String { get }
-    var sheduleDeparture: String { get }
-    var direction: String { get }
-    var trainType: String { get }
-    var locationType: String { get }
+struct StationData: Hashable {
+    let serverTime: String
+    let trainCode: String
+    let stationFullName: String
+    let stationCode: String
+    let queryTime: String
+    let trainDate: String
+    let origin: String
+    let destination: String
+    let originTime: String
+    let destinationTime: String
+    let status: String
+    let lastLocation: String
+    let dueIn: Int
+    let late: Int
+    let expectedArrival: String
+    let expectedDeparture: String
+    let scheduleArrival: String
+    let scheduleDeparture: String
+    let direction: String
+    let trainType: String
+    let locationType: String
 }
 
 enum StationDataParser {
@@ -64,12 +64,33 @@ enum StationDataParser {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let stationData: [StationDataImpl] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
-        return stationData
+        let stationData: [StationDataApiObject] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
+        let result: [StationData] = stationData.map() { StationData(serverTime: $0.serverTime,
+                                                                    trainCode: $0.trainCode,
+                                                                    stationFullName: $0.stationFullName,
+                                                                    stationCode: $0.stationCode,
+                                                                    queryTime: $0.queryTime,
+                                                                    trainDate: $0.trainDate,
+                                                                    origin: $0.origin,
+                                                                    destination: $0.destination,
+                                                                    originTime: $0.originTime,
+                                                                    destinationTime: $0.destinationTime,
+                                                                    status: $0.status,
+                                                                    lastLocation: $0.lastLocation,
+                                                                    dueIn: $0.dueIn,
+                                                                    late: $0.late,
+                                                                    expectedArrival: $0.expectedArrival,
+                                                                    expectedDeparture: $0.expectedDeparture,
+                                                                    scheduleArrival: $0.scheduleArrival,
+                                                                    scheduleDeparture: $0.scheduleDeparture,
+                                                                    direction: $0.direction,
+                                                                    trainType: $0.trainType,
+                                                                    locationType: $0.locationType) }
+        return result
     }
 }
 
-struct StationDataImpl: XMLIndexerDeserializable, StationData {
+private struct StationDataApiObject: XMLIndexerDeserializable {
     
     let serverTime: String
     let trainCode: String
@@ -87,14 +108,14 @@ struct StationDataImpl: XMLIndexerDeserializable, StationData {
     let late: Int
     let expectedArrival: String
     let expectedDeparture: String
-    let sheduleArrival: String
-    let sheduleDeparture: String
+    let scheduleArrival: String
+    let scheduleDeparture: String
     let direction: String
     let trainType: String
     let locationType: String
     
-    static func deserialize(_ element: XMLIndexer) throws -> StationDataImpl {
-        return try StationDataImpl(
+    static func deserialize(_ element: XMLIndexer) throws -> StationDataApiObject {
+        return try StationDataApiObject(
             serverTime: element["Servertime"].value(),
             trainCode: element["Traincode"].value(),
             stationFullName: element["Stationfullname"].value(),
@@ -111,8 +132,8 @@ struct StationDataImpl: XMLIndexerDeserializable, StationData {
             late: element["Late"].value(),
             expectedArrival: element["Exparrival"].value(),
             expectedDeparture: element["Expdepart"].value(),
-            sheduleArrival: element["Scharrival"].value(),
-            sheduleDeparture: element["Schdepart"].value(),
+            scheduleArrival: element["Scharrival"].value(),
+            scheduleDeparture: element["Schdepart"].value(),
             direction: element["Direction"].value(),
             trainType: element["Traintype"].value(),
             locationType: element["Locationtype"].value())

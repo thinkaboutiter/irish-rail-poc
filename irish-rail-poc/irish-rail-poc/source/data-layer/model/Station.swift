@@ -20,13 +20,13 @@ import SWXMLHash
  </objStation>
  */
 
-protocol Station {
-    var desc: String { get }
-    var alias: String? { get }
-    var latitude: Double { get }
-    var longitude: Double { get }
-    var code: String { get }
-    var id: Int { get }
+struct Station: Hashable {
+    let desc: String
+    let alias: String?
+    let latitude: Double
+    let longitude: Double
+    let code: String
+    let id: Int
 }
 
 enum StationParser {
@@ -34,12 +34,18 @@ enum StationParser {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let stations: [StationImpl] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
-        return stations
+        let stations: [StationApiObject] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
+        let result: [Station] = stations.map() { Station(desc: $0.desc,
+                                                         alias: $0.alias,
+                                                         latitude: $0.latitude,
+                                                         longitude: $0.longitude,
+                                                         code: $0.code,
+                                                         id: $0.id) }
+        return result
     }
 }
 
-struct StationImpl: XMLIndexerDeserializable, Station {
+private struct StationApiObject: XMLIndexerDeserializable {
     let desc: String
     let alias: String?
     let latitude: Double
@@ -47,8 +53,8 @@ struct StationImpl: XMLIndexerDeserializable, Station {
     let code: String
     let id: Int
     
-    static func deserialize(_ element: XMLIndexer) throws -> StationImpl {
-        return try StationImpl(
+    static func deserialize(_ element: XMLIndexer) throws -> StationApiObject {
+        return try StationApiObject(
             desc: element["StationDesc"].value(),
             alias: element["StationAlias"].value(),
             latitude: element["StationLatitude"].value(),

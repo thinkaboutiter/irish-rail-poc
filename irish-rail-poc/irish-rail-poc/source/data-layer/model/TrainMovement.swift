@@ -31,26 +31,27 @@ import SWXMLHash
  </objTrainMovements>
  */
 
-protocol TrainMovement {
-    var trainCode: String { get }
-    var trainDate: String { get }
-    var locationCode: String { get }
-    var locationFullName: String { get }
-    var locationOrder: Int { get }
-    var locationType: String { get }
-    var trainOrigin: String { get }
-    var trainDestination: String { get }
-    var scheduledArrival: String { get }
-    var scheduledDeparture: String { get }
-    var expectedArrival: String { get }
-    var expectedDeparture: String { get }
+struct TrainMovement: Hashable {
+    let trainCode: String
+    let trainDate: String
+    let locationCode: String
+    let locationFullName: String
+    let locationOrder: Int
+    let locationType: String
+    let trainOrigin: String
+    let trainDestination: String
+    let scheduledArrival: String
+    let scheduledDeparture: String
+    let expectedArrival: String
+    let expectedDeparture: String
     
-//    var arrival: String { get }
-//    var departure: String { get }
-//    var autoArrival: Int { get }
-//    var autoDeparture: Int { get }
+    /* Response is sometimes broken on these ones */
+//    let arrival: String
+//    let departure: String
+//    let autoArrival: Int
+//    let autoDeparture: Int
     
-    var stopType: String { get }
+    let stopType: String
 }
 
 enum TrainMovementParser {
@@ -58,12 +59,25 @@ enum TrainMovementParser {
         let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
             options.shouldProcessLazily = true
         }.parse(xmlString)
-        let trainMovements: [TrainMovementImpl] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
-        return trainMovements
+        let trainMovements: [TrainMovementApiObject] = try xmlIndexer["ArrayOfObjTrainMovements"]["objTrainMovements"].value()
+        let result: [TrainMovement] = trainMovements.map() { TrainMovement(trainCode: $0.trainCode,
+                                                                           trainDate: $0.trainDate,
+                                                                           locationCode: $0.locationCode,
+                                                                           locationFullName: $0.locationFullName,
+                                                                           locationOrder: $0.locationOrder,
+                                                                           locationType: $0.locationType,
+                                                                           trainOrigin: $0.trainOrigin,
+                                                                           trainDestination: $0.trainDestination,
+                                                                           scheduledArrival: $0.scheduledArrival,
+                                                                           scheduledDeparture: $0.scheduledDeparture,
+                                                                           expectedArrival: $0.expectedArrival,
+                                                                           expectedDeparture: $0.expectedDeparture,
+                                                                           stopType: $0.stopType) }
+        return result
     }
 }
 
-struct TrainMovementImpl: XMLIndexerDeserializable, TrainMovement {
+private struct TrainMovementApiObject: XMLIndexerDeserializable {
     
     let trainCode: String
     let trainDate: String
@@ -86,8 +100,8 @@ struct TrainMovementImpl: XMLIndexerDeserializable, TrainMovement {
     
     let stopType: String
     
-    static func deserialize(_ element: XMLIndexer) throws -> TrainMovementImpl {
-        return try TrainMovementImpl(
+    static func deserialize(_ element: XMLIndexer) throws -> TrainMovementApiObject {
+        return try TrainMovementApiObject(
             trainCode: element["TrainCode"].value(),
             trainDate: element["TrainDate"].value(),
             locationCode: element["LocationCode"].value(),
