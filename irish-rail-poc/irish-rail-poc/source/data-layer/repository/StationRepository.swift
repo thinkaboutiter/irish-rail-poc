@@ -21,6 +21,10 @@ protocol StationRepository: AnyObject {
     /// - Parameter newValue: the new `StationRepositoryConsumer` object
     func setRepositoryConsumer(_ newValue: StationRepositoryConsumer)
     
+    /// Update `WebService` object
+    /// - Parameter newValue: new `WebService` object
+    func updateWebService(_ newValue: GetAllStationsWebService)
+    
     /// Obtain `Station` objects.
     func fetchStations()
     
@@ -48,6 +52,10 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     // MARK: - StationRepository protocol
     func setRepositoryConsumer(_ newValue: StationRepositoryConsumer) {
         self.consumer = newValue
+    }
+    
+    func updateWebService(_ newValue: GetAllStationsWebService) {
+        self.setWebService(newValue)
     }
     
     func fetchStations() {

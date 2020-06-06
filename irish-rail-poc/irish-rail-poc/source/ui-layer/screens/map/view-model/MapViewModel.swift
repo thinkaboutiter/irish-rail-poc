@@ -69,7 +69,7 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
     
     // MARK: - StationRepositoryConsumer protocol
     func didFetchStations(on repository: StationRepository) {
-        let stations: [Station] = repository.stations()
+        let _: [Station] = repository.stations()
         
         // TODO: persist data in the model
     }

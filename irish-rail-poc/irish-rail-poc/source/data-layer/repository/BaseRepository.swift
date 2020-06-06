@@ -12,7 +12,10 @@ import SimpleLogger
 class BaseRepository<ApiResponseType> {
     
     // MARK: - Properties
-    private let webService: BaseWebService<ApiResponseType>
+    private var webService: BaseWebService<ApiResponseType>?
+    func setWebService(_ newValue: BaseWebService<ApiResponseType>) {
+        self.webService = newValue
+    }
     private let concurrentCacheQueue = DispatchQueue(label: Constants.concurrentQueueLabel,
                                                      qos: .default,
                                                      attributes: .concurrent)
@@ -29,8 +32,7 @@ class BaseRepository<ApiResponseType> {
     }
     
     // MARK: - Initialization
-    init(webService: BaseWebService<ApiResponseType>) {
-        self.webService = webService
+    init() {
         Logger.success.message()
     }
     
@@ -38,7 +40,17 @@ class BaseRepository<ApiResponseType> {
     final func fetchResources(success: @escaping () -> Void,
                               failure: @escaping (_ error: Swift.Error) -> Void)
     {
-        self.webService.fetch(
+        guard let validWebService: BaseWebService<ApiResponseType> = self.webService else {
+            let message: String = "Invalid \(String(describing: BaseWebService<ApiResponseType>.self)) object!"
+            let error: NSError = ErrorCreator
+                .custom(domain: BaseRepository<ApiResponseType>.Error.domain,
+                        code: BaseRepository<ApiResponseType>.Error.Code.invalidWebServiceObject,
+                        localizedMessage: message)
+                .error()
+            failure(error)
+            return
+        }
+        validWebService.fetch(
             success: { (objects: [ApiResponseType]) in
                 self.consume(objects,
                              success: success,
@@ -123,6 +135,9 @@ class BaseRepository<ApiResponseType> {
             }
             static var unableToNotifyForDataConsumption: Int {
                 return 9001
+            }
+            static var invalidWebServiceObject: Int {
+                return 9002
             }
         }
     }

@@ -21,6 +21,10 @@ protocol TrainMovementRepository: AnyObject {
     /// - Parameter newValue: the new `TrainMovementRepositoryConsumer` object
     func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer)
     
+    /// Update `WebService` object
+    /// - Parameter newValue: new `WebService` object
+    func updateWebService(_ newValue: GetTrainMovementsWebService)
+    
     /// Obtain `TrainMovement` objects.
     func fetchTrainMovement()
     
@@ -48,6 +52,10 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     // MARK: - TrainMovementRepository protocol
     func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer) {
         self.consumer = newValue
+    }
+    
+    func updateWebService(_ newValue: GetTrainMovementsWebService) {
+        self.setWebService(newValue)
     }
     
     func fetchTrainMovement() {
