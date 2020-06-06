@@ -31,6 +31,9 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
                                                                 latitudinalMeters: radius,
                                                                 longitudinalMeters: radius)
             self.mapView.setRegion(region, animated: true)
+            let identifier: String = String(describing: MKPinAnnotationView.self)
+            self.mapView.register(MKPinAnnotationView.self,
+                                  forAnnotationViewWithReuseIdentifier: identifier)
         }
     }
     @IBOutlet private weak var reloadButton: UIButton!
@@ -60,9 +63,8 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - MapViewModelConsumer protocol
     func didUpdateStations(on viewModel: MapViewModel) {
         let stations: [Station] = viewModel.stations()
-        for station in stations {
-            Logger.debug.object(station)
-        }
+        let annotations: [StationAnnotation] = stations.map() { StationAnnotation(station: $0) }
+        self.updateAnnotations(annotations, on: self.mapView)
     }
     
     func didReceiveError(on viewModel: MapViewModel, error: Error) {
@@ -85,7 +87,33 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
         Logger.debug.message()
         self.loadStations()
     }
+    
+    // MARK: - Annotations
+    private func updateAnnotations(_ annotations: [MKAnnotation], on mapView: MKMapView) {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(annotations)
+    }
 }
 
 // MARK: - MKMapViewDelegate protocol
-extension MapViewController: MKMapViewDelegate {}
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let stationAnnotation: StationAnnotation = annotation as? StationAnnotation else {
+            return nil
+        }
+        let identifier: String = String(describing: MKPinAnnotationView.self)
+        let annotationView: MKPinAnnotationView
+        if let cachedView: MKPinAnnotationView = mapView
+            .dequeueReusableAnnotationView(withIdentifier: identifier,
+                                           for: stationAnnotation) as? MKPinAnnotationView {
+            annotationView = cachedView
+        }
+        else {
+            annotationView = MKPinAnnotationView(annotation: stationAnnotation,
+                                                 reuseIdentifier: identifier)
+        }
+        annotationView.pinTintColor = .green
+        return annotationView
+    }
+}
