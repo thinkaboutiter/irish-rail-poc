@@ -1,5 +1,5 @@
 //
-//  StationDataCalloutAccessoryControl.swift
+//  StationDataCalloutAccessoryView.swift
 //  irish-rail-poc
 //
 //  Created by Boyan Yankov on 2020-W23-07-Jun-Sun.
@@ -9,7 +9,7 @@
 import UIKit
 import SimpleLogger
 
-class StationDataCalloutAccessoryControl: UIControl, StationDataCalloutAccessoryViewModelConsumer {
+class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewModelConsumer {
     
     // MARK: - Properties
     // source: https://medium.com/@brianclouser/swift-3-creating-a-custom-view-from-a-xib-ecdfe5b3a960
@@ -50,7 +50,7 @@ class StationDataCalloutAccessoryControl: UIControl, StationDataCalloutAccessory
     
     private func commonInit() {
         self.backgroundColor = .clear
-        Bundle.main.loadNibNamed(String(describing: StationDataCalloutAccessoryControl.self),
+        Bundle.main.loadNibNamed(String(describing: StationDataCalloutAccessoryView.self),
                                  owner: self,
                                  options: nil)
         self.addSubview(self.contentView)

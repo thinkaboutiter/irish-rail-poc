@@ -120,7 +120,7 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryControl {
+    private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryView {
         let stationCode: String = annotation.station.code
         let webService: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
         let repository: StationDataRepository = StationDataRepositoryImpl(webService: webService)
@@ -128,7 +128,7 @@ extension MapViewController: MKMapViewDelegate {
             stationCode: stationCode,
             repository: repository)
         let frame: CGRect = CGRect(origin: .zero, size: CGSize(width: 80, height: 40))
-        let view: StationDataCalloutAccessoryControl = StationDataCalloutAccessoryControl(
+        let view: StationDataCalloutAccessoryView = StationDataCalloutAccessoryView(
             frame: frame,
             viewModel: viewModel)
         return view
