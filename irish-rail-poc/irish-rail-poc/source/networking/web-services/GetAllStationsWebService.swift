@@ -9,7 +9,7 @@
 import Foundation
 import SimpleLogger
 
-class GetAllStationsWebService: BaseWebService<Station> {
+final class GetAllStationsWebService: BaseWebService<Station> {
     
     // MARK: - Initialization
     init() {

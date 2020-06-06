@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SimpleLogger
 
-class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
+final class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     
     // MARK: - Properties
     private var trainId: String?

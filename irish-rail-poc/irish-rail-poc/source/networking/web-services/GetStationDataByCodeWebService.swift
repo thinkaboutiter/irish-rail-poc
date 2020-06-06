@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SimpleLogger
 
-class GetStationDataByCodeWebService: BaseWebService<StationData> {
+final class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
     // MARK: - Properties
     private var stationCode: String?
