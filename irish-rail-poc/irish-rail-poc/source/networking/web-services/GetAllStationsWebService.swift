@@ -9,6 +9,12 @@
 import Foundation
 import SimpleLogger
 
+
+/// Get All Stations
+///
+///     http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML
+///
+/// returns a list of all stations with StationDesc, StaionCode, StationId, StationAlias, StationLatitude and StationLongitude ordered by Latitude, Longitude
 final class GetAllStationsWebService: BaseWebService<Station> {
     
     // MARK: - Initialization

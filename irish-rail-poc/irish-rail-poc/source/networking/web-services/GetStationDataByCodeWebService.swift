@@ -10,6 +10,11 @@ import Foundation
 import Alamofire
 import SimpleLogger
 
+/// Get Station Data by StationCode usage
+///
+///     http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide
+///
+/// returns all trains due to serve the named station in the next 90 minutes
 final class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
     // MARK: - Properties

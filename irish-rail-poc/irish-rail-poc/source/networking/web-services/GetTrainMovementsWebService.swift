@@ -10,6 +10,29 @@ import Foundation
 import Alamofire
 import SimpleLogger
 
+/// Get Train Movements usage
+/// 
+///     http://api.irishrail.ie/realtime/realtime.asmx/getTrainMovementsXML?TrainId=e109&TrainDate=21_dec_2011
+///
+/// returns all stop information for the given train as follows
+///
+///     TrainCode
+///     TrainDate
+///     LocationCode
+///     LocationFullName
+///     LocationOrder
+///     LocationType O= Origin, S= Stop, T= TimingPoint (non stopping location) D = Destination
+///     TrainOrigin
+///     TrainDestination
+///     ScheduledArrival
+///     ScheduledDeparture
+///     Arrival (actual)
+///     Departure (actual)
+///     AutoArrival (was information automatically generated)
+///     AutoDepart
+///     StopType C= Current N = Next
+///     
+/// Please note all these webservice names and parameters are case sensitive
 final class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     
     // MARK: - Properties
