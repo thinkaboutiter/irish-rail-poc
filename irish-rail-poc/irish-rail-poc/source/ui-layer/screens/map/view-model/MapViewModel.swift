@@ -10,7 +10,10 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `View` to expose to `ViewModel`
-protocol MapViewModelConsumer: AnyObject {}
+protocol MapViewModelConsumer: AnyObject {
+    func didUpdateStations(on viewModel: MapViewModel)
+    func didReceiveError(on viewModel: MapViewModel, error: Swift.Error)
+}
 
 /// APIs for `ViewModel` to expose to `View`
 protocol MapViewModel: AnyObject {
@@ -24,6 +27,12 @@ protocol MapViewModel: AnyObject {
     
     /// In meters
     func initialRadius() -> Double
+    
+    /// Initiate `Station`-s fetching
+    func fetchStations()
+    
+    /// Obtain fetched `Station`-s
+    func stations() -> [Station]
 }
 
 class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsumer {
@@ -65,17 +74,26 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
         return self.model.initialRadius()
     }
     
+    func fetchStations() {
+        self.repository.fetchStations()
+    }
+    
+    func stations() -> [Station] {
+        return self.model.stations()
+    }
+    
     // MARK: - MapModelConsumer protocol
+    func didUpdateStationsCache(on model: MapModel) {
+        self.viewModelConsumer.didUpdateStations(on: self)
+    }
     
     // MARK: - StationRepositoryConsumer protocol
     func didFetchStations(on repository: StationRepository) {
-        let _: [Station] = repository.stations()
-        
-        // TODO: persist data in the model
+        let stations: [Station] = repository.stations()
+        self.model.setStations(stations)
     }
     
     func didFailToFetchStations(on repository: StationRepository, with error: Error) {
-        
-        // TODO: trigger error UI on the view object (viewModelConsumer)
+        self.viewModelConsumer.didReceiveError(on: self, error: error)
     }
 }

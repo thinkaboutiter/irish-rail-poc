@@ -57,6 +57,13 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     }
     
     // MARK: - MapViewModelConsumer protocol
+    func didUpdateStations(on viewModel: MapViewModel) {
+        // TODO: reload UI
+    }
+    
+    func didReceiveError(on viewModel: MapViewModel, error: Error) {
+        self.showAlert(for: error as NSError)
+    }
     
     // MARK: - Life cycle
     override func viewDidLoad() {

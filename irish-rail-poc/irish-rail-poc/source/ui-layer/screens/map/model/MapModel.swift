@@ -10,7 +10,9 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `ViewModel` to expose to `Model`
-protocol MapModelConsumer: AnyObject {}
+protocol MapModelConsumer: AnyObject {
+    func didUpdateStationsCache(on model: MapModel)
+}
 
 /// APIs for `Model` to expose to `ViewModel`
 protocol MapModel: AnyObject {
@@ -24,6 +26,10 @@ protocol MapModel: AnyObject {
     
     /// In meters
     func initialRadius() -> Double
+    
+    func stations() -> [Station]
+    func setStations(_ newValue: [Station])
+    func reset()
 }
 
 class MapModelImpl: MapModel {
@@ -33,6 +39,7 @@ class MapModelImpl: MapModel {
     private let latitude: Double
     private let longitude: Double
     private let radius: Double
+    private var stationsCache: [Station] = []
     
     // MARK: - Initialization
     init(latitude: Double, longitude: Double, radius: Double) {
@@ -61,5 +68,19 @@ class MapModelImpl: MapModel {
     
     func initialRadius() -> Double {
         return self.radius
+    }
+    
+    func stations() -> [Station] {
+        return self.stationsCache
+    }
+    
+    func setStations(_ newValue: [Station]) {
+        self.stationsCache = newValue
+        self.modelConsumer.didUpdateStationsCache(on: self)
+    }
+    
+    func reset() {
+        self.stationsCache.removeAll()
+        self.modelConsumer.didUpdateStationsCache(on: self)
     }
 }
