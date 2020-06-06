@@ -113,9 +113,24 @@ extension MapViewController: MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: stationAnnotation,
                                                  reuseIdentifier: identifier)
         }
-        annotationView.pinTintColor = .green
+        annotationView.pinTintColor = .red
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        Logger.debug.message()
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        Logger.debug.message()
+    }
+    
+    func mapView(_ mapView: MKMapView,
+                 annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl)
+    {
+        Logger.debug.message()
     }
 }
