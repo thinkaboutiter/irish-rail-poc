@@ -27,6 +27,9 @@ protocol StationRepository: AnyObject {
     /// Reset local cache and initiate fetch again.
     func refresh()
     
+    /// Reset local cache and cancel request if any.
+    func reset()
+    
     /// Provide fetched data from the cache.
     func stations() -> [Station]
     

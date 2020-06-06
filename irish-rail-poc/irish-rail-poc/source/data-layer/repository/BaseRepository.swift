@@ -88,6 +88,12 @@ class BaseRepository<ApiResponseType> {
         self.clearCache()
     }
     
+    /// Reset cache and cancel web request if any.
+    func reset() {
+        self.clearCache()
+        self.webService.cancelRequest()
+    }
+    
     /// Get objects from cache, consuming them
     /// - Returns: cahecd objects or empty collection
     final func objects() -> [ApiResponseType] {
