@@ -39,7 +39,7 @@ class MapModelImpl: MapModel {
     private let latitude: Double
     private let longitude: Double
     private let radius: Double
-    private var stationsCache: [Station] = []
+    private var stationsCache: NSMutableOrderedSet = []
     
     // MARK: - Initialization
     init(latitude: Double, longitude: Double, radius: Double) {
@@ -71,16 +71,17 @@ class MapModelImpl: MapModel {
     }
     
     func stations() -> [Station] {
-        return self.stationsCache
+        let result: [Station] = (self.stationsCache.array as? [Station]) ?? []
+        return result
     }
     
     func setStations(_ newValue: [Station]) {
-        self.stationsCache = newValue
+        self.stationsCache.addObjects(from: newValue)
         self.modelConsumer.didUpdateStationsCache(on: self)
     }
     
     func reset() {
-        self.stationsCache.removeAll()
+        self.stationsCache.removeAllObjects()
         self.modelConsumer.didUpdateStationsCache(on: self)
     }
 }
