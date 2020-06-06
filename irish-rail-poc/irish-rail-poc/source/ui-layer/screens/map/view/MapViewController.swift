@@ -58,7 +58,10 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - MapViewModelConsumer protocol
     func didUpdateStations(on viewModel: MapViewModel) {
-        // TODO: reload UI
+        let stations: [Station] = viewModel.stations()
+        for station in stations {
+            Logger.debug.object(station)
+        }
     }
     
     func didReceiveError(on viewModel: MapViewModel, error: Error) {
@@ -68,6 +71,12 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadStations()
+    }
+    
+    // MARK: - Fetching
+    private func loadStations() {
+        self.viewModel.fetchStations()
     }
 }
 
