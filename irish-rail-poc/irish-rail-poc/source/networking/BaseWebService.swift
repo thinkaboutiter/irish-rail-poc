@@ -131,6 +131,10 @@ class BaseWebService<ApiResponseType>: WebService {
         }
     }
     
+    final func cancelRequest() {
+        self.request?.cancel()
+    }
+    
     // MARK: - Parsing
     func parse(_ xmlString: String) throws -> [ApiResponseType] {
         assert(false, "subclass should override!")
