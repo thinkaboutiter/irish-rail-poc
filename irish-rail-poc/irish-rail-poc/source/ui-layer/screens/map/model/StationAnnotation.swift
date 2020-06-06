@@ -13,7 +13,7 @@ import SimpleLogger
 class StationAnnotation: NSObject, MKAnnotation {
     
     // MARK: - Properties
-    private let station: Station
+    let station: Station
     
     // MARK: - Initialization
     init(station: Station) {
