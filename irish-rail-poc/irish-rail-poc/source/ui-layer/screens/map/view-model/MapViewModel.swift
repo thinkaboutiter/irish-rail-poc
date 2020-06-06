@@ -33,6 +33,9 @@ protocol MapViewModel: AnyObject {
     
     /// Obtain fetched `Station`-s
     func stations() -> [Station]
+    
+    /// Reset all data
+    func reset()
 }
 
 class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsumer {
@@ -80,6 +83,10 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
     
     func stations() -> [Station] {
         return self.model.stations()
+    }
+    
+    func reset() {
+        self.model.reset()
     }
     
     // MARK: - MapModelConsumer protocol
