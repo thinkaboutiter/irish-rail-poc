@@ -15,9 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow?
     private lazy var rootViewControllerFactory: RootViewControllerFactory = {
-        let stationRepository: StationRepository = StationRepositoryImpl()
-        let stationDataRepository: StationDataRepository = StationDataRepositoryImpl()
-        let trainMovementRepository: TrainMovementRepository = TrainMovementRepositoryImpl()
+        let stationsWs: GetAllStationsWebService = GetAllStationsWebService()
+        let stationRepository: StationRepository = StationRepositoryImpl(webService: stationsWs)
+        
+        let stationDataWs: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
+        let stationDataRepository: StationDataRepository = StationDataRepositoryImpl(webService: stationDataWs)
+        
+        let trainMovementWs: GetTrainMovementsWebService = GetTrainMovementsWebService()
+        let trainMovementRepository: TrainMovementRepository = TrainMovementRepositoryImpl(webService: trainMovementWs)
+        
         let result: RootViewControllerFactory = RootDependencyContainerImpl(
             stationRepository: stationRepository,
             stationDataRepository: stationDataRepository,
