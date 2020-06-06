@@ -115,6 +115,7 @@ extension MapViewController: MKMapViewDelegate {
         }
         annotationView.pinTintColor = .green
         annotationView.animatesDrop = false
+        annotationView.canShowCallout = true
         return annotationView
     }
 }
