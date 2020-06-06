@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="irish_rail_poc" customModuleProvider="target">
             <connections>
                 <outlet property="mapView" destination="139-CX-RcX" id="mYk-Dk-iS9"/>
+                <outlet property="reloadButton" destination="nHZ-zA-yHX" id="tEf-i1-OgM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,11 +22,21 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="139-CX-RcX" userLabel="map-view">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHZ-zA-yHX" userLabel="reload-button">
+                    <rect key="frame" x="151" y="766" width="112" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Reload stations"/>
+                    <connections>
+                        <action selector="rouloadButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="FgJ-OZ-guf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nHZ-zA-yHX" secondAttribute="bottom" constant="64" id="3Tu-5V-NKy"/>
                 <constraint firstAttribute="trailing" secondItem="139-CX-RcX" secondAttribute="trailing" id="7TD-dg-7fJ"/>
                 <constraint firstItem="139-CX-RcX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AEa-6L-hIu"/>
+                <constraint firstItem="nHZ-zA-yHX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ddu-O1-bTb"/>
                 <constraint firstAttribute="bottom" secondItem="139-CX-RcX" secondAttribute="bottom" id="ohF-gg-Z4v"/>
                 <constraint firstItem="139-CX-RcX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qgX-xs-d99"/>
             </constraints>

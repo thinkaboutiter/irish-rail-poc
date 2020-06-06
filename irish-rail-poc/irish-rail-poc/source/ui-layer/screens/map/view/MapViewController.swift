@@ -33,6 +33,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
             self.mapView.setRegion(region, animated: true)
         }
     }
+    @IBOutlet private weak var reloadButton: UIButton!
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -77,6 +78,12 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Fetching
     private func loadStations() {
         self.viewModel.fetchStations()
+    }
+    
+    // MARK: - Actions
+    @IBAction func rouloadButtonTouchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+        self.loadStations()
     }
 }
 
