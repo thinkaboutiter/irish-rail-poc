@@ -116,7 +116,22 @@ extension MapViewController: MKMapViewDelegate {
         annotationView.pinTintColor = .red
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: stationAnnotation)
         return annotationView
+    }
+    
+    private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryControl {
+        let stationCode: String = annotation.station.code
+        let webService: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
+        let repository: StationDataRepository = StationDataRepositoryImpl(webService: webService)
+        let viewModel: StationDataCalloutAccessoryViewModel = StationDataCalloutAccessoryViewModelImpl(
+            stationCode: stationCode,
+            repository: repository)
+        let frame: CGRect = CGRect(origin: .zero, size: CGSize(width: 80, height: 40))
+        let view: StationDataCalloutAccessoryControl = StationDataCalloutAccessoryControl(
+            frame: frame,
+            viewModel: viewModel)
+        return view
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -124,13 +139,6 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        Logger.debug.message()
-    }
-    
-    func mapView(_ mapView: MKMapView,
-                 annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl)
-    {
         Logger.debug.message()
     }
 }
