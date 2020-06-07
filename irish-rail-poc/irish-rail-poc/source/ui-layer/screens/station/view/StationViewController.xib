@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StationViewController" customModule="irish_rail_poc" customModuleProvider="target">
             <connections>
+                <outlet property="stationDataCollectionView" destination="yCL-0z-1HN" id="gTL-AV-nHq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,38 +18,23 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="station data goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqW-1x-Has">
-                    <rect key="frame" x="121.5" y="438" width="171" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BqO-WG-52y">
-                    <rect key="frame" x="180.5" y="742" width="53" height="80"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vV-es-S7g">
-                            <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
-                            <state key="normal" title="push"/>
-                            <connections>
-                                <action selector="pushButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="8Pc-0X-zxG"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udP-C9-wGr" userLabel="present">
-                            <rect key="frame" x="0.0" y="50" width="53" height="30"/>
-                            <state key="normal" title="present"/>
-                            <connections>
-                                <action selector="presentButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="41Z-1u-OIq"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yCL-0z-1HN" userLabel="station-data-collection-view" customClass="StationDataCollectionView" customModule="irish_rail_poc" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5xx-9n-I7U">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="BqO-WG-52y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HaG-Wg-9MH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BqO-WG-52y" secondAttribute="bottom" constant="40" id="O5U-jR-hNs"/>
-                <constraint firstItem="ZqW-1x-Has" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="awt-Nu-b6w"/>
-                <constraint firstItem="ZqW-1x-Has" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="g1G-hN-t2Q"/>
+                <constraint firstItem="yCL-0z-1HN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GD8-Zn-yVP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yCL-0z-1HN" secondAttribute="trailing" id="jh5-gk-5Ih"/>
+                <constraint firstItem="yCL-0z-1HN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lN8-PG-Vui"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yCL-0z-1HN" secondAttribute="bottom" id="zX7-XJ-Cdv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="132" y="154"/>

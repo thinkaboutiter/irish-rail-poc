@@ -21,7 +21,8 @@ protocol StationViewModel: AnyObject {
     func setViewModelConsumer(_ newValue: StationViewModelConsumer)
     func fetchStationData()
     func cancelStationDataFetching()
-    func stationData() -> [StationData]
+    func items() -> [StationData]
+    func item(at indexPath: IndexPath) -> StationData?
     func stationCode() -> String
 }
 
@@ -62,8 +63,20 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
         self.repository.reset()
     }
     
-    func stationData() -> [StationData] {
+    func items() -> [StationData] {
         self.model.stationData()
+    }
+    
+    func item(at indexPath: IndexPath) -> StationData? {
+        let range: Range<Int> = 0..<self.items().count
+        let index: Int = indexPath.item
+        guard range ~= index else {
+            let message: String = "index=\(index) out of range=\(range)!"
+            Logger.error.message(message)
+            return nil
+        }
+        let result: StationData = self.items()[index]
+        return result
     }
     
     func stationCode() -> String {
