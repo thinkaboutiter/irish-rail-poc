@@ -21,8 +21,13 @@ protocol StationDataRepository: AnyObject {
     /// - Parameter newValue: the new `StationDataRepositoryConsumer` object
     func setRepositoryConsumer(_ newValue: StationDataRepositoryConsumer)
     
-    /// Obtain `StationData` objects.
-    func fetchStationData(for stationCode: String)
+    
+    /// Obtain `StationData` objects for given station code
+    /// - Parameters:
+    ///   - stationCode: the code of the station
+    ///   - usingCache: flag indicating cache usage
+    func fetchStationData(for stationCode: String,
+                          usingCache: Bool)
     
     /// Reset local cache and initiate fetch again.
     func refresh()
@@ -31,11 +36,11 @@ protocol StationDataRepository: AnyObject {
     func reset()
     
     /// Provide fetched data from the cache.
-    func stationData() -> [StationData]
+    func stationData() throws -> [StationData]
     
     /// Search for `StationData` object.
     /// - Parameter term: term to search for.
-    func filteredStationData(by term: String) -> [StationData]
+    func filteredStationData(by term: String) throws -> [StationData]
 }
 
 class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataRepository {
@@ -43,6 +48,9 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     // MARK: - Properties
     private weak var consumer: StationDataRepositoryConsumer!
     private var stationCode: String?
+    private lazy var stationDataCache: StationDataCache = {
+        return StationDataCacheImpl.shared
+    }()
     
     // MARK: - Initialization
     deinit {
@@ -54,8 +62,17 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
         self.consumer = newValue
     }
     
-    func fetchStationData(for stationCode: String) {
+    func fetchStationData(for stationCode: String,
+                          usingCache: Bool)
+    {
         self.stationCode = stationCode
+        let isCacheValid: Bool = self.stationDataCache.isCacheValid(for: stationCode)
+        let shouldUseCache: Bool = usingCache && isCacheValid
+        guard !shouldUseCache else {
+            self.consumer.didFetchStationData(on: self)
+            return
+        }
+        self.stationDataCache.invalidateCache(for: stationCode)
         self.webService.requestParameters = [
             WebServiceConstants.RequestParameterKey.stationCode: stationCode
         ]
@@ -80,16 +97,34 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
                                                     with: error)
             return
         }
-        self.fetchStationData(for: stationCode)
+        self.fetchStationData(for: stationCode,
+                              usingCache: false)
     }
     
-    func stationData() -> [StationData] {
-        let result: [StationData] = self.consumeObjects()
+    func stationData() throws -> [StationData] {
+        guard let stationCode: String = self.stationCode else {
+            let message: String = Error.Message.invalidStationCodeParameter
+            let error: NSError = ErrorCreator.custom(domain: Error.domain,
+                                                     code: Error.Code.invalidStationCodeParameter,
+                                                     localizedMessage: message).error()
+            throw error
+        }
+        let result: [StationData]
+        let consumed: [StationData] = self.consumeObjects()
+        if !consumed.isEmpty {
+            self.stationDataCache.add(consumed,
+                                      for: stationCode,
+                                      shouldInvalidateExistingCache: true)
+            result = consumed
+        }
+        else {
+            result = try self.stationDataCache.stationData(for: stationCode)
+        }
         return result
     }
     
-    func filteredStationData(by term: String) -> [StationData] {
-        let result: [StationData] = self.stationData().filter { (stationData: StationData) -> Bool in
+    func filteredStationData(by term: String) throws -> [StationData] {
+        let result: [StationData] = try self.stationData().filter { (stationData: StationData) -> Bool in
             return (stationData.stationFullName.contains(term)
                 || stationData.stationCode.contains(term)
                 || stationData.origin.contains(term)
@@ -107,9 +142,11 @@ private extension StationDataRepositoryImpl {
         
         enum Code {
             static let invalidStationCodeParameter: Int = 9000
+            static let invalidCache: Int = 9001
         }
         enum Message {
             static let invalidStationCodeParameter: String = "invalid station_code parameter!"
+            static let invalidCache: String = "cache is no longer valid!"
         }
     }
 }

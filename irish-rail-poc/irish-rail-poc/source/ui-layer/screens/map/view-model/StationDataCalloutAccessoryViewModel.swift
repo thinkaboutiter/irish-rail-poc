@@ -56,7 +56,8 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
     
     func fetchStationData() {
         self.repository.reset()
-        self.repository.fetchStationData(for: self.stationCodeStorage)
+        self.repository.fetchStationData(for: self.stationCodeStorage,
+                                         usingCache: true)
     }
     
     func cancelStationDataFetching() {
@@ -76,9 +77,15 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
 extension StationDataCalloutAccessoryViewModelImpl: StationDataRepositoryConsumer {
     
     func didFetchStationData(on repository: StationDataRepository) {
-        let stationData: [StationData] = repository.stationData()
-        self.trainsCountStorage = stationData.count
-        self.viewModelConsumer.didFinishFetchngStationData(on: self)
+        do {
+            let stationData: [StationData] = try repository.stationData()
+            self.trainsCountStorage = stationData.count
+            self.viewModelConsumer.didFinishFetchngStationData(on: self)
+        }
+        catch {
+            self.didFailToFetchStationData(on: repository,
+                                           with: error)
+        }
     }
     
     func didFailToFetchStationData(on repository: StationDataRepository,
