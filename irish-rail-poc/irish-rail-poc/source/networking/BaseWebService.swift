@@ -45,17 +45,9 @@ class BaseWebService<ApiResponseType>: WebService {
         return result
     }
     
-    func httpVerb() -> HTTPMethod {
-        return .get
-    }
-    
-    func requestHeaders() -> Alamofire.HTTPHeaders? {
-        return nil
-    }
-    
-    func requestParameters() -> Parameters? {
-        return nil
-    }
+    var httpVerb: HTTPMethod = .get
+    var requestHeaders: Alamofire.HTTPHeaders?
+    var requestParameters: Parameters?
     
     func requestParametersEncoding() -> ParameterEncoding {
         return URLEncoding.default
@@ -93,10 +85,10 @@ class BaseWebService<ApiResponseType>: WebService {
             self.request = AF
             .request(
                 self.serviceEndpoint(),
-                method: self.httpVerb(),
-                parameters: self.requestParameters(),
+                method: self.httpVerb,
+                parameters: self.requestParameters,
                 encoding: self.requestParametersEncoding(),
-                headers: self.requestHeaders())
+                headers: self.requestHeaders)
             .responseData(completionHandler: { (response: AFDataResponse<Data>) in
                 Logger.network.message("request:").object(response.request)
                 Logger.network.message("request.allHTTPHeaderFields:").object(response.request?.allHTTPHeaderFields)

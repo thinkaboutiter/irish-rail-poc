@@ -18,7 +18,6 @@ import SimpleLogger
 final class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
     // MARK: - Properties
-    private var stationCode: String?
 
     // MARK: - Initialization
     init() {
@@ -29,20 +28,10 @@ final class GetStationDataByCodeWebService: BaseWebService<StationData> {
     deinit {
         Logger.fatal.message()
     }
-    
-    // MARK: - WebService protocol
-    override func requestParameters() -> Parameters? {
-        guard let stationCode: String = self.stationCode else {
-            let message: String = "Invlaid station_code parameter!"
-            Logger.error.message(message)
-            return nil
-        }
-        return [WebServiceConstants.RequestParameterKey.stationCode: stationCode]
-    }
-    
+        
     // MARK: - Checks
     override func performPreFetchParametersCheck() throws {
-        guard let _ = self.stationCode else {
+        guard let _ = self.requestParameters?[WebServiceConstants.RequestParameterKey.stationCode] else {
             let message: String = "Invalid station_code parameter!"
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
                                                      code: Error.Code.invalidStationCodeParameter,

@@ -34,10 +34,6 @@ import SimpleLogger
 ///     
 /// Please note all these webservice names and parameters are case sensitive
 final class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
-    
-    // MARK: - Properties
-    private var trainId: String?
-    private var trainDate: String?
 
     // MARK: - Initialization
     init() {
@@ -50,36 +46,21 @@ final class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     }
     
     // MARK: - WebService protocol
-    override func requestParameters() -> Parameters? {
-        guard let trainId: String = self.trainId else {
-            let message: String = Error.Message.invalidTrainIdMessage
-            Logger.error.message(message)
-            return nil
-        }
-        guard let trainDate = self.trainDate else {
-            let message: String = Error.Message.invalidTrainDateMessage
-            Logger.error.message(message)
-            return nil
-        }
-        return [
-            WebServiceConstants.RequestParameterKey.trainId: trainId,
-            WebServiceConstants.RequestParameterKey.trainDate: trainDate
-        ]
-    }
+
     
     // MARK: - Checks
     override func performPreFetchParametersCheck() throws {
-        guard let _ = self.trainId else {
+        guard let _ = self.requestParameters?[WebServiceConstants.RequestParameterKey.trainId] else {
             let message: String = Error.Message.invalidTrainIdMessage
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
                                                      code: Error.Code.invalidTrainIdParameter,
                                                      localizedMessage: message).error()
             throw error
         }
-        guard let _ = self.trainDate else {
+        guard let _ = self.requestParameters?[WebServiceConstants.RequestParameterKey.trainDate] else {
             let message: String = Error.Message.invalidTrainDateMessage
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
-                                                     code: Error.Code.invalidTrainIdParameter,
+                                                     code: Error.Code.invalidTrainDateParameter,
                                                      localizedMessage: message).error()
             throw error
         }
