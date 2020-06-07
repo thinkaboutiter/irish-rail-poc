@@ -19,6 +19,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: MapViewModel
+    private let makeStationViewControllerWith: ((_ stationCode: String) -> StationViewController)
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             self.mapView.delegate = self
@@ -49,8 +50,11 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: MapViewModel) {
+    init(viewModel: MapViewModel,
+         makeStationViewControllerWith: @escaping ((_ stationCode: String) -> StationViewController))
+    {
         self.viewModel = viewModel
+        self.makeStationViewControllerWith = makeStationViewControllerWith
         super.init(nibName: String(describing: MapViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -160,8 +164,8 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
     
     func didTap(on view: StationDataCalloutAccessoryView) {
-        let _: String = view.viewModel.stationCode()
-        
-        // TODO: navigate to station data screen
+        let stationCode: String = view.viewModel.stationCode()
+        let vc: StationViewController = self.makeStationViewControllerWith(stationCode)
+        self.present(vc, animated: true, completion: nil)
     }
 }

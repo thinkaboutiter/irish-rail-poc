@@ -37,6 +37,13 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     func makeMapViewController() -> MapViewController {
         let vm: MapViewModel = self.makeMapViewModel()
         let vc: MapViewController = MapViewController(viewModel: vm)
+        { (stationCode: String) -> StationViewController in
+            let factory: StationViewControllerFactory = StationDependencyContainerImpl(
+                parent: self,
+                stationCode: stationCode)
+            let vc: StationViewController = factory.makeStationViewController()
+            return vc
+        }
         return vc
     }
     
