@@ -62,8 +62,13 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        self.configureUi()
+        self.viewModel.fetchStationData()
+    }
+    
+    // MARK: - Configuration
+    private func configureUi() {
+        self.title = self.viewModel.station().desc
         self.configureNavigationBar()
     }
     
