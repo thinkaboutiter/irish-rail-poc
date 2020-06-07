@@ -130,7 +130,8 @@ extension MapViewController: MKMapViewDelegate {
         let frame: CGRect = CGRect(origin: .zero, size: CGSize(width: 80, height: 40))
         let view: StationDataCalloutAccessoryView = StationDataCalloutAccessoryView(
             frame: frame,
-            viewModel: viewModel)
+            viewModel: viewModel,
+            actionsConsumer: self)
         return view
     }
     
@@ -140,5 +141,14 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         Logger.debug.message()
+    }
+}
+
+extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
+    
+    func didTap(on view: StationDataCalloutAccessoryView) {
+        let _: String = view.viewModel.stationCode()
+        
+        // TODO: navigate to station data screen
     }
 }
