@@ -14,7 +14,9 @@ import SimpleLogger
 /// Cache for `StationData` objects for given `stationCode`
 protocol StationDataCache: AnyObject {
     func stationData(for stationCode: String) -> [StationData]
-    func add(_ stationData: [StationData], for stationCode: String)
+    func add(_ stationData: [StationData],
+             for stationCode: String,
+             shouldInvalidateExistingCache: Bool)
     func isCacheValid(for stationCode: String) -> Bool
     func invalidateCache(for stationCode: String)
 }
@@ -76,7 +78,10 @@ class StationDataCacheImpl: StationDataCache {
         return result ?? []
     }
     
-    func add(_ stationData: [StationData], for stationCode: String) {
+    func add(_ stationData: [StationData],
+             for stationCode: String,
+             shouldInvalidateExistingCache: Bool)
+    {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
@@ -85,7 +90,9 @@ class StationDataCacheImpl: StationDataCache {
             }
             let key: NSString = stationCode as NSString
             let collectionToAdd: NSMutableOrderedSet
-            if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key) {
+            if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key),
+                !shouldInvalidateExistingCache
+            {
                 collectionToAdd = existingCollection
             }
             else {
@@ -102,17 +109,19 @@ class StationDataCacheImpl: StationDataCache {
     
     func isCacheValid(for stationCode: String) -> Bool {
         var result: Bool = false
-        let timeStamp: NSDate = self.timeStamp(for: stationCode)
+        guard let cachedTimeStamp: NSDate = self.timeStamp(for: stationCode) else {
+            return result
+        }
         let now: NSDate = NSDate()
-        let div: TimeInterval = abs(now.timeIntervalSince1970 - timeStamp.timeIntervalSince1970)
+        let div: TimeInterval = abs(now.timeIntervalSince1970 - cachedTimeStamp.timeIntervalSince1970)
         if div < Constants.cacheValidityInterval {
             result = true
         }
         return result
     }
     
-    private func timeStamp(for stationCode: String) -> NSDate {
-        var result: NSDate!
+    private func timeStamp(for stationCode: String) -> NSDate? {
+        var result: NSDate? = nil
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
@@ -123,7 +132,7 @@ class StationDataCacheImpl: StationDataCache {
             }
             result = object
         }
-        return result ?? NSDate()
+        return result
     }
     
     func invalidateCache(for stationCode: String) {
@@ -136,6 +145,9 @@ class StationDataCacheImpl: StationDataCache {
             let key: NSString = stationCode as NSString
             if let _ = validSelf.objectsCache.object(forKey: key) {
                 validSelf.objectsCache.setObject(nil, forKey: key)
+                
+                // invalidate time stamp
+                validSelf.timeStampsCache.setObject(nil, forKey: key)
             }
         }
     }
