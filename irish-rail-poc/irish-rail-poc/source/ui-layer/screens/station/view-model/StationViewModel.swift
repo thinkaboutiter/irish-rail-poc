@@ -23,7 +23,7 @@ protocol StationViewModel: AnyObject {
     func cancelStationDataFetching()
     func items() -> [StationData]
     func item(at indexPath: IndexPath) -> StationData?
-    func stationCode() -> String
+    func station() -> Station
 }
 
 class StationViewModelImpl: StationViewModel, StationModelConsumer {
@@ -55,7 +55,7 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
     
     func fetchStationData() {
         self.repository.reset()
-        self.repository.fetchStationData(for: self.stationCode(),
+        self.repository.fetchStationData(for: self.station().code,
                                          usingCache: true)
     }
     
@@ -79,8 +79,8 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
         return result
     }
     
-    func stationCode() -> String {
-        self.model.stationCode()
+    func station() -> Station {
+        self.model.station()
     }
     
     // MARK: - StationModelConsumer protocol

@@ -17,7 +17,7 @@ protocol StationModelConsumer: AnyObject {
 /// APIs for `Model` to expose to `ViewModel`
 protocol StationModel: AnyObject {
     func setModelConsumer(_ newValue: StationModelConsumer)
-    func stationCode() -> String
+    func station() -> Station
     func stationData() -> [StationData]
     func setStationData(_ newValue: [StationData])
 }
@@ -26,12 +26,12 @@ class StationModelImpl: StationModel {
     
     // MARK: - Properties
     private weak var modelConsumer: StationModelConsumer!
-    private let stationCodeStorage: String
+    private let stationStorage: Station
     private var stationDataStorage: [StationData] = []
     
     // MARK: - Initialization
-    init(stationCode: String) {
-        self.stationCodeStorage = stationCode
+    init(station: Station) {
+        self.stationStorage = station
         Logger.success.message()
     }
     
@@ -44,8 +44,8 @@ class StationModelImpl: StationModel {
         self.modelConsumer = newValue
     }
     
-    func stationCode() -> String {
-        return self.stationCodeStorage
+    func station() -> Station {
+        return self.stationStorage
     }
     
     func stationData() -> [StationData] {
