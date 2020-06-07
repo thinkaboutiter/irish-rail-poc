@@ -24,6 +24,10 @@ class BaseWebService<ApiResponseType>: WebService {
         self.endpoint = endpoint
     }
     
+    deinit {
+        self.request?.cancel()
+    }
+    
     // MARK: - WebService protocol
     static func baseEndpoint() -> String {
         let result: String = (
