@@ -42,7 +42,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     }
     
     // MARK: - StationViewModelConsumer protocol
-    func didFinishFetchngStationData(on viewModel: StationViewModel) {
+    func didFinishFetchingStationData(on viewModel: StationViewModel) {
         // TODO: implement me
     }
     

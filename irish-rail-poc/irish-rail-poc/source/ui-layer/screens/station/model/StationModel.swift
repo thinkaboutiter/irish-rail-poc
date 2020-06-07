@@ -10,13 +10,16 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `ViewModel` to expose to `Model`
-protocol StationModelConsumer: AnyObject {}
+protocol StationModelConsumer: AnyObject {
+    func didUpdateStationData(on viewModel: StationModel)
+}
 
 /// APIs for `Model` to expose to `ViewModel`
 protocol StationModel: AnyObject {
     func setModelConsumer(_ newValue: StationModelConsumer)
     func stationCode() -> String
     func stationData() -> [StationData]
+    func setStationData(_ newValue: [StationData])
 }
 
 class StationModelImpl: StationModel {
@@ -47,5 +50,10 @@ class StationModelImpl: StationModel {
     
     func stationData() -> [StationData] {
         return self.stationDataStorage
+    }
+    
+    func setStationData(_ newValue: [StationData]) {
+        self.stationDataStorage = newValue
+        self.modelConsumer.didUpdateStationData(on: self)
     }
 }

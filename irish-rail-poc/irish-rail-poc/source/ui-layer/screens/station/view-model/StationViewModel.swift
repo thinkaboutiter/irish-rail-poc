@@ -11,7 +11,7 @@ import SimpleLogger
 
 /// APIs for `View` to expose to `ViewModel`
 protocol StationViewModelConsumer: AnyObject {
-    func didFinishFetchngStationData(on viewModel: StationViewModel)
+    func didFinishFetchingStationData(on viewModel: StationViewModel)
     func didFailFetchingStationData(on viewModel: StationViewModel,
                                     error: Swift.Error)
 }
@@ -39,6 +39,7 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
         self.model = model
         self.repository = repository
         self.model.setModelConsumer(self)
+        self.repository.setRepositoryConsumer(self)
         Logger.success.message()
     }
     
@@ -70,4 +71,25 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
     }
     
     // MARK: - StationModelConsumer protocol
+    func didUpdateStationData(on viewModel: StationModel) {
+        self.viewModelConsumer.didFinishFetchingStationData(on: self)
+    }
+}
+
+// MARK: - StationDataRepositoryConsumer
+extension StationViewModelImpl: StationDataRepositoryConsumer {
+    
+    func didFetchStationData(on repository: StationDataRepository) {
+        do {
+            let stationData: [StationData] = try repository.stationData()
+            self.model.setStationData(stationData)
+        }
+        catch {
+            self.didFailToFetchStationData(on: repository, with: error)
+        }
+    }
+    
+    func didFailToFetchStationData(on repository: StationDataRepository, with error: Error) {
+        self.viewModelConsumer.didFailFetchingStationData(on: self, error: error)
+    }
 }
