@@ -10,21 +10,21 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `View` to expose to `ViewModel`
-protocol StationViewModelConsumer: AnyObject {}
+protocol StationDataViewModelConsumer: AnyObject {}
 
 /// APIs for `ViewModel` to expose to `View`
 protocol StationViewModel: AnyObject {
-    func setViewModelConsumer(_ newValue: StationViewModelConsumer)
+    func setViewModelConsumer(_ newValue: StationDataViewModelConsumer)
 }
 
-class StationViewModelImpl: StationViewModel, StationModelConsumer {
+class StationViewModelImpl: StationViewModel, StationDataModelConsumer {
     
     // MARK: - Properties
-    private let model: StationModel
-    private weak var viewModelConsumer: StationViewModelConsumer!
+    private let model: StationDataModel
+    private weak var viewModelConsumer: StationDataViewModelConsumer!
     
     // MARK: - Initialization
-    init(model: StationModel) {
+    init(model: StationDataModel) {
         self.model = model
         self.model.setModelConsumer(self)
         Logger.success.message()
@@ -35,7 +35,7 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
     }
     
     // MARK: - StationViewModel protocol
-    func setViewModelConsumer(_ newValue: StationViewModelConsumer) {
+    func setViewModelConsumer(_ newValue: StationDataViewModelConsumer) {
         self.viewModelConsumer = newValue
     }
     

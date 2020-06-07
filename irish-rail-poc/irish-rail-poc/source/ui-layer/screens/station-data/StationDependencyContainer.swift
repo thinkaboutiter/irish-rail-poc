@@ -37,7 +37,7 @@ class StationDependencyContainerImpl: StationDependencyContainer, StationViewCon
     }
     
     private func makeStationViewModel() -> StationViewModel {
-        let model: StationModel = StationModelImpl(stationCode: self.stationCode)
+        let model: StationDataModel = StationDataModelImpl(stationCode: self.stationCode)
         let result: StationViewModel = StationViewModelImpl(model: model)
         return result
     }
