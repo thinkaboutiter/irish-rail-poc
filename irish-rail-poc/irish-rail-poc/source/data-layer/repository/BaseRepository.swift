@@ -12,7 +12,7 @@ import SimpleLogger
 class BaseRepository<ApiResponseType> {
     
     // MARK: - Properties
-    private let webService: BaseWebService<ApiResponseType>
+    let webService: BaseWebService<ApiResponseType>
     private let concurrentCacheQueue = DispatchQueue(label: Constants.concurrentQueueLabel,
                                                      qos: .default,
                                                      attributes: .concurrent)
