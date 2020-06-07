@@ -22,13 +22,13 @@ protocol WebService {
     func serviceEndpoint() -> String
     
     /// Http verb.
-    func httpVerb() -> Alamofire.HTTPMethod
+    var httpVerb: Alamofire.HTTPMethod { get set }
     
     /// Request headers.
-    func requestHeaders() -> Alamofire.HTTPHeaders?
+    var requestHeaders: Alamofire.HTTPHeaders? { get set }
     
-    /// Add parameters to the request.
-    func requestParameters() -> Parameters?
+    /// Request parameters
+    var requestParameters: Parameters? { get set }
     
     /// Request parameters encoding.
     func requestParametersEncoding() -> Alamofire.ParameterEncoding

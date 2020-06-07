@@ -7,40 +7,33 @@
 //
 
 import Foundation
-import SWXMLHash
+import SimpleLogger
 
-class GetAllStationsWebService: BaseWebService {
+
+/// Get All Stations
+///
+///     http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML
+///
+/// returns a list of all stations with StationDesc, StaionCode, StationId, StationAlias, StationLatitude and StationLongitude ordered by Latitude, Longitude
+final class GetAllStationsWebService: BaseWebService<Station> {
     
     // MARK: - Initialization
     init() {
         super.init(endpoint: WebServiceConstants.Endpoint.getAllStations)
+        Logger.success.message()
     }
     
-    // MARK: - Fetching
-    func getAllStations(success: @escaping (_ stations: [Station]) -> Void,
-                        failure: @escaping (_ error: Swift.Error) -> Void)
-    {
-        super.fetch(
-            success: { (xmlString: String) in
-                do {
-                    let result: [Station] = try self.stations(from: xmlString)
-                    success(result)
-                }
-                catch {
-                    failure(error)
-                }
-        },
-            failure: { (error) in
-                failure(error)
-        })
+    deinit {
+        Logger.fatal.message()
+    }
+    
+    // MARK: - Checks
+    override func performPreFetchParametersCheck() throws {
+        return
     }
     
     // MARK: - Parsing
-    private func stations(from xmlString: String) throws -> [Station] {
-        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-            options.shouldProcessLazily = true
-        }.parse(xmlString)
-        let stations: [Station] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
-        return stations
+    override func parse(_ xmlString: String) throws -> [Station] {
+        return try StationParser.parse(xmlString)
     }
 }

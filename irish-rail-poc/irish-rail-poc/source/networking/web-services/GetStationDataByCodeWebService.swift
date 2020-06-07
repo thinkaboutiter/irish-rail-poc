@@ -8,48 +8,51 @@
 
 import Foundation
 import Alamofire
-import SWXMLHash
+import SimpleLogger
 
-class GetStationDataByCodeWebService: BaseWebService {
+/// Get Station Data by StationCode usage
+///
+///     http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=mhide
+///
+/// returns all trains due to serve the named station in the next 90 minutes
+final class GetStationDataByCodeWebService: BaseWebService<StationData> {
     
     // MARK: - Properties
-    private let stationCode: String
 
     // MARK: - Initialization
-    init(stationCode: String) {
-        self.stationCode = stationCode
+    init() {
         super.init(endpoint: WebServiceConstants.Endpoint.getStationDataByCode)
+        Logger.success.message()
     }
     
-    override func requestParameters() -> Parameters? {
-        return [WebServiceConstants.RequestParameterKey.stationCode: self.stationCode]
+    deinit {
+        Logger.fatal.message()
     }
-
-    // MARK: - Fetching
-    func getStationData(success: @escaping (_ allStationData: [StationData]) -> Void,
-                        failure: @escaping (_ error: Swift.Error) -> Void)
-    {
-        super.fetch(
-            success: { (xmlString) in
-                do {
-                    let stationData: [StationData] = try self.stationData(from: xmlString)
-                    success(stationData)
-                }
-                catch {
-                    failure(error)
-                }
-        },
-            failure: { (error) in
-                failure(error)
-        })
+        
+    // MARK: - Checks
+    override func performPreFetchParametersCheck() throws {
+        guard let _ = self.requestParameters?[WebServiceConstants.RequestParameterKey.stationCode] else {
+            let message: String = "Invalid station_code parameter!"
+            let error: NSError = ErrorCreator.custom(domain: Error.domain,
+                                                     code: Error.Code.invalidStationCodeParameter,
+                                                     localizedMessage: message).error()
+            throw error
+        }
     }
     
     // MARK: - Parsing
-    private func stationData(from xmlString: String) throws -> [StationData] {
-        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
-            options.shouldProcessLazily = true
-        }.parse(xmlString)
-        let stationData: [StationData] = try xmlIndexer["ArrayOfObjStationData"]["objStationData"].value()
-        return stationData
+    override func parse(_ xmlString: String) throws -> [StationData] {
+        return try StationDataParser.parse(xmlString)
+    }
+}
+
+// MARK: - Errors
+private extension GetStationDataByCodeWebService {
+    enum Error {
+        static let domain: String = "\(AppConstants.projectName).\(String(describing: GetStationDataByCodeWebService.Error.self))"
+        
+        enum Code {
+            static let invalidStationCodeParameter: Int = 9000
+        }
     }
 }

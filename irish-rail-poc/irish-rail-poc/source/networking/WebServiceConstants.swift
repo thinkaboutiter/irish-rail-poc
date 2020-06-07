@@ -28,4 +28,14 @@ enum WebServiceConstants {
         static let trainId: String = "TrainId"
         static let trainDate: String = "TrainDate"
     }
+    
+    enum Error {
+        static let domain: String = "\(AppConstants.projectName).\(String(describing: WebServiceConstants.Error.self))"
+        
+        enum Code {
+            static let invalidResponseObject: Int = 9000
+            static let invalidStatusCode: Int = 9001
+            static let unableToObtainResponseObject: Int = 9002
+        }
+    }
 }

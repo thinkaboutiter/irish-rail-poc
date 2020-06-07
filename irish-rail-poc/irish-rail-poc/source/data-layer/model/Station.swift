@@ -20,7 +20,32 @@ import SWXMLHash
  </objStation>
  */
 
-struct Station: XMLIndexerDeserializable {
+struct Station: Hashable {
+    let desc: String
+    let alias: String?
+    let latitude: Double
+    let longitude: Double
+    let code: String
+    let id: Int
+}
+
+enum StationParser {
+    static func parse(_ xmlString: String) throws -> [Station] {
+        let xmlIndexer: XMLIndexer = SWXMLHash.config { (options: SWXMLHashOptions) in
+            options.shouldProcessLazily = true
+        }.parse(xmlString)
+        let stations: [StationApiObject] = try xmlIndexer["ArrayOfObjStation"]["objStation"].value().filter() { $0.latitude != 0.0 && $0.longitude != 0.0}
+        let result: [Station] = stations.map() { Station(desc: $0.desc,
+                                                         alias: $0.alias,
+                                                         latitude: $0.latitude,
+                                                         longitude: $0.longitude,
+                                                         code: $0.code,
+                                                         id: $0.id) }
+        return result
+    }
+}
+
+private struct StationApiObject: XMLIndexerDeserializable {
     let desc: String
     let alias: String?
     let latitude: Double
@@ -28,8 +53,8 @@ struct Station: XMLIndexerDeserializable {
     let code: String
     let id: Int
     
-    static func deserialize(_ element: XMLIndexer) throws -> Station {
-        return try Station(
+    static func deserialize(_ element: XMLIndexer) throws -> StationApiObject {
+        return try StationApiObject(
             desc: element["StationDesc"].value(),
             alias: element["StationAlias"].value(),
             latitude: element["StationLatitude"].value(),

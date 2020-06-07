@@ -13,7 +13,7 @@ import SimpleLogger
 
 /// Abstract.
 /// Base class for all web service objects
-class BaseWebService: WebService {
+class BaseWebService<ApiResponseType>: WebService {
     
     // MARK: - Properties
     let endpoint: String
@@ -22,6 +22,10 @@ class BaseWebService: WebService {
     // MARK: - Initialization
     init(endpoint: String) {
         self.endpoint = endpoint
+    }
+    
+    deinit {
+        self.request?.cancel()
     }
     
     // MARK: - WebService protocol
@@ -45,34 +49,50 @@ class BaseWebService: WebService {
         return result
     }
     
-    func httpVerb() -> HTTPMethod {
-        return .get
-    }
-    
-    func requestHeaders() -> Alamofire.HTTPHeaders? {
-        return nil
-    }
-    
-    func requestParameters() -> Parameters? {
-        return nil
-    }
+    var httpVerb: HTTPMethod = .get
+    var requestHeaders: Alamofire.HTTPHeaders?
+    var requestParameters: Parameters?
     
     func requestParametersEncoding() -> ParameterEncoding {
         return URLEncoding.default
     }
     
     // MARK: - Fetching
-    final func fetch(success: @escaping (_ xmlString: String) -> Void,
-                     failure: @escaping (_ error: Swift.Error) -> Void)
+    func fetch(success: @escaping (_ resources: [ApiResponseType]) -> Void,
+               failure: @escaping (_ error: Swift.Error) -> Void)
+    {
+        self.fetchXml(
+            success: { (xmlString: String) in
+                do {
+                    let parsedResources: [ApiResponseType] = try self.parse(xmlString)
+                    success(parsedResources)
+                }
+                catch {
+                    failure(error)
+                }
+        },
+            failure: { (error) in
+                failure(error)
+        })
+    }
+    
+    func performPreFetchParametersCheck() throws {
+        fatalError("subclasses should override")
+    }
+    
+    private func fetchXml(success: @escaping (_ xmlString: String) -> Void,
+                          failure: @escaping (_ error: Swift.Error) -> Void)
     {
         self.request?.cancel()
-        self.request = AF
+        do {
+            try self.performPreFetchParametersCheck()
+            self.request = AF
             .request(
                 self.serviceEndpoint(),
-                method: self.httpVerb(),
-                parameters: self.requestParameters(),
+                method: self.httpVerb,
+                parameters: self.requestParameters,
                 encoding: self.requestParametersEncoding(),
-                headers: self.requestHeaders())
+                headers: self.requestHeaders)
             .responseData(completionHandler: { (response: AFDataResponse<Data>) in
                 Logger.network.message("request:").object(response.request)
                 Logger.network.message("request.allHTTPHeaderFields:").object(response.request?.allHTTPHeaderFields)
@@ -83,8 +103,8 @@ class BaseWebService: WebService {
                     guard let data: Data = response.data else {
                         let message: String = "Unable to obtain response object!"
                         let error: NSError = ErrorCreator
-                            .custom(domain: BaseWebService.Error.domain,
-                                    code: BaseWebService.Error.Code.unableToObtainResponseObject,
+                            .custom(domain: WebServiceConstants.Error.domain,
+                                    code: WebServiceConstants.Error.Code.unableToObtainResponseObject,
                                     localizedMessage: message)
                             .error()
                         failure(error)
@@ -101,10 +121,24 @@ class BaseWebService: WebService {
                     failure(error as NSError)
                 }
             })
+        }
+        catch {
+            failure(error)
+        }
+    }
+    
+    final func cancelRequest() {
+        self.request?.cancel()
+    }
+    
+    // MARK: - Parsing
+    func parse(_ xmlString: String) throws -> [ApiResponseType] {
+        assert(false, "subclass should override!")
+        return []
     }
     
     // MARK: - Validation
-    private func validateResponse<T>(_ response: AFDataResponse<T>) throws {
+    private func validateResponse(_ response: AFDataResponse<Data>) throws {
         // check error
         guard response.error == nil else {
             throw response.error! as NSError
@@ -114,8 +148,8 @@ class BaseWebService: WebService {
         guard let httpUrlResponse: HTTPURLResponse = response.response else {
             let message: String = "Invalid response object"
             let error: NSError = ErrorCreator
-                .custom(domain: BaseWebService.Error.domain,
-                        code: BaseWebService.Error.Code.invalidResponseObject,
+                .custom(domain: WebServiceConstants.Error.domain,
+                        code: WebServiceConstants.Error.Code.invalidResponseObject,
                         localizedMessage: message)
                 .error()
             throw error
@@ -125,25 +159,11 @@ class BaseWebService: WebService {
         guard 200...299 ~= httpUrlResponse.statusCode else {
             let message: String = "Invalid status code=\(httpUrlResponse.statusCode)"
             let error: NSError = ErrorCreator
-                .custom(domain: BaseWebService.Error.domain,
-                        code: BaseWebService.Error.Code.invalidStatusCode,
+                .custom(domain: WebServiceConstants.Error.domain,
+                        code: WebServiceConstants.Error.Code.invalidStatusCode,
                         localizedMessage: message)
                 .error()
             throw error
-        }
-    }
-}
-
-// MARK: - Error
-private extension BaseWebService {
-    
-    enum Error {
-        static let domain: String = "\(AppConstants.projectName).\(String(describing: BaseWebService.Error.self))"
-        
-        enum Code {
-            static let invalidResponseObject: Int = 9000
-            static let invalidStatusCode: Int = 9001
-            static let unableToObtainResponseObject: Int = 9002
         }
     }
 }
