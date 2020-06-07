@@ -55,7 +55,8 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
     }
     
     func fetchStationData() {
-        self.repository.fetchStationData()
+        self.repository.reset()
+        self.repository.fetchStationData(for: self.stationCodeStorage)
     }
     
     func cancelStationDataFetching() {

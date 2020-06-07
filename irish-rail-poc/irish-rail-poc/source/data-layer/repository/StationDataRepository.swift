@@ -22,7 +22,7 @@ protocol StationDataRepository: AnyObject {
     func setRepositoryConsumer(_ newValue: StationDataRepositoryConsumer)
     
     /// Obtain `StationData` objects.
-    func fetchStationData()
+    func fetchStationData(for stationCode: String)
     
     /// Reset local cache and initiate fetch again.
     func refresh()
@@ -42,6 +42,7 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     
     // MARK: - Properties
     private weak var consumer: StationDataRepositoryConsumer!
+    private var stationCode: String?
     
     // MARK: - Initialization
     deinit {
@@ -53,12 +54,16 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
         self.consumer = newValue
     }
     
-    func fetchStationData() {
+    func fetchStationData(for stationCode: String) {
+        self.stationCode = stationCode
+        self.webService.requestParameters = [
+            WebServiceConstants.RequestParameterKey.stationCode: stationCode
+        ]
         self.fetchResources(
             success: {
                 self.consumer.didFetchStationData(on: self)
         },
-            failure: { (error: Error) in
+            failure: { (error: Swift.Error) in
                 self.consumer.didFailToFetchStationData(on: self,
                                                         with: error)
         })
@@ -66,7 +71,16 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     
     override func refresh() {
         super.refresh()
-        self.fetchStationData()
+        guard let stationCode: String = self.stationCode else {
+            let message: String = Error.Message.invalidStationCodeParameter
+            let error: NSError = ErrorCreator.custom(domain: Error.domain,
+                                                     code: Error.Code.invalidStationCodeParameter,
+                                                     localizedMessage: message).error()
+            self.consumer.didFailToFetchStationData(on: self,
+                                                    with: error)
+            return
+        }
+        self.fetchStationData(for: stationCode)
     }
     
     func stationData() -> [StationData] {
@@ -83,5 +97,19 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
                 || stationData.lastLocation.contains(term))
         }
         return result
+    }
+}
+
+private extension StationDataRepositoryImpl {
+    
+    enum Error {
+        static let domain: String = "\(AppConstants.projectName).\(String(describing: StationDataRepositoryImpl.Error.self))"
+        
+        enum Code {
+            static let invalidStationCodeParameter: Int = 9000
+        }
+        enum Message {
+            static let invalidStationCodeParameter: String = "invalid station_code parameter!"
+        }
     }
 }
