@@ -10,7 +10,11 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `View` to expose to `ViewModel`
-protocol StationViewModelConsumer: AnyObject {}
+protocol StationViewModelConsumer: AnyObject {
+    func didFinishFetchngStationData(on viewModel: StationViewModel)
+    func didFailFetchingStationData(on viewModel: StationViewModel,
+                                    error: Swift.Error)
+}
 
 /// APIs for `ViewModel` to expose to `View`
 protocol StationViewModel: AnyObject {

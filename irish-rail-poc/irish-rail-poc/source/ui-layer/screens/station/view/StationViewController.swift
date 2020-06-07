@@ -42,6 +42,13 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     }
     
     // MARK: - StationViewModelConsumer protocol
+    func didFinishFetchngStationData(on viewModel: StationViewModel) {
+        // TODO: implement me
+    }
+    
+    func didFailFetchingStationData(on viewModel: StationViewModel, error: Error) {
+        // TODO: implement me
+    }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
