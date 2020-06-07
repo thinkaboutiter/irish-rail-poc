@@ -1,5 +1,5 @@
 //
-//  StationDataModel.swift
+//  StationModel.swift
 //  irish-rail-poc
 //
 //  Created by Boyan Yankov on 2020-W23-07-Jun-Sun.
@@ -10,19 +10,19 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `ViewModel` to expose to `Model`
-protocol StationDataModelConsumer: AnyObject {}
+protocol StationModelConsumer: AnyObject {}
 
 /// APIs for `Model` to expose to `ViewModel`
-protocol StationDataModel: AnyObject {
-    func setModelConsumer(_ newValue: StationDataModelConsumer)
+protocol StationModel: AnyObject {
+    func setModelConsumer(_ newValue: StationModelConsumer)
     func stationCode() -> String
     func stationData() -> [StationData]
 }
 
-class StationDataModelImpl: StationDataModel {
+class StationModelImpl: StationModel {
     
     // MARK: - Properties
-    private weak var modelConsumer: StationDataModelConsumer!
+    private weak var modelConsumer: StationModelConsumer!
     private let stationCodeStorage: String
     private var stationDataStorage: [StationData] = []
     
@@ -36,8 +36,8 @@ class StationDataModelImpl: StationDataModel {
         Logger.fatal.message()
     }
     
-    // MARK: - StationDataModel protocol
-    func setModelConsumer(_ newValue: StationDataModelConsumer) {
+    // MARK: - StationModel protocol
+    func setModelConsumer(_ newValue: StationModelConsumer) {
         self.modelConsumer = newValue
     }
     

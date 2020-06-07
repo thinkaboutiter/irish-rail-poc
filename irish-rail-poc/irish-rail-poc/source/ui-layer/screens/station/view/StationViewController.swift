@@ -14,7 +14,7 @@ protocol StationViewControllerFactory {
     func makeStationViewController() -> StationViewController
 }
 
-class StationViewController: BaseViewController, StationDataViewModelConsumer {
+class StationViewController: BaseViewController, StationViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: StationViewModel
