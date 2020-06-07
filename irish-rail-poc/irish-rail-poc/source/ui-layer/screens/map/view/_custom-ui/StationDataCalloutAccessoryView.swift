@@ -81,6 +81,12 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
         self.contentView.isUserInteractionEnabled = true
     }
     
+    // MARK: - Life cycle
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        self.viewModel.fetchStationData()
+    }
+    
     // MARK: - StationDataCalloutAccessoryViewModelConsumer protocol
     func didFinishFetchngStationData(on viewModel: StationDataCalloutAccessoryViewModel) {
         self.trainsCountLabel.text = "\(viewModel.trainsCount())"
