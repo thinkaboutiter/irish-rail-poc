@@ -74,7 +74,14 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureUi()
         self.loadStations()
+    }
+    
+    // MARK: - UI configs
+    private func configureUi() {
+        // used only for development
+        self.reloadButton.isHidden = true
     }
     
     // MARK: - Fetching
