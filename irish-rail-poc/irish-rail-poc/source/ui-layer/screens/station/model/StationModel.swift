@@ -49,11 +49,49 @@ class StationModelImpl: StationModel {
     }
     
     func stationData() -> [StationData] {
-        return self.stationDataStorage
+        if self.isUsingStubData {
+            return self.stubData()
+        }
+        else {
+            return self.stationDataStorage
+        }
     }
     
     func setStationData(_ newValue: [StationData]) {
         self.stationDataStorage = newValue
         self.modelConsumer.didUpdateStationData(on: self)
+    }
+}
+
+// MARK: - Stub data
+private extension StationModelImpl {
+    private var isUsingStubData: Bool {
+        return true
+    }
+    
+    func stubData() -> [StationData] {
+        let data: StationData = StationData(serverTime: "n/a",
+                                            trainCode: "E777",
+                                            stationFullName: "Malahide",
+                                            stationCode: "MHIDE",
+                                            queryTime: "n/a",
+                                            trainDate: "03 Jun 2020",
+                                            origin: "Greystones",
+                                            destination: "Malaide",
+                                            originTime: "07:20",
+                                            destinationTime: "08:38",
+                                            status: "En Route",
+                                            lastLocation: "Departed Portmarnock",
+                                            dueIn: 5,
+                                            late: 7,
+                                            expectedArrival: "08:40",
+                                            expectedDeparture: "00:00",
+                                            scheduleArrival: "08:37",
+                                            scheduleDeparture: "00:00",
+                                            direction: "Northbound",
+                                            trainType: "DART",
+                                            locationType: "D")
+        let result: [StationData] = Array<StationData>.init(repeating: data, count: 10)
+        return result
     }
 }
