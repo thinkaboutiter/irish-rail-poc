@@ -154,7 +154,6 @@ extension MapViewController: MKMapViewDelegate {
             return
         }
         accessoryView.cancelStationDataFetching()
-        view.rightCalloutAccessoryView = nil
     }
 }
 
