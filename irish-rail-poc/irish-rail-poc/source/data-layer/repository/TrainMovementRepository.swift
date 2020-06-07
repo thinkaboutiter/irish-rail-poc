@@ -70,7 +70,7 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     }
     
     func trainMovements() -> [TrainMovement] {
-        let result: [TrainMovement] = self.objects()
+        let result: [TrainMovement] = self.consumeObjects()
         return result
     }
     

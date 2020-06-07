@@ -84,7 +84,7 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     }
     
     func stationData() -> [StationData] {
-        let result: [StationData] = self.objects()
+        let result: [StationData] = self.consumeObjects()
         return result
     }
     
