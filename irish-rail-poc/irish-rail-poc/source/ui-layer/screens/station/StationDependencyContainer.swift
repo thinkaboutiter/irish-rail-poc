@@ -15,11 +15,13 @@ class StationDependencyContainerImpl: StationDependencyContainer, StationViewCon
     
     // MARK: - Properties
     private let parent: MapDependencyContainer
+    private let stationCode: String
     
     // MARK: - Initialization
-    init(parent: MapDependencyContainer) {
-        // setup
+    init(parent: MapDependencyContainer,
+         stationCode: String) {
         self.parent = parent
+        self.stationCode = stationCode
         Logger.success.message()
     }
     
@@ -35,7 +37,7 @@ class StationDependencyContainerImpl: StationDependencyContainer, StationViewCon
     }
     
     private func makeStationViewModel() -> StationViewModel {
-        let model: StationModel = StationModelImpl()
+        let model: StationModel = StationModelImpl(stationCode: self.stationCode)
         let result: StationViewModel = StationViewModelImpl(model: model)
         return result
     }
