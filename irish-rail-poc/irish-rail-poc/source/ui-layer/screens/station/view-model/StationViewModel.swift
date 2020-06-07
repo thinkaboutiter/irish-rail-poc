@@ -15,6 +15,10 @@ protocol StationViewModelConsumer: AnyObject {}
 /// APIs for `ViewModel` to expose to `View`
 protocol StationViewModel: AnyObject {
     func setViewModelConsumer(_ newValue: StationViewModelConsumer)
+    func fetchStationData()
+    func cancelStationDataFetching()
+    func stationData() -> [StationData]
+    func stationCode() -> String
 }
 
 class StationViewModelImpl: StationViewModel, StationModelConsumer {
@@ -22,10 +26,14 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
     // MARK: - Properties
     private let model: StationModel
     private weak var viewModelConsumer: StationViewModelConsumer!
+    private let repository: StationDataRepository
     
     // MARK: - Initialization
-    init(model: StationModel) {
+    init(model: StationModel,
+         repository: StationDataRepository)
+    {
         self.model = model
+        self.repository = repository
         self.model.setModelConsumer(self)
         Logger.success.message()
     }
@@ -37,6 +45,24 @@ class StationViewModelImpl: StationViewModel, StationModelConsumer {
     // MARK: - StationViewModel protocol
     func setViewModelConsumer(_ newValue: StationViewModelConsumer) {
         self.viewModelConsumer = newValue
+    }
+    
+    func fetchStationData() {
+        self.repository.reset()
+        self.repository.fetchStationData(for: self.stationCode(),
+                                         usingCache: true)
+    }
+    
+    func cancelStationDataFetching() {
+        self.repository.reset()
+    }
+    
+    func stationData() -> [StationData] {
+        self.model.stationData()
+    }
+    
+    func stationCode() -> String {
+        self.model.stationCode()
     }
     
     // MARK: - StationModelConsumer protocol
