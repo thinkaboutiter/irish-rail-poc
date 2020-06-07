@@ -55,5 +55,36 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.configureNavigationBar()
+    }
+    
+    // MARK: - Test navigation
+    @IBAction private func pushButton_touchUpInside(_ sender: UIButton) {
+        let vc = self.testViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func presentButton_touchUpInside(_ sender: UIButton) {
+        let vc = self.testViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    private func testViewController() -> UIViewController {
+        let viewController: UIViewController = UIViewController()
+        let view: UIView = UIView()
+        view.backgroundColor = .green
+        viewController.view = view
+        return viewController
+    }
+    
+    private func configureNavigationBar() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(self.closeButtonTapped(_:)))
+    }
+    
+    @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

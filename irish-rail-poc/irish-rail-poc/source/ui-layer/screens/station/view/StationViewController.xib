@@ -18,14 +18,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="station data goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqW-1x-Has">
-                    <rect key="frame" x="121.5" y="437.5" width="171" height="21"/>
+                    <rect key="frame" x="121.5" y="438" width="171" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BqO-WG-52y">
+                    <rect key="frame" x="180.5" y="742" width="53" height="80"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vV-es-S7g">
+                            <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
+                            <state key="normal" title="push"/>
+                            <connections>
+                                <action selector="pushButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="8Pc-0X-zxG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udP-C9-wGr" userLabel="present">
+                            <rect key="frame" x="0.0" y="50" width="53" height="30"/>
+                            <state key="normal" title="present"/>
+                            <connections>
+                                <action selector="presentButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="41Z-1u-OIq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="BqO-WG-52y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HaG-Wg-9MH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BqO-WG-52y" secondAttribute="bottom" constant="40" id="O5U-jR-hNs"/>
                 <constraint firstItem="ZqW-1x-Has" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="awt-Nu-b6w"/>
                 <constraint firstItem="ZqW-1x-Has" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="g1G-hN-t2Q"/>
             </constraints>

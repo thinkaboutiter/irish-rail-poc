@@ -166,6 +166,7 @@ extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
     func didTap(on view: StationDataCalloutAccessoryView) {
         let stationCode: String = view.viewModel.stationCode()
         let vc: StationViewController = self.makeStationViewControllerWith(stationCode)
-        self.present(vc, animated: true, completion: nil)
+        let navVc: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(navVc, animated: true, completion: nil)
     }
 }
