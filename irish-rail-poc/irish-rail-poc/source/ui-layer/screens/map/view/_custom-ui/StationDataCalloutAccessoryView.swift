@@ -21,6 +21,7 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var trainsCountLabel: UILabel!
     @IBOutlet private weak var trainIconImageView: UIImageView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     private weak var actionsConsumer: StationDataCalloutAccessoryViewActionsConsumer!
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let result = UITapGestureRecognizer(target: self, action: #selector(self.contentTapped(_:)))
@@ -79,6 +80,11 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
         self.contentView.backgroundColor = .clear
         self.contentView.addGestureRecognizer(self.tapGestureRecognizer)
         self.contentView.isUserInteractionEnabled = true
+        self.enableTrainsCountLabel(self.trainsCountLabel,
+                                    with: Constants.notAvailableText,
+                                    shouldEnable: false)
+        self.enableActivityIndicator(self.activityIndicator,
+                                     shouldEnable: true)
     }
     
     // MARK: - Life cycle
@@ -89,10 +95,46 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
     
     // MARK: - StationDataCalloutAccessoryViewModelConsumer protocol
     func didFinishFetchngStationData(on viewModel: StationDataCalloutAccessoryViewModel) {
-        self.trainsCountLabel.text = "\(viewModel.trainsCount())"
+        self.enableActivityIndicator(self.activityIndicator,
+                                     shouldEnable: false)
+        let text = "\(viewModel.trainsCount())"
+        self.enableTrainsCountLabel(self.trainsCountLabel,
+                                    with: text,
+                                    shouldEnable: true)
     }
     
     func didFailFetchingStationData(on viewModel: StationDataCalloutAccessoryViewModel, error: Error) {
-        self.trainsCountLabel.text = "N/A"
+        self.enableActivityIndicator(self.activityIndicator,
+                                     shouldEnable: false)
+        self.enableTrainsCountLabel(self.trainsCountLabel,
+                                    with: Constants.notAvailableText,
+                                    shouldEnable: true)
+    }
+    
+    private func enableActivityIndicator(_ activityIndicator: UIActivityIndicatorView,
+                                         shouldEnable: Bool)
+    {
+        activityIndicator.isHidden = !shouldEnable
+        if shouldEnable {
+            activityIndicator.startAnimating()
+        }
+        else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func enableTrainsCountLabel(_ label: UILabel,
+                                        with text: String,
+                                        shouldEnable: Bool)
+    {
+        label.isHidden = !shouldEnable
+        label.text = text
+    }
+}
+
+private extension StationDataCalloutAccessoryView {
+    
+    enum Constants {
+        static let notAvailableText: String = "N/A"
     }
 }
