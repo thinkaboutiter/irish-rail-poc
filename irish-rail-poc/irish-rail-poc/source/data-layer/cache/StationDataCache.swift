@@ -30,8 +30,8 @@ class StationDataCacheImpl: StationDataCache {
     private let concurrentCacheQueue = DispatchQueue(label: Constants.concurrentQueueLabel,
                                                      qos: .default,
                                                      attributes: .concurrent)
-    private lazy var objectsCache: NSMapTable<NSString, NSMutableOrderedSet> = {
-        let result: NSMapTable<NSString, NSMutableOrderedSet> = NSMapTable.strongToWeakObjects()
+    private lazy var objectsCache: NSMapTable<NSNumber, NSMutableOrderedSet> = {
+        let result: NSMapTable<NSNumber, NSMutableOrderedSet> = NSMapTable.strongToStrongObjects()
         return result
     }()
     private func clearCache() {
@@ -44,8 +44,8 @@ class StationDataCacheImpl: StationDataCache {
             validSelf.objectsCache.removeAllObjects()
         }
     }
-    private lazy var timeStampsCache: NSMapTable<NSString, NSDate> = {
-        let result: NSMapTable<NSString, NSDate> = NSMapTable.strongToWeakObjects()
+    private lazy var timeStampsCache: NSMapTable<NSNumber, NSDate> = {
+        let result: NSMapTable<NSNumber, NSDate> = NSMapTable.strongToStrongObjects()
         return result
     }()
     
@@ -68,16 +68,23 @@ class StationDataCacheImpl: StationDataCache {
                                                      localizedMessage: message).error()
             throw error
         }
-        var result: [StationData]?
+        var result: [StationData]!
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
             }
-            let key: NSString = stationCode as NSString
+            let key: NSNumber = NSNumber(value: stationCode.hashValue)
             guard let collection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key) else {
+                let message: String = "unable to obtain object for key=\(key)"
+                Logger.error.message(message)
                 return
             }
-            result = collection.compactMap() { $0 as? StationData }
+            result = collection.compactMap({ (element: Any) -> StationData? in
+                guard let object: StationData = element as? StationData else {
+                    return nil
+                }
+                return object
+            })
         }
         return result ?? []
     }
@@ -92,7 +99,7 @@ class StationDataCacheImpl: StationDataCache {
             guard let validSelf = self else {
                 return
             }
-            let key: NSString = stationCode as NSString
+            let key: NSNumber = NSNumber(value: stationCode.hashValue)
             let collectionToAdd: NSMutableOrderedSet
             if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key),
                 !shouldInvalidateExistingCache
@@ -104,6 +111,10 @@ class StationDataCacheImpl: StationDataCache {
             }
             collectionToAdd.addObjects(from: stationData)
             validSelf.objectsCache.setObject(collectionToAdd, forKey: key)
+            
+            let message: String = "added object for key=\(key)"
+            Logger.error.message(message)
+
             
             // update time stamp
             let timeStamp: NSDate = NSDate()
@@ -125,13 +136,15 @@ class StationDataCacheImpl: StationDataCache {
     }
     
     private func timeStamp(for stationCode: String) -> NSDate? {
-        var result: NSDate? = nil
+        var result: NSDate!
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
             }
-            let key: NSString = stationCode as NSString
+            let key: NSNumber = NSNumber(value: stationCode.hashValue)
             guard let object: NSDate = validSelf.timeStampsCache.object(forKey: key) else {
+                let message: String = "unable to obtain object for key=\(key)"
+                Logger.error.message(message)
                 return
             }
             result = object
@@ -146,7 +159,7 @@ class StationDataCacheImpl: StationDataCache {
             guard let validSelf = self else {
                 return
             }
-            let key: NSString = stationCode as NSString
+            let key: NSNumber = NSNumber(value: stationCode.hashValue)
             if let _ = validSelf.objectsCache.object(forKey: key) {
                 validSelf.objectsCache.setObject(nil, forKey: key)
                 
