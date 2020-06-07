@@ -13,7 +13,7 @@ import SimpleLogger
 
 /// Cache for `StationData` objects for given `stationCode`
 protocol StationDataCache: AnyObject {
-    func stationData(for stationCode: String) -> [StationData]
+    func stationData(for stationCode: String) throws -> [StationData]
     func add(_ stationData: [StationData],
              for stationCode: String,
              shouldInvalidateExistingCache: Bool)
@@ -59,12 +59,16 @@ class StationDataCacheImpl: StationDataCache {
     }
     
     // MARK: - StationDataCache protocol
-    func stationData(for stationCode: String) -> [StationData] {
+    func stationData(for stationCode: String) throws -> [StationData] {
         guard self.isCacheValid(for: stationCode) else {
             self.invalidateCache(for: stationCode)
-            return []
+            let message: String = Error.Message.cacheExpired
+            let error: NSError = ErrorCreator.custom(domain: Error.domain,
+                                                     code: Error.Code.cacheExpired,
+                                                     localizedMessage: message).error()
+            throw error
         }
-        var result: [StationData]!
+        var result: [StationData]?
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
@@ -161,5 +165,20 @@ private extension StationDataCacheImpl {
             return "\(AppConstants.projectName)-\(String(describing: StationDataCacheImpl.self))-concurrent-queue"
         }
         static var cacheValidityInterval: TimeInterval = 5 * 60
+    }
+}
+
+// MARK: - Errors
+private extension StationDataCacheImpl {
+    
+    enum Error {
+        static let domain: String = "\(AppConstants.projectName)\(String(describing: StationDataCacheImpl.Error.self))"
+        
+        enum Code {
+            static let cacheExpired: Int = 9000
+        }
+        enum Message {
+            static let cacheExpired: String = "cache is expired"
+        }
     }
 }
