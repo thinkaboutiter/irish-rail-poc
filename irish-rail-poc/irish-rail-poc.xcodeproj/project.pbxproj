@@ -50,8 +50,11 @@
 		4FBA16392489411B0087D9B5 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA16372489411B0087D9B5 /* MapViewController.xib */; };
 		4FBA163B248941630087D9B5 /* MapDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */; };
 		4FBA163E248942060087D9B5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */; };
+		4FCBB2D9248DA05300586FB3 /* StationDataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2D8248DA05300586FB3 /* StationDataCollectionView.swift */; };
+		4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */; };
 		4FFD9572248D926600DA8479 /* StationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9571248D926600DA8479 /* StationDataView.swift */; };
 		4FFD9574248D92C600DA8479 /* StationDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9573248D92C600DA8479 /* StationDataView.xib */; };
+		4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,8 +100,11 @@
 		4FBA16372489411B0087D9B5 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDependencyContainer.swift; sourceTree = "<group>"; };
 		4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		4FCBB2D8248DA05300586FB3 /* StationDataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCollectionView.swift; sourceTree = "<group>"; };
+		4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDimensionsProvider.swift; sourceTree = "<group>"; };
 		4FFD9571248D926600DA8479 /* StationDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataView.swift; sourceTree = "<group>"; };
 		4FFD9573248D92C600DA8479 /* StationDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataView.xib; sourceTree = "<group>"; };
+		4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */,
+				4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */,
 			);
 			path = "_ui-base-classes";
 			sourceTree = "<group>";
@@ -329,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				4FB7DA64248D5FBA00F15B6B /* StationViewModel.swift */,
+				4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */,
 			);
 			path = "view-model";
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 			children = (
 				4FFD9571248D926600DA8479 /* StationDataView.swift */,
 				4FFD9573248D92C600DA8479 /* StationDataView.xib */,
+				4FCBB2D8248DA05300586FB3 /* StationDataCollectionView.swift */,
 			);
 			path = "_custom-ui";
 			sourceTree = "<group>";
@@ -523,12 +532,15 @@
 				4F8842FB2489B72600BCFACE /* StationDataRepository.swift in Sources */,
 				4FB7DA63248D5F8B00F15B6B /* StationModel.swift in Sources */,
 				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
+				4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */,
 				4FBA1633248940B70087D9B5 /* MapModel.swift in Sources */,
+				4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */,
 				4FBA1635248940E60087D9B5 /* MapViewModel.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
 				4F8842F92489AB6700BCFACE /* BaseRepository.swift in Sources */,
 				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
+				4FCBB2D9248DA05300586FB3 /* StationDataCollectionView.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
 				4FB7DA5D248D056400F15B6B /* StationDataCache.swift in Sources */,
