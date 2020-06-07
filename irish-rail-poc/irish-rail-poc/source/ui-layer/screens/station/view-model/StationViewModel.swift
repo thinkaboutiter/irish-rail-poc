@@ -81,7 +81,7 @@ extension StationViewModelImpl: StationDataRepositoryConsumer {
     
     func didFetchStationData(on repository: StationDataRepository) {
         do {
-            let stationData: [StationData] = try repository.stationData().sorted() { $0.stationFullName < $1.stationFullName }
+            let stationData: [StationData] = try repository.stationData().sorted() { $0.scheduleArrival < $1.scheduleArrival }
             self.model.setStationData(stationData)
         }
         catch {
