@@ -13,7 +13,9 @@ import SimpleLogger
 protocol StationDataViewModel {
     var trainCode: String { get }
     var origin: String { get }
+    var originTime: String { get }
     var destination: String { get }
+    var destinationTime: String { get }
     var dueIn: Int { get }
     var late: Int { get }
     var expectedArrival: String { get }
@@ -36,8 +38,14 @@ struct StationDataViewModelImpl: StationDataViewModel {
     var origin: String {
         return self.stationData.origin
     }
+    var originTime: String {
+        return self.stationData.originTime
+    }
     var destination: String {
         return self.stationData.destination
+    }
+    var destinationTime: String {
+        return self.stationData.destinationTime
     }
     var dueIn: Int {
         return self.stationData.dueIn

@@ -24,7 +24,7 @@ class StationDataView: UIView {
     @IBOutlet private weak var lateTimeLabel: UILabel!
     @IBOutlet private weak var expArrivalTitleLabel: UILabel!
     @IBOutlet private weak var expArrivalTimeLabel: UILabel!
-    private var viewModel: AnyObject!
+    private var viewModel: StationDataViewModel!
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -49,11 +49,27 @@ class StationDataView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
+        self.reset()
     }
     
     // MARK: - Configuration
-    func configure(with viewModel: AnyObject) {
+    func configure(with viewModel: StationDataViewModel) {
         self.viewModel = viewModel
+        self.configureUi(with: viewModel)
+    }
+    
+    private func configureUi(with viewModel: StationDataViewModel) {
+        self.trainCodeLabel.text = "train \(viewModel.trainCode)".uppercased()
+        self.originLabel.text = viewModel.origin.uppercased()
+        self.originTimeLabel.text = viewModel.originTime
+        self.destinationLabel.text = viewModel.destination.uppercased()
+        self.destinationTimeLabel.text = viewModel.destinationTime
+        self.dueInTitleLabel.text = "due in".uppercased()
+        self.dueInTimeLabel.text = "\(viewModel.dueIn)"
+        self.lateTitleLabel.text = "late".uppercased()
+        self.lateTimeLabel.text = "\(viewModel.late)"
+        self.expArrivalTitleLabel.text = "exp arrival".uppercased()
+        self.expArrivalTimeLabel.text = viewModel.expectedArrival
     }
     
     func reset() {
