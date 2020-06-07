@@ -50,7 +50,7 @@ private extension StationDataCollectionView {
         static let minimumInteritemSpacing: CGFloat = 8
         static let minimumLineSpacing: CGFloat = 8
         static let itemsPerRow: UInt = (UIDevice.current.userInterfaceIdiom == .phone) ? 2 : 4
-        static let itemWidthToHeightRatio: CGFloat = 4 / 3
+        static let itemWidthToHeightRatio: CGFloat = 240.0 / 185.0
         static var sectionEdgeInsets: UIEdgeInsets {
             return UIEdgeInsets(top: self.minimumLineSpacing,
                                 left: self.paddingLeft,

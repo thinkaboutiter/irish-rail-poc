@@ -12,6 +12,7 @@ import SimpleLogger
 /// APIs for `ViewModel` to expose to `View`
 protocol StationDataViewModel {
     var trainCode: String { get }
+    var trainDate: String { get }
     var origin: String { get }
     var originTime: String { get }
     var destination: String { get }
@@ -34,6 +35,9 @@ struct StationDataViewModelImpl: StationDataViewModel {
     // MARK: - StationDataViewModel protocol
     var trainCode: String {
         return self.stationData.trainCode
+    }
+    var trainDate: String {
+        return self.stationData.trainDate
     }
     var origin: String {
         return self.stationData.origin

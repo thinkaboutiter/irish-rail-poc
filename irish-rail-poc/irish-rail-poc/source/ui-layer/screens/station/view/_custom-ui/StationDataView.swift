@@ -14,6 +14,7 @@ class StationDataView: UIView {
     // source: https://medium.com/@brianclouser/swift-3-creating-a-custom-view-from-a-xib-ecdfe5b3a960
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var trainCodeLabel: UILabel!
+    @IBOutlet private weak var trainDateLabel: UILabel!
     @IBOutlet private weak var originLabel: UILabel!
     @IBOutlet private weak var originTimeLabel: UILabel!
     @IBOutlet private weak var destinationLabel: UILabel!
@@ -74,6 +75,7 @@ class StationDataView: UIView {
     
     func reset() {
         self.trainCodeLabel.text = "train N/A".uppercased()
+        self.trainDateLabel.text = "N/A"
         self.originLabel.text = "origin".uppercased()
         self.originTimeLabel.text = "N/A"
         self.destinationLabel.text = "destination".uppercased()

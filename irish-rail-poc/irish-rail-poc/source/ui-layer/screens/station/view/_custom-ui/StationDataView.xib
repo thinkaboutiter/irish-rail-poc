@@ -19,25 +19,37 @@
                 <outlet property="lateTitleLabel" destination="ONV-sa-oZ9" id="4go-Hs-jlh"/>
                 <outlet property="originLabel" destination="GZh-KS-vap" id="AWM-Uw-qcm"/>
                 <outlet property="originTimeLabel" destination="th6-45-dhx" id="7XF-CL-VMo"/>
-                <outlet property="trainCodeLabel" destination="nT4-Ar-Pm8" id="Nbu-lp-SO4"/>
+                <outlet property="trainCodeLabel" destination="ULx-W8-MrH" id="hhx-Ui-RTa"/>
+                <outlet property="trainDateLabel" destination="nT4-Ar-Pm8" id="nQx-wZ-qEs"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Wf4-p7-UxG" userLabel="content-view">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="240" height="185"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bNq-fa-KZa" userLabel="content-stack-view">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="185"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="TRAIN E283" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT4-Ar-Pm8" userLabel="train-code-label">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="32.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="svO-mk-ysT" userLabel="title-stack-view">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="37.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="TRAIN E283" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULx-W8-MrH" userLabel="train-code-label">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="25.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="03 Jun 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT4-Ar-Pm8" userLabel="train-date-label">
+                                    <rect key="frame" x="0.0" y="25.5" width="240" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LXK-KY-bkG" userLabel="origin-stack-view">
-                            <rect key="frame" x="0.0" y="40.5" width="240" height="21.5"/>
+                            <rect key="frame" x="0.0" y="45.5" width="240" height="21.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Greystones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-KS-vap" userLabel="origin-label">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="21.5"/>
@@ -57,7 +69,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Sp-yg-sr0" userLabel="destination-stack-view">
-                            <rect key="frame" x="0.0" y="70" width="240" height="21.5"/>
+                            <rect key="frame" x="0.0" y="75" width="240" height="21.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Malahide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6C-M7-5kZ" userLabel="destination-label">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="21.5"/>
@@ -77,7 +89,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Uhq-Vt-GVN" userLabel="due-in-stack-view">
-                            <rect key="frame" x="0.0" y="99.5" width="240" height="21.5"/>
+                            <rect key="frame" x="0.0" y="104.5" width="240" height="21.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="due in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKL-hY-Ya3" userLabel="due-in-title-label">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="21.5"/>
@@ -97,7 +109,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h1b-UP-a53" userLabel="late-stack-view">
-                            <rect key="frame" x="0.0" y="129" width="240" height="21.5"/>
+                            <rect key="frame" x="0.0" y="134" width="240" height="21.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="late" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONV-sa-oZ9" userLabel="late-title-label">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="21.5"/>
@@ -117,7 +129,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ygk-GG-GjA" userLabel="exp-arr-stack-view">
-                            <rect key="frame" x="0.0" y="158.5" width="240" height="21.5"/>
+                            <rect key="frame" x="0.0" y="163.5" width="240" height="21.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="exp arrive" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbS-vP-XYG" userLabel="exp-arr-title-label">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="21.5"/>
