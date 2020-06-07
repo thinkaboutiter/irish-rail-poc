@@ -87,10 +87,13 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
                                      shouldEnable: true)
     }
     
-    // MARK: - Life cycle
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
+    // MARK: - Fetching
+    func fetchStationData() {
         self.viewModel.fetchStationData()
+    }
+    
+    func cancelStationDataFetching() {
+        self.viewModel.cancelStationDataFetching()
     }
     
     // MARK: - StationDataCalloutAccessoryViewModelConsumer protocol

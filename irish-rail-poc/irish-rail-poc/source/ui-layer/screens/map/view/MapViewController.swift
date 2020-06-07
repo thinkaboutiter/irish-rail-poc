@@ -136,11 +136,18 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        Logger.debug.message()
+        guard let accessoryView: StationDataCalloutAccessoryView = view.rightCalloutAccessoryView as? StationDataCalloutAccessoryView else {
+            return
+        }
+        accessoryView.fetchStationData()
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        Logger.debug.message()
+        guard let accessoryView: StationDataCalloutAccessoryView = view.rightCalloutAccessoryView as? StationDataCalloutAccessoryView else {
+            return
+        }
+        accessoryView.cancelStationDataFetching()
+        view.rightCalloutAccessoryView = nil
     }
 }
 
