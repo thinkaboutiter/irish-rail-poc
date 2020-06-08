@@ -142,11 +142,9 @@ private extension StationDataRepositoryImpl {
         
         enum Code {
             static let invalidStationCodeParameter: Int = 9000
-            static let invalidCache: Int = 9001
         }
         enum Message {
             static let invalidStationCodeParameter: String = "invalid station_code parameter!"
-            static let invalidCache: String = "cache is no longer valid!"
         }
     }
 }
