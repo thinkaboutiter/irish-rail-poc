@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,29 +16,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="362" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVj-Hl-vpu" userLabel="separator-view">
+                        <rect key="frame" x="0.0" y="65" width="362" height="1"/>
+                        <color key="backgroundColor" name="app-cell-separator"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="8HH-2O-hhZ"/>
+                        </constraints>
+                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-4Q-HYR" userLabel="content-stack-view">
                         <rect key="frame" x="8" y="8" width="346" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDL-A5-T4C" userLabel="name-label">
                                 <rect key="frame" x="0.0" y="0.0" width="346" height="32"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="app-text-color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qa-wq-Xmc" userLabel="code-label">
                                 <rect key="frame" x="0.0" y="34" width="346" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="app-text-color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" name="app-cell-background"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="FVj-Hl-vpu" secondAttribute="trailing" id="7gm-Mq-Lge"/>
+                    <constraint firstAttribute="bottom" secondItem="FVj-Hl-vpu" secondAttribute="bottom" id="FBo-XJ-zWH"/>
                     <constraint firstAttribute="trailing" secondItem="jnD-4Q-HYR" secondAttribute="trailing" constant="8" id="QRS-js-iYd"/>
                     <constraint firstItem="jnD-4Q-HYR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SUc-x4-FR1"/>
                     <constraint firstItem="jnD-4Q-HYR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="d7h-po-H3J"/>
                     <constraint firstItem="jnD-4Q-HYR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="din-eG-bNf"/>
+                    <constraint firstItem="FVj-Hl-vpu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nfQ-0g-Jmg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -47,4 +59,15 @@
             <point key="canvasLocation" x="162.31884057971016" y="160.04464285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="app-cell-background">
+            <color red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="app-cell-separator">
+            <color red="0.5985683692893401" green="0.5985683692893401" blue="0.5985683692893401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="app-text-color">
+            <color red="0.050999999046325684" green="0.050999999046325684" blue="0.050999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

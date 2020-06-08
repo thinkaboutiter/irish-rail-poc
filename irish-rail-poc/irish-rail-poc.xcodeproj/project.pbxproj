@@ -12,6 +12,8 @@
 		4F037D17248EED9D00082C41 /* StationsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D16248EED9D00082C41 /* StationsTableView.swift */; };
 		4F037D1B248EEDF700082C41 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D19248EEDF700082C41 /* StationTableViewCell.swift */; };
 		4F037D1C248EEDF700082C41 /* StationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */; };
+		4F037D20248EF8E200082C41 /* StationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D1F248EF8E200082C41 /* StationsViewModel.swift */; };
+		4F037D22248EF90200082C41 /* StationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D21248EF90200082C41 /* StationsModel.swift */; };
 		4F065EC6248D62350066ED5A /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC4248D62350066ED5A /* StationViewController.swift */; };
 		4F065EC7248D62350066ED5A /* StationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F065EC5248D62350066ED5A /* StationViewController.xib */; };
 		4F065EC9248D62910066ED5A /* StationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */; };
@@ -83,6 +85,8 @@
 		4F037D16248EED9D00082C41 /* StationsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsTableView.swift; sourceTree = "<group>"; };
 		4F037D19248EEDF700082C41 /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationTableViewCell.xib; sourceTree = "<group>"; };
+		4F037D1F248EF8E200082C41 /* StationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewModel.swift; sourceTree = "<group>"; };
+		4F037D21248EF90200082C41 /* StationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsModel.swift; sourceTree = "<group>"; };
 		4F065EC4248D62350066ED5A /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		4F065EC5248D62350066ED5A /* StationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationViewController.xib; sourceTree = "<group>"; };
 		4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDependencyContainer.swift; sourceTree = "<group>"; };
@@ -164,7 +168,9 @@
 		4F037D10248EEB1400082C41 /* stations-list */ = {
 			isa = PBXGroup;
 			children = (
+				4F037D1E248EF8C100082C41 /* model */,
 				4F037D11248EEB2B00082C41 /* view */,
+				4F037D1D248EF8B800082C41 /* view-model */,
 			);
 			path = "stations-list";
 			sourceTree = "<group>";
@@ -187,6 +193,22 @@
 				4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */,
 			);
 			path = "_custom-ui";
+			sourceTree = "<group>";
+		};
+		4F037D1D248EF8B800082C41 /* view-model */ = {
+			isa = PBXGroup;
+			children = (
+				4F037D1F248EF8E200082C41 /* StationsViewModel.swift */,
+			);
+			path = "view-model";
+			sourceTree = "<group>";
+		};
+		4F037D1E248EF8C100082C41 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4F037D21248EF90200082C41 /* StationsModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		4F5490C3248C4A9900472ED6 /* _custom-ui */ = {
@@ -663,6 +685,7 @@
 				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
 				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */,
+				4F037D20248EF8E200082C41 /* StationsViewModel.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
 				4F8842FB2489B72600BCFACE /* StationDataRepository.swift in Sources */,
 				4F037D14248EEC8400082C41 /* StationsViewController.swift in Sources */,
@@ -687,6 +710,7 @@
 				4F75797F248E87EE00FF533C /* AppCache.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
+				4F037D22248EF90200082C41 /* StationsModel.swift in Sources */,
 				4F065EC6248D62350066ED5A /* StationViewController.swift in Sources */,
 				4FB5E97C24882E170040C1BD /* WebService.swift in Sources */,
 				4F7A5350248C2501005C502E /* StationAnnotation.swift in Sources */,

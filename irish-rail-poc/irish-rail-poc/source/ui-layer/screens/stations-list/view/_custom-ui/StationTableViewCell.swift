@@ -16,17 +16,27 @@ class StationTableViewCell: UITableViewCell {
     }
     @IBOutlet private weak var stationNameLabel: UILabel!
     @IBOutlet private weak var stationCodeLabel: UILabel!
+    private var station: Station!
     
     // MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.resetUi()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    // MARK: - Configurations
+    func configure(with station: Station) {
+        self.station = station
+        self.stationNameLabel.text = station.desc.uppercased()
+        self.stationCodeLabel.text = station.code.uppercased()
+    }
+    
+    func resetUi() {
+        self.stationNameLabel.text = "n/a".uppercased()
+        self.stationCodeLabel.text = "n/a".uppercased()
+    }
 }
