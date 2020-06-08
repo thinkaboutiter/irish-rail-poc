@@ -78,7 +78,7 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
     }
     
     func fetchStations() {
-        self.repository.fetchStations()
+        self.repository.fetchStations(usingCache: true)
     }
     
     func stations() -> [Station] {
@@ -96,8 +96,13 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
     
     // MARK: - StationRepositoryConsumer protocol
     func didFetchStations(on repository: StationRepository) {
-        let stations: [Station] = repository.stations()
-        self.model.setStations(stations)
+        do {
+            let stations: [Station] = try repository.stations().sorted() { $0.desc < $1.desc }
+            self.model.setStations(stations)
+        }
+        catch {
+            self.viewModelConsumer.didReceiveError(on: self, error: error)
+        }
     }
     
     func didFailToFetchStations(on repository: StationRepository, with error: Error) {

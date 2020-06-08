@@ -22,7 +22,7 @@ protocol StationRepository: AnyObject {
     func setRepositoryConsumer(_ newValue: StationRepositoryConsumer)
     
     /// Obtain `Station` objects.
-    func fetchStations()
+    func fetchStations(usingCache: Bool)
     
     /// Reset local cache and initiate fetch again.
     func refresh()
@@ -31,17 +31,20 @@ protocol StationRepository: AnyObject {
     func reset()
     
     /// Provide fetched data from the cache.
-    func stations() -> [Station]
+    func stations() throws -> [Station]
     
     /// Search for `Station` object.
     /// - Parameter term: term to search for.
-    func filteredStations(by term: String) -> [Station]
+    func filteredStations(by term: String) throws -> [Station]
 }
 
 class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     
     // MARK: - Properties
     private weak var consumer: StationRepositoryConsumer!
+    private var stationsCache: StationsCache {
+        return AppCache.stationsCache
+    }
     
     // MARK: - Initialization
     deinit {
@@ -53,7 +56,14 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
         self.consumer = newValue
     }
     
-    func fetchStations() {
+    func fetchStations(usingCache: Bool) {
+        let isCacheValid: Bool = self.stationsCache.isStationsCacheValid()
+        let shouldUseCache: Bool = usingCache && isCacheValid
+        guard !shouldUseCache else {
+            self.consumer.didFetchStations(on: self)
+            return
+        }
+        self.stationsCache.invalidateStationsCache()
         self.fetchResources(
             success: {
                 self.consumer.didFetchStations(on: self)
@@ -66,16 +76,25 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     
     override func refresh() {
         super.refresh()
-        self.fetchStations()
+        self.fetchStations(usingCache: false)
     }
     
-    func stations() -> [Station] {
-        let result: [Station] = self.consumeObjects()
+    func stations() throws -> [Station] {
+        let result: [Station]
+        let consumed: [Station] = self.consumeObjects()
+        if !consumed.isEmpty {
+            self.stationsCache.add(consumed,
+                                   shouldInvalidateExistingCache: true)
+            result = consumed
+        }
+        else {
+            result = try self.stationsCache.stations()
+        }
         return result
     }
     
-    func filteredStations(by term: String) -> [Station] {
-        let result: [Station] = self.stations().filter { (station: Station) -> Bool in
+    func filteredStations(by term: String) throws -> [Station] {
+        let result: [Station] = try self.stations().filter { (station: Station) -> Bool in
             return ((station.alias?.contains(term) ?? false)
                 || station.desc.contains(term)
                 || station.code.contains(term))
