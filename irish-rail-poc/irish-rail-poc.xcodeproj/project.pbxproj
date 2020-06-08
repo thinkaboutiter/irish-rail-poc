@@ -12,6 +12,7 @@
 		4F065EC9248D62910066ED5A /* StationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */; };
 		4F07B3E1248C5AA3008129AE /* StationDataCalloutAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */; };
 		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
+		4F3A4F1C248E7C02008F54C5 /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */; };
 		4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */; };
 		4F5490C7248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */; };
 		4F774EB9248DB5A200327071 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F774EB8248DB5A200327071 /* UIView+Extensions.swift */; };
@@ -67,6 +68,7 @@
 		4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDependencyContainer.swift; sourceTree = "<group>"; };
 		4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataCalloutAccessoryView.xib; sourceTree = "<group>"; };
 		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
+		4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
 		4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryView.swift; sourceTree = "<group>"; };
 		4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryViewModel.swift; sourceTree = "<group>"; };
 		4F774EB8248DB5A200327071 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 		4FBA32D1248E7247003EF5C8 /* view-model */ = {
 			isa = PBXGroup;
 			children = (
+				4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */,
 			);
 			path = "view-model";
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				4FBA16382489411B0087D9B5 /* MapViewController.swift in Sources */,
 				4FB5E97524881C550040C1BD /* TrainMovement.swift in Sources */,
 				4FFD9572248D926600DA8479 /* StationDataView.swift in Sources */,
+				4F3A4F1C248E7C02008F54C5 /* TrainViewModel.swift in Sources */,
 				4FBA163E248942060087D9B5 /* UIViewController+Extensions.swift in Sources */,
 				4F5490C7248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift in Sources */,
 				4FBA32D3248E72F4003EF5C8 /* TrainModel.swift in Sources */,
