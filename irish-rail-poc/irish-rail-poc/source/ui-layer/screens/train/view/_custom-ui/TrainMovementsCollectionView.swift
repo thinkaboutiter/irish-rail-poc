@@ -1,5 +1,5 @@
 //
-//  StationDataCollectionView.swift
+//  TrainMovementsCollectionView.swift
 //  irish-rail-poc
 //
 //  Created by Boyan Yankov on 2020-W24-08-Jun-Mon.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class StationDataCollectionView: UICollectionView {}
+class TrainMovementsCollectionView: UICollectionView {}
 
-extension StationDataCollectionView: CollectionViewDimensionsProvider {
+extension TrainMovementsCollectionView: CollectionViewDimensionsProvider {
     
     var paddingLeft: CGFloat {
         return Dimensions.paddingLeft
@@ -42,7 +42,7 @@ extension StationDataCollectionView: CollectionViewDimensionsProvider {
 }
 
 // MARK: - Dimensions
-private extension StationDataCollectionView {
+private extension TrainMovementsCollectionView {
     
     enum Dimensions {
         static let paddingLeft: CGFloat = 8
@@ -69,10 +69,10 @@ private extension StationDataCollectionView {
         static var itemWidthToHeightRatio: CGFloat {
             let result: CGFloat
             if UIDevice.current.userInterfaceIdiom == .phone {
-                result = 240.0 / 220.0
+                result = 240.0 / 180.0
             }
             else {
-                result = 240.0 / 180.0
+                result = 240.0 / 140.0
             }
             return result
         }

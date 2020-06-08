@@ -49,7 +49,7 @@
     </objects>
     <resources>
         <namedColor name="app-cell-background">
-            <color red="0.86659263959390864" green="0.86659263959390864" blue="0.86659263959390864" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

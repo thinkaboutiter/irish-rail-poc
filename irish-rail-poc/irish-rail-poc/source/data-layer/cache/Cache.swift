@@ -1,32 +1,32 @@
 //
-//  StationDataCache.swift
+//  GenericCache.swift
 //  irish-rail-poc
 //
-//  Created by Boyan Yankov on 2020-W23-07-Jun-Sun.
+//  Created by Boyan Yankov on 2020-W24-08-Jun-Mon.
 //  Copyright © 2020 boyankov@yahoo.com. All rights reserved.
 //
 
 import Foundation
 import SimpleLogger
 
-/// Cache object
-
-/// Cache for `StationData` objects for given `stationCode`
-protocol StationDataCache: AnyObject {
-    func stationData(for stationCode: String) throws -> [StationData]
-    func add(_ stationData: [StationData],
-             for stationCode: String,
+/// Generic cache for app model types
+protocol Cache: AnyObject {
+    associatedtype ValueType
+    associatedtype KeyType
+    func objects(for key: KeyType) throws -> [ValueType]
+    func add(_ objects: [ValueType],
+             for key: KeyType,
              shouldInvalidateExistingCache: Bool)
-    func isCacheValid(for stationCode: String) -> Bool
-    func invalidateCache(for stationCode: String)
+    func isCacheValid(for key: KeyType) -> Bool
+    func invalidateCache(for key: KeyType)
 }
 
-class StationDataCacheImpl: StationDataCache {
+class CacheImpl<K: Hashable, V>: Cache {
+    typealias KeyType = K
+    typealias ValueType = V
     
     // MARK: - Properties
-    static let shared: StationDataCache = StationDataCacheImpl()
-    
-    // MARK: - Caching
+    private let validityInterval: TimeInterval
     private let concurrentCacheQueue = DispatchQueue(label: Constants.concurrentQueueLabel,
                                                      qos: .default,
                                                      attributes: .concurrent)
@@ -49,38 +49,34 @@ class StationDataCacheImpl: StationDataCache {
         return result
     }()
     
-    // MARK: - Initialization
-    private init() {
-        Logger.general.message()
+    // MARK: - Intialization
+    init(validityInterval: TimeInterval) {
+        self.validityInterval = validityInterval
     }
     
-    deinit {
-        Logger.fatal.message()
-    }
-    
-    // MARK: - StationDataCache protocol
-    func stationData(for stationCode: String) throws -> [StationData] {
-        guard self.isCacheValid(for: stationCode) else {
-            self.invalidateCache(for: stationCode)
+    // MARK: - ResponseObjectsCache protocol
+    func objects(for key: K) throws -> [V] {
+        guard self.isCacheValid(for: key) else {
+            self.invalidateCache(for: key)
             let message: String = Error.Message.cacheExpired
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
                                                      code: Error.Code.cacheExpired,
                                                      localizedMessage: message).error()
             throw error
         }
-        var result: [StationData]!
+        var result: [V]!
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
             }
-            let key: NSNumber = NSNumber(value: stationCode.hashValue)
-            guard let collection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key) else {
-                let message: String = "unable to obtain object for key=\(key)"
+            let keyHash: NSNumber = NSNumber(value: key.hashValue)
+            guard let collection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: keyHash) else {
+                let message: String = "unable to obtain object for key=\(keyHash)"
                 Logger.error.message(message)
                 return
             }
-            result = collection.compactMap({ (element: Any) -> StationData? in
-                guard let object: StationData = element as? StationData else {
+            result = collection.compactMap({ (element: Any) -> V? in
+                guard let object: V = element as? V else {
                     return nil
                 }
                 return object
@@ -89,8 +85,8 @@ class StationDataCacheImpl: StationDataCache {
         return result ?? []
     }
     
-    func add(_ stationData: [StationData],
-             for stationCode: String,
+    func add(_ objects: [V],
+             for key: K,
              shouldInvalidateExistingCache: Bool)
     {
         self.concurrentCacheQueue.async(qos: .default,
@@ -99,9 +95,9 @@ class StationDataCacheImpl: StationDataCache {
             guard let validSelf = self else {
                 return
             }
-            let key: NSNumber = NSNumber(value: stationCode.hashValue)
+            let keyHash: NSNumber = NSNumber(value: key.hashValue)
             let collectionToAdd: NSMutableOrderedSet
-            if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: key),
+            if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: keyHash),
                 !shouldInvalidateExistingCache
             {
                 collectionToAdd = existingCollection
@@ -109,39 +105,39 @@ class StationDataCacheImpl: StationDataCache {
             else {
                 collectionToAdd = NSMutableOrderedSet()
             }
-            collectionToAdd.addObjects(from: stationData)
-            validSelf.objectsCache.setObject(collectionToAdd, forKey: key)
+            collectionToAdd.addObjects(from: objects)
+            validSelf.objectsCache.setObject(collectionToAdd, forKey: keyHash)
             
-            let message: String = "added object for key=\(key)"
+            let message: String = "added object for key=\(keyHash)"
             Logger.error.message(message)
 
             
             // update time stamp
             let timeStamp: NSDate = NSDate()
-            validSelf.timeStampsCache.setObject(timeStamp, forKey: key)
+            validSelf.timeStampsCache.setObject(timeStamp, forKey: keyHash)
         }
     }
     
-    func isCacheValid(for stationCode: String) -> Bool {
+    func isCacheValid(for key: K) -> Bool {
         var result: Bool = false
-        guard let cachedTimeStamp: NSDate = self.timeStamp(for: stationCode) else {
+        guard let cachedTimeStamp: NSDate = self.timeStamp(for: key) else {
             return result
         }
         let now: NSDate = NSDate()
         let div: TimeInterval = abs(now.timeIntervalSince1970 - cachedTimeStamp.timeIntervalSince1970)
-        if div < Constants.cacheValidityInterval {
+        if div < self.validityInterval {
             result = true
         }
         return result
     }
     
-    private func timeStamp(for stationCode: String) -> NSDate? {
+    private func timeStamp(for key: K) -> NSDate? {
         var result: NSDate!
         self.concurrentCacheQueue.sync { [weak self] in
             guard let validSelf = self else {
                 return
             }
-            let key: NSNumber = NSNumber(value: stationCode.hashValue)
+            let key: NSNumber = NSNumber(value: key.hashValue)
             guard let object: NSDate = validSelf.timeStampsCache.object(forKey: key) else {
                 let message: String = "unable to obtain object for key=\(key)"
                 Logger.error.message(message)
@@ -152,14 +148,14 @@ class StationDataCacheImpl: StationDataCache {
         return result
     }
     
-    func invalidateCache(for stationCode: String) {
+    func invalidateCache(for key: K) {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
             guard let validSelf = self else {
                 return
             }
-            let key: NSNumber = NSNumber(value: stationCode.hashValue)
+            let key: NSNumber = NSNumber(value: key.hashValue)
             if let _ = validSelf.objectsCache.object(forKey: key) {
                 validSelf.objectsCache.setObject(nil, forKey: key)
                 
@@ -171,27 +167,32 @@ class StationDataCacheImpl: StationDataCache {
 }
 
 // MARK: - Constants
-private extension StationDataCacheImpl {
+private extension CacheImpl {
     
     private enum Constants {
         static var concurrentQueueLabel: String {
-            return "\(AppConstants.projectName)-\(String(describing: StationDataCacheImpl.self))-concurrent-queue"
+            return "\(AppConstants.projectName)-\(String(describing: CacheImpl.self))-\(String(describing: V.self))-concurrent-queue"
         }
-        static var cacheValidityInterval: TimeInterval = 5 * 60
     }
 }
 
 // MARK: - Errors
-private extension StationDataCacheImpl {
+private extension CacheImpl {
     
     enum Error {
-        static let domain: String = "\(AppConstants.projectName)\(String(describing: StationDataCacheImpl.Error.self))"
+        static var domain: String {
+            return "\(AppConstants.projectName)\(String(describing: CacheImpl.Error.self))"
+        }
         
         enum Code {
-            static let cacheExpired: Int = 9000
+            static var cacheExpired: Int {
+                return 9000
+            }
         }
         enum Message {
-            static let cacheExpired: String = "cache is expired"
+            static var cacheExpired: String {
+                return "cache is expired"
+            }
         }
     }
 }

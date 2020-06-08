@@ -51,7 +51,7 @@ class StationDataView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
-        self.reset()
+        self.resetUi()
     }
     
     // MARK: - Life cycle
@@ -81,7 +81,7 @@ class StationDataView: UIView {
         self.expArrivalTimeLabel.text = viewModel.expectedArrival
     }
     
-    func reset() {
+    func resetUi() {
         self.trainCodeLabel.text = "train N/A".uppercased()
         self.trainDateLabel.text = "N/A"
         self.originLabel.text = "origin".uppercased()

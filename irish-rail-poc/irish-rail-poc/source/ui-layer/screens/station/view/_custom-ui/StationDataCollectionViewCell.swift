@@ -15,7 +15,7 @@ class StationDataCollectionViewCell: UICollectionViewCell {
         return String(describing: StationDataCollectionViewCell.self)
     }
     @IBOutlet private weak var stationDataView: StationDataView!
-    private(set) var stationData: StationData?
+    private(set) var stationData: StationData!
     
     // MARK: - Life cycle
     override func awakeFromNib() {
@@ -24,7 +24,7 @@ class StationDataCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.stationDataView.reset()
+        self.stationDataView.resetUi()
     }
     
     override func layoutSubviews() {

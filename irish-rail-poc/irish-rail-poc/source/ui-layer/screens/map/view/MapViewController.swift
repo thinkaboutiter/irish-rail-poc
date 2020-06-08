@@ -169,7 +169,7 @@ extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
         }
         let station: Station = view.viewModel.station()
         let vc: StationViewController = self.makeStationViewControllerWith(station)
-        let navVc: UINavigationController = UINavigationController(rootViewController: vc)
-        self.present(navVc, animated: true, completion: nil)
+        let nc: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(nc, animated: true, completion: nil)
     }
 }

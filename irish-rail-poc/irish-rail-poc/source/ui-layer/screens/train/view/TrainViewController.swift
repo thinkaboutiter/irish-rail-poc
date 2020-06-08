@@ -1,8 +1,8 @@
 //
-//  StationViewController.swift
+//  TrainViewController.swift
 //  irish-rail-poc
 //
-//  Created by Boyan Yankov on 2020-W23-07-Jun-Sun.
+//  Created by Boyan Yankov on 2020-W24-08-Jun-Mon.
 //  Copyright © 2020 boyankov@yahoo.com. All rights reserved.
 //
 
@@ -10,22 +10,21 @@ import UIKit
 import SimpleLogger
 
 /// APIs for `DependecyContainer` to expose.
-protocol StationViewControllerFactory {
-    func makeStationViewController() -> StationViewController
+protocol TrainViewControllerFactory {
+    func makeTrainViewController() -> TrainViewController
 }
 
-class StationViewController: BaseViewController, StationViewModelConsumer {
+class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     // MARK: - Properties
-    private let viewModel: StationViewModel
-    private let makeTrainViewControllerWith: ((_ stationData: StationData) -> TrainViewController)
-    @IBOutlet private weak var stationDataCollectionView: StationDataCollectionView! {
+    private let viewModel: TrainViewModel
+    @IBOutlet weak var trainMovementsCollectionView: TrainMovementsCollectionView! {
         didSet {
-            let identifier: String = StationDataCollectionViewCell.identifier
-            self.stationDataCollectionView.register(UINib(nibName: identifier, bundle: nil),
-                                                    forCellWithReuseIdentifier: identifier)
-            self.stationDataCollectionView.delegate = self
-            self.stationDataCollectionView.dataSource = self
+            let identifier: String = TrainMovementCollectionViewCell.identifier
+            self.trainMovementsCollectionView.register(UINib(nibName: identifier, bundle: nil),
+                                                       forCellWithReuseIdentifier: identifier)
+            self.trainMovementsCollectionView.delegate = self
+            self.trainMovementsCollectionView.dataSource = self
         }
     }
     
@@ -40,11 +39,9 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: StationViewModel,
-         makeTrainViewControllerWith: @escaping ((_ stationData: StationData) -> TrainViewController)) {
+    init(viewModel: TrainViewModel) {
         self.viewModel = viewModel
-        self.makeTrainViewControllerWith = makeTrainViewControllerWith
-        super.init(nibName: String(describing: StationViewController.self), bundle: nil)
+        super.init(nibName: String(describing: TrainViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
     }
@@ -53,12 +50,12 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         Logger.fatal.message()
     }
     
-    // MARK: - StationViewModelConsumer protocol
-    func didFinishFetchingStationData(on viewModel: StationViewModel) {
-        self.stationDataCollectionView.reloadData()
+    // MARK: - TrainViewModelConsumer protocol
+    func didFinishFetchingTrainMovements(on viewModel: TrainViewModel) {
+        self.trainMovementsCollectionView.reloadData()
     }
     
-    func didFailFetchingStationData(on viewModel: StationViewModel, error: Error) {
+    func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Error) {
         self.showAlert(for: error)
     }
     
@@ -66,12 +63,12 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUi()
-        self.viewModel.fetchStationData()
+        self.viewModel.fetchTrainMovements()
     }
     
     // MARK: - Configuration
     private func configureUi() {
-        self.title = self.viewModel.station().desc
+        self.title = "train \(self.viewModel.stationData().trainCode)".uppercased()
         self.configureNavigationBar()
     }
     
@@ -89,7 +86,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
 }
 
 // MARK: - UICollectionViewDataSource protocol
-extension StationViewController: UICollectionViewDataSource {
+extension TrainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int
@@ -100,45 +97,33 @@ extension StationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let identifier: String = StationDataCollectionViewCell.identifier
-        guard let validCell: StationDataCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? StationDataCollectionViewCell else {
+        let identifier: String = TrainMovementCollectionViewCell.identifier
+        guard let validCell: TrainMovementCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? TrainMovementCollectionViewCell else {
             let message: String = "Unable to dequeue valid \(identifier)!"
             fatalError(message)
         }
-        guard let stationData: StationData = self.viewModel.item(at: indexPath) else {
+        guard let trainMovement: TrainMovement = self.viewModel.item(at: indexPath) else {
             let message: String = "Unable to find item for indexPath=\(indexPath)!"
             Logger.error.message(message)
             return validCell
         }
-        validCell.configure(with: stationData)
+        validCell.configure(with: trainMovement)
         return validCell
     }
 }
 
 // MARK: - UICollectionViewDelegate protocol
-extension StationViewController: UICollectionViewDelegate {
+extension TrainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath)
     {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let stationData: StationData = self.viewModel.item(at: indexPath) else {
-            let message: String = "unable to obtain \(String(describing: StationData.self)) object for index_path=\(indexPath)"
-            Logger.error.message(message)
-            return
-        }
-        self.showTrainViewController(for: stationData)
-    }
-    
-    private func showTrainViewController(for stationData: StationData) {
-        let vc: TrainViewController = self.makeTrainViewControllerWith(stationData)
-        let nc: UINavigationController = UINavigationController(rootViewController: vc)
-        self.present(nc, animated: true, completion: nil)
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout protocol
-extension StationViewController: UICollectionViewDelegateFlowLayout {
+extension TrainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

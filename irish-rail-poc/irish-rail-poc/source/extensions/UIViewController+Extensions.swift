@@ -94,11 +94,12 @@ extension UIViewController {
      - parameter actionTitle: custom title for the action button
      - parameter actionHandler: custom handler
      */
-    func showAlert(for error: NSError,
+    func showAlert(for error: Swift.Error,
                    alertTitle: String = "Error",
                    actionTitle: String = "OK",
                    actionHandler: ((_ action: UIAlertAction) -> Void)? = nil)
     {
+        let error = error as NSError
         let alertTitle: String = "\(alertTitle): \(error.code)"
         let alertMessage: String = error.localizedDescription
         self.showAlert(with: alertTitle, alertMessage: alertMessage, actionTitle: actionTitle, actionHandler: actionHandler)
