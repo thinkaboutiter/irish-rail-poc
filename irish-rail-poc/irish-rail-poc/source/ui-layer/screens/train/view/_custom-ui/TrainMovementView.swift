@@ -70,9 +70,9 @@ class TrainMovementView: UIView {
         self.locationCodeLabel.text = viewModel.locationCode.uppercased()
         self.locationOrderLabel.text = "(\(viewModel.locationOrder))"
         self.arrivalTitleLabel.text = "arrival".uppercased()
-        self.arrivalTimeLabel.text = viewModel.scheduledArrival
+        self.arrivalTimeLabel.text = "(\(viewModel.scheduledArrival))"
         self.departureTitleLabel.text = "departure".uppercased()
-        self.departureTImeLabel.text = viewModel.scheduledDeparture
+        self.departureTImeLabel.text = "(\(viewModel.scheduledDeparture))"
     }
     
     func resetUi() {
