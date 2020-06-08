@@ -20,12 +20,16 @@ class StationDataCollectionViewCell: UICollectionViewCell {
     // MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.stationDataView.reset()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.roundCorners(with: 4)
     }
     
     // MARK: - Congigurations

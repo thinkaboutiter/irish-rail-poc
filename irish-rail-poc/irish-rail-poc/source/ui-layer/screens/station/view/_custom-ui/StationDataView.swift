@@ -15,6 +15,7 @@ class StationDataView: UIView {
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var trainCodeLabel: UILabel!
     @IBOutlet private weak var trainDateLabel: UILabel!
+    @IBOutlet private weak var titleContainerView: UIView!
     @IBOutlet private weak var originLabel: UILabel!
     @IBOutlet private weak var originTimeLabel: UILabel!
     @IBOutlet private weak var destinationLabel: UILabel!
@@ -53,6 +54,12 @@ class StationDataView: UIView {
         self.reset()
     }
     
+    // MARK: - Life cycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.titleContainerView.roundCorners(with: 4)
+    }
+    
     // MARK: - Configuration
     func configure(with viewModel: StationDataViewModel) {
         self.viewModel = viewModel
@@ -61,6 +68,7 @@ class StationDataView: UIView {
     
     private func configureUi(with viewModel: StationDataViewModel) {
         self.trainCodeLabel.text = "train \(viewModel.trainCode)".uppercased()
+        self.trainDateLabel.text = viewModel.trainDate.uppercased()
         self.originLabel.text = viewModel.origin.uppercased()
         self.originTimeLabel.text = viewModel.originTime
         self.destinationLabel.text = viewModel.destination.uppercased()
