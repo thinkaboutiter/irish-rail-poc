@@ -18,7 +18,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: StationViewModel
-     private let makeTrainViewControllerWith: ((_ stationData: StationData) -> TrainViewController)
+    private let makeTrainViewControllerWith: ((_ stationData: StationData) -> TrainViewController)
     @IBOutlet private weak var stationDataCollectionView: StationDataCollectionView! {
         didSet {
             let identifier: String = StationDataCollectionViewCell.identifier
