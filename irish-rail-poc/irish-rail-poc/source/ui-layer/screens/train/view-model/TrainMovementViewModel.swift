@@ -20,7 +20,7 @@ protocol TrainMovementViewModel {
     var scheduledDeparture: String { get }
 }
 
-class TrainMovementViewModelImpl: TrainMovementViewModel {
+struct TrainMovementViewModelImpl: TrainMovementViewModel {
     
     // MARK: - Properties
     private let trainMovement: TrainMovement
