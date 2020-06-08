@@ -34,13 +34,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="240" height="54"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iF9-ip-XMT" userLabel="title">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="54"/>
+                                    <rect key="frame" x="0.0" y="4" width="240" height="46"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxs-HS-x1F" userLabel="destination-container">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="36.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="origin-destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DFC-uF-nkL" userLabel="origin-destination">
-                                                    <rect key="frame" x="8" y="0.0" width="224" height="36.5"/>
+                                                    <rect key="frame" x="8" y="0.0" width="224" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="app-text-color"/>
                                                     <nil key="highlightedColor"/>
@@ -55,25 +55,18 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyp-AC-PIq" userLabel="date">
-                                            <rect key="frame" x="0.0" y="36.5" width="240" height="12"/>
+                                            <rect key="frame" x="0.0" y="34" width="240" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" name="app-text-color"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHA-RK-Kar" userLabel="support">
-                                            <rect key="frame" x="0.0" y="48.5" width="240" height="5.5"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="aHA-RK-Kar" firstAttribute="height" secondItem="iF9-ip-XMT" secondAttribute="height" multiplier="0.1" id="18W-qF-IET"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" name="app-title-background"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="iF9-ip-XMT" secondAttribute="bottom" id="aLl-SE-UMg"/>
-                                <constraint firstItem="iF9-ip-XMT" firstAttribute="top" secondItem="qQ2-vh-xDt" secondAttribute="top" id="iLy-34-u29"/>
+                                <constraint firstAttribute="bottom" secondItem="iF9-ip-XMT" secondAttribute="bottom" constant="4" id="aLl-SE-UMg"/>
+                                <constraint firstItem="iF9-ip-XMT" firstAttribute="top" secondItem="qQ2-vh-xDt" secondAttribute="top" constant="4" id="iLy-34-u29"/>
                                 <constraint firstItem="iF9-ip-XMT" firstAttribute="leading" secondItem="qQ2-vh-xDt" secondAttribute="leading" id="ooB-Jj-JIr"/>
                                 <constraint firstAttribute="trailing" secondItem="iF9-ip-XMT" secondAttribute="trailing" id="sV4-cc-L37"/>
                             </constraints>
