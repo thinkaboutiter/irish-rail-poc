@@ -9,8 +9,6 @@
 import Foundation
 import SimpleLogger
 
-/// Cache object
-
 /// Cache for `StationData` objects for given `stationCode`
 protocol StationDataCache: AnyObject {
     func stationData(for stationCode: String) throws -> [StationData]
