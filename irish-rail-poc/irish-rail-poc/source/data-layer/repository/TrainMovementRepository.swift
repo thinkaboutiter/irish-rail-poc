@@ -23,6 +23,7 @@ protocol TrainMovementRepository: AnyObject {
     
     /// Obtain `TrainMovement` objects.
     func fetchTrainMovement(for trainCode: String,
+                            trainDate: String,
                             usingCache: Bool)
     
     /// Reset local cache and initiate fetch again.
@@ -44,6 +45,7 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     // MARK: - Properties
     private weak var consumer: TrainMovementRepositoryConsumer!
     private var trainCode: String?
+    private var trainDate: String?
     private var trainMovementsCache: TrainMovementsCache {
         return AppCache.trainMovementsCache
     }
@@ -59,9 +61,11 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     }
     
     func fetchTrainMovement(for trainCode: String,
+                            trainDate: String,
                             usingCache: Bool)
     {
         self.trainCode = trainCode
+        self.trainDate = trainDate
         let isCacheValid: Bool = self.trainMovementsCache.isTrainMovementsCacheValid(for: trainCode)
         let shouldUseCache: Bool = usingCache && isCacheValid
         guard !shouldUseCache else {
@@ -69,10 +73,9 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
             return
         }
         self.trainMovementsCache.invalidateTrainMovementsCache(for: trainCode)
-        let dateString: String = Date().asRequestQueryStringValue
         self.webService.requestParameters = [
             WebServiceConstants.RequestParameterKey.trainId: trainCode,
-            WebServiceConstants.RequestParameterKey.trainDate: dateString
+            WebServiceConstants.RequestParameterKey.trainDate: trainDate
         ]
         self.fetchResources(
             success: {
@@ -95,7 +98,17 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
                                                       with: error)
             return
         }
+        guard let trainDate: String = self.trainDate else {
+            let message: String = Error.Message.invalidTrainDateParameter
+            let error: NSError = ErrorCreator.custom(domain: Error.domain,
+                                                     code: Error.Code.invalidTrainDateParameter,
+                                                     localizedMessage: message).error()
+            self.consumer.didFailToFetchTrainMovement(on: self,
+                                                      with: error)
+            return
+        }
         self.fetchTrainMovement(for: trainCode,
+                                trainDate: trainDate,
                                 usingCache: false)
     }
     
@@ -138,9 +151,11 @@ private extension TrainMovementRepositoryImpl {
         
         enum Code {
             static let invalidTrainCodeParameter: Int = 9000
+            static let invalidTrainDateParameter: Int = 9001
         }
         enum Message {
             static let invalidTrainCodeParameter: String = "invalid train_code parameter!"
+            static let invalidTrainDateParameter: String = "invalid train_date parameter!"
         }
     }
 }
