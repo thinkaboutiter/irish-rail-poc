@@ -122,6 +122,18 @@ extension StationViewController: UICollectionViewDelegate {
                         didSelectItemAt indexPath: IndexPath)
     {
         collectionView.deselectItem(at: indexPath, animated: true)
+        guard let stationData: StationData = self.viewModel.item(at: indexPath) else {
+            let message: String = "unable to obtain \(String(describing: StationData.self)) object for index_path=\(indexPath)"
+            Logger.error.message(message)
+            return
+        }
+        self.showTrainViewController(for: stationData)
+    }
+    
+    private func showTrainViewController(for stationData: StationData) {
+        let vc: TrainViewController = self.makeTrainViewControllerWith(stationData)
+        let nc: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(nc, animated: true, completion: nil)
     }
 }
 
