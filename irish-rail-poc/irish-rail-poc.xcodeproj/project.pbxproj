@@ -57,6 +57,7 @@
 		4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */; };
 		4FCBB2DE248DA29D00586FB3 /* StationDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */; };
 		4FCBB2DF248DA29D00586FB3 /* StationDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DD248DA29D00586FB3 /* StationDataCollectionViewCell.xib */; };
+		4FDA891D248E7F9200458B13 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA891C248E7F9200458B13 /* Cache.swift */; };
 		4FFD9572248D926600DA8479 /* StationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9571248D926600DA8479 /* StationDataView.swift */; };
 		4FFD9574248D92C600DA8479 /* StationDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9573248D92C600DA8479 /* StationDataView.xib */; };
 		4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */; };
@@ -112,6 +113,7 @@
 		4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDimensionsProvider.swift; sourceTree = "<group>"; };
 		4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FCBB2DD248DA29D00586FB3 /* StationDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FDA891C248E7F9200458B13 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		4FFD9571248D926600DA8479 /* StationDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataView.swift; sourceTree = "<group>"; };
 		4FFD9573248D92C600DA8479 /* StationDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataView.xib; sourceTree = "<group>"; };
 		4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataViewModel.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				4FB7DA5C248D056400F15B6B /* StationDataCache.swift */,
+				4FDA891C248E7F9200458B13 /* Cache.swift */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
 				4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */,
 				4FBA1633248940B70087D9B5 /* MapModel.swift in Sources */,
+				4FDA891D248E7F9200458B13 /* Cache.swift in Sources */,
 				4F774EB9248DB5A200327071 /* UIView+Extensions.swift in Sources */,
 				4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */,
 				4FBA1635248940E60087D9B5 /* MapViewModel.swift in Sources */,
