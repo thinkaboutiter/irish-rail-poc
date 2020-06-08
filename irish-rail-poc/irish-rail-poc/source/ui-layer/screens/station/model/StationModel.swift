@@ -66,7 +66,7 @@ class StationModelImpl: StationModel {
 // MARK: - Stub data
 private extension StationModelImpl {
     private var isUsingStubData: Bool {
-        return true
+        return false
     }
     
     func stubData() -> [StationData] {
