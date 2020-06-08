@@ -11,6 +11,7 @@ import SimpleLogger
 
 protocol MapDependencyContainer: AnyObject {
     func getStationDataRepository() -> StationDataRepository
+    func getTrainMovementsRepository() -> TrainMovementRepository
 }
 
 class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFactory {
@@ -31,6 +32,10 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     // MARK: - MapDependencyContainer protocol
     func getStationDataRepository() -> StationDataRepository {
         return self.parent.getStationDataRepository()
+    }
+    
+    func getTrainMovementsRepository() -> TrainMovementRepository {
+        return self.parent.getTrainMovementRepository()
     }
     
     // MARK: - MapViewControllerFactory protocol

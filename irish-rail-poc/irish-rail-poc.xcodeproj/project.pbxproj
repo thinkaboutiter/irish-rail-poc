@@ -18,6 +18,7 @@
 		4F75797F248E87EE00FF533C /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75797E248E87EE00FF533C /* AppCache.swift */; };
 		4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F757982248E9F5200FF533C /* TrainViewController.swift */; };
 		4F757985248E9F5200FF533C /* TrainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F757983248E9F5200FF533C /* TrainViewController.xib */; };
+		4F757987248EA20A00FF533C /* TrainDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F757986248EA20A00FF533C /* TrainDependencyContainer.swift */; };
 		4F774EB9248DB5A200327071 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F774EB8248DB5A200327071 /* UIView+Extensions.swift */; };
 		4F7A5350248C2501005C502E /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A534F248C2501005C502E /* StationAnnotation.swift */; };
 		4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8842F624899F9500BCFACE /* StationRepository.swift */; };
@@ -77,6 +78,7 @@
 		4F75797E248E87EE00FF533C /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
 		4F757982248E9F5200FF533C /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		4F757983248E9F5200FF533C /* TrainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainViewController.xib; sourceTree = "<group>"; };
+		4F757986248EA20A00FF533C /* TrainDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainDependencyContainer.swift; sourceTree = "<group>"; };
 		4F774EB8248DB5A200327071 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		4F7A534F248C2501005C502E /* StationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		4F8842F624899F9500BCFACE /* StationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				4FBA32D0248E7242003EF5C8 /* model */,
 				4FBA32CF248E723D003EF5C8 /* view */,
 				4FBA32D1248E7247003EF5C8 /* view-model */,
+				4F757986248EA20A00FF533C /* TrainDependencyContainer.swift */,
 			);
 			path = train;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */,
 				4FBA1635248940E60087D9B5 /* MapViewModel.swift in Sources */,
 				4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */,
+				4F757987248EA20A00FF533C /* TrainDependencyContainer.swift in Sources */,
 				4FCBB2DE248DA29D00586FB3 /* StationDataCollectionViewCell.swift in Sources */,
 				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
 				4F8842F92489AB6700BCFACE /* BaseRepository.swift in Sources */,

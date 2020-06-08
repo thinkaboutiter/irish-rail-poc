@@ -9,7 +9,9 @@
 import Foundation
 import SimpleLogger
 
-protocol StationDependencyContainer: AnyObject {}
+protocol StationDependencyContainer: AnyObject {
+    func getTrainMovementsRepository() -> TrainMovementRepository
+}
 
 class StationDependencyContainerImpl: StationDependencyContainer, StationViewControllerFactory {
     
@@ -28,6 +30,11 @@ class StationDependencyContainerImpl: StationDependencyContainer, StationViewCon
     
     deinit {
         Logger.fatal.message()
+    }
+    
+    // MARK: - StationDependencyContainer protocol
+    func getTrainMovementsRepository() -> TrainMovementRepository {
+        return self.parent.getTrainMovementsRepository()
     }
     
     // MARK: - StationViewControllerFactory protocol
