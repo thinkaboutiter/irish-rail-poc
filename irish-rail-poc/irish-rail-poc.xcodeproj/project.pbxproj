@@ -161,11 +161,11 @@
 		4F757988248EBE4700FF533C /* _custom-ui */ = {
 			isa = PBXGroup;
 			children = (
+				4F75798F248EC12900FF533C /* TrainMovementCollectionViewCell.swift */,
+				4F757990248EC12900FF533C /* TrainMovementCollectionViewCell.xib */,
 				4F757989248EBE7200FF533C /* TrainMovementsCollectionView.swift */,
 				4F75798B248EBEBA00FF533C /* TrainMovementView.swift */,
 				4F75798D248EC06F00FF533C /* TrainMovementView.xib */,
-				4F75798F248EC12900FF533C /* TrainMovementCollectionViewCell.swift */,
-				4F757990248EC12900FF533C /* TrainMovementCollectionViewCell.xib */,
 			);
 			path = "_custom-ui";
 			sourceTree = "<group>";
