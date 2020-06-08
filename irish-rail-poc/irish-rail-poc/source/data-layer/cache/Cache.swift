@@ -171,7 +171,7 @@ private extension CacheImpl {
     
     private enum Constants {
         static var concurrentQueueLabel: String {
-            return "\(AppConstants.projectName)-\(String(describing: CacheImpl.self))-concurrent-queue"
+            return "\(AppConstants.projectName)-\(String(describing: CacheImpl.self))-\(String(describing: V.self))-concurrent-queue"
         }
     }
 }
