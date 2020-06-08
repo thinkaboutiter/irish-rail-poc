@@ -17,11 +17,13 @@ class TrainMovementView: UIView {
     @IBOutlet private weak var originDestinationLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var locationLabel: UILabel!
+    @IBOutlet private weak var locationCodeLabel: UILabel!
     @IBOutlet private weak var locationOrderLabel: UILabel!
     @IBOutlet private weak var arrivalTitleLabel: UILabel!
     @IBOutlet private weak var arrivalTimeLabel: UILabel!
     @IBOutlet private weak var departureTitleLabel: UILabel!
     @IBOutlet private weak var departureTImeLabel: UILabel!
+    private var viewModel: TrainMovementViewModel!
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -46,5 +48,42 @@ class TrainMovementView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
+        self.resetUi()
+    }
+    
+    // MARK: - Life cycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.titleContainerView.roundCorners(with: 4)
+    }
+    
+    // MARK: - Configurations
+    func configure(with viewModel: TrainMovementViewModel) {
+        self.viewModel = viewModel
+        self.configureUi(with: viewModel)
+    }
+    
+    private func configureUi(with viewModel: TrainMovementViewModel) {
+        self.originDestinationLabel.text = "\(viewModel.trainOrigin) - \(viewModel.trainDestination)".uppercased()
+        self.dateLabel.text = viewModel.trainDate.uppercased()
+        self.locationLabel.text = viewModel.locationFullName.uppercased()
+        self.locationCodeLabel.text = viewModel.locationCode.uppercased()
+        self.locationOrderLabel.text = "(\(viewModel.locationOrder))"
+        self.arrivalTitleLabel.text = "arrival".uppercased()
+        self.arrivalTimeLabel.text = viewModel.scheduledArrival
+        self.departureTitleLabel.text = "departure".uppercased()
+        self.departureTImeLabel.text = viewModel.scheduledDeparture
+    }
+    
+    func resetUi() {
+        self.originDestinationLabel.text = "n/a - n/a".uppercased()
+        self.dateLabel.text = "N/A"
+        self.locationLabel.text = "N/A"
+        self.locationCodeLabel.text = "N/A"
+        self.locationOrderLabel.text = "N/A"
+        self.arrivalTitleLabel.text = "arrival".uppercased()
+        self.arrivalTimeLabel.text = "N/A"
+        self.departureTitleLabel.text = "departure".uppercased()
+        self.departureTImeLabel.text = "N/A"
     }
 }
