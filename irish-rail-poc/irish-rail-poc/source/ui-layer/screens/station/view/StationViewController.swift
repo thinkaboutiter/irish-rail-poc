@@ -52,11 +52,11 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     // MARK: - StationViewModelConsumer protocol
     func didFinishFetchingStationData(on viewModel: StationViewModel) {
-        // TODO: implement me
+        self.stationDataCollectionView.reloadData()
     }
     
     func didFailFetchingStationData(on viewModel: StationViewModel, error: Error) {
-        // TODO: implement me
+        self.showAlert(for: error)
     }
     
     // MARK: - Life cycle
@@ -71,25 +71,6 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         self.title = self.viewModel.station().desc
         self.configureNavigationBar()
     }
-    
-    // MARK: - Test navigation
-//    @IBAction private func pushButton_touchUpInside(_ sender: UIButton) {
-//        let vc = self.testViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//
-//    @IBAction private func presentButton_touchUpInside(_ sender: UIButton) {
-//        let vc = self.testViewController()
-//        self.present(vc, animated: true, completion: nil)
-//    }
-//
-//    private func testViewController() -> UIViewController {
-//        let viewController: UIViewController = UIViewController()
-//        let view: UIView = UIView()
-//        view.backgroundColor = .green
-//        viewController.view = view
-//        return viewController
-//    }
     
     // MARK: - Navigation
     private func configureNavigationBar() {
