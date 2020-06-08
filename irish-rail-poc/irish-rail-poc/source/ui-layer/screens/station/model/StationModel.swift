@@ -77,7 +77,7 @@ private extension StationModelImpl {
                                             queryTime: "n/a",
                                             trainDate: "03 Jun 2020",
                                             origin: "Greystones",
-                                            destination: "Malaide",
+                                            destination: "Malahide",
                                             originTime: "07:20",
                                             destinationTime: "08:38",
                                             status: "En Route",
