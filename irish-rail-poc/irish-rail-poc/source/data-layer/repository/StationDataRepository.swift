@@ -48,9 +48,9 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     // MARK: - Properties
     private weak var consumer: StationDataRepositoryConsumer!
     private var stationCode: String?
-    private lazy var stationDataCache: StationDataCache = {
-        return StationDataCacheImpl.shared
-    }()
+    private var stationDataCache: StationDataCache {
+        return AppCache.stationDataCache
+    }
     
     // MARK: - Initialization
     deinit {
@@ -66,13 +66,13 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
                           usingCache: Bool)
     {
         self.stationCode = stationCode
-        let isCacheValid: Bool = self.stationDataCache.isCacheValid(for: stationCode)
+        let isCacheValid: Bool = self.stationDataCache.isStationDataCacheValid(for: stationCode)
         let shouldUseCache: Bool = usingCache && isCacheValid
         guard !shouldUseCache else {
             self.consumer.didFetchStationData(on: self)
             return
         }
-        self.stationDataCache.invalidateCache(for: stationCode)
+        self.stationDataCache.invalidateStationDataCache(for: stationCode)
         self.webService.requestParameters = [
             WebServiceConstants.RequestParameterKey.stationCode: stationCode
         ]
