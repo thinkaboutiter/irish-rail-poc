@@ -15,6 +15,7 @@
 		4F3A4F1C248E7C02008F54C5 /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */; };
 		4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */; };
 		4F5490C7248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */; };
+		4F704715248ED1C900201093 /* TrainMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704714248ED1C900201093 /* TrainMovementViewModel.swift */; };
 		4F75797F248E87EE00FF533C /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75797E248E87EE00FF533C /* AppCache.swift */; };
 		4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F757982248E9F5200FF533C /* TrainViewController.swift */; };
 		4F757985248E9F5200FF533C /* TrainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F757983248E9F5200FF533C /* TrainViewController.xib */; };
@@ -80,6 +81,7 @@
 		4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
 		4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryView.swift; sourceTree = "<group>"; };
 		4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryViewModel.swift; sourceTree = "<group>"; };
+		4F704714248ED1C900201093 /* TrainMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovementViewModel.swift; sourceTree = "<group>"; };
 		4F75797E248E87EE00FF533C /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
 		4F757982248E9F5200FF533C /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		4F757983248E9F5200FF533C /* TrainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainViewController.xib; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */,
+				4F704714248ED1C900201093 /* TrainMovementViewModel.swift */,
 			);
 			path = "view-model";
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				4F7A5350248C2501005C502E /* StationAnnotation.swift in Sources */,
 				4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */,
 				4FB5E971248782F00040C1BD /* Station.swift in Sources */,
+				4F704715248ED1C900201093 /* TrainMovementViewModel.swift in Sources */,
 				4FB7DA65248D5FBA00F15B6B /* StationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
