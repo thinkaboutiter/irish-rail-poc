@@ -32,7 +32,7 @@ protocol MapViewModel: AnyObject {
     func fetchStations()
     
     /// Obtain fetched `Station`-s
-    func stations() -> [Station]
+    func items() -> [Station]
     
     /// Reset all data
     func reset()
@@ -81,7 +81,7 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
         self.repository.fetchStations(usingCache: true)
     }
     
-    func stations() -> [Station] {
+    func items() -> [Station] {
         return self.model.stations()
     }
     
@@ -90,7 +90,7 @@ class MapViewModelImpl: MapViewModel, MapModelConsumer, StationRepositoryConsume
     }
     
     // MARK: - MapModelConsumer protocol
-    func didUpdateStationsCache(on model: MapModel) {
+    func didUpdateStations(on model: MapModel) {
         self.viewModelConsumer.didUpdateStations(on: self)
     }
     

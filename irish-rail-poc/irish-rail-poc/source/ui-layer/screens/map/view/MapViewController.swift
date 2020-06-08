@@ -66,7 +66,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - MapViewModelConsumer protocol
     func didUpdateStations(on viewModel: MapViewModel) {
-        let stations: [Station] = viewModel.stations()
+        let stations: [Station] = viewModel.items()
         let annotations: [StationAnnotation] = stations.map() { StationAnnotation(station: $0) }
         self.updateAnnotations(annotations, on: self.mapView)
     }
