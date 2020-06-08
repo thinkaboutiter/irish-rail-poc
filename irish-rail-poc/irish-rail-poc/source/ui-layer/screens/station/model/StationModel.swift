@@ -91,7 +91,7 @@ private extension StationModelImpl {
                                             direction: "Northbound",
                                             trainType: "DART",
                                             locationType: "D")
-        let result: [StationData] = Array<StationData>.init(repeating: data, count: 10)
+        let result: [StationData] = Array<StationData>.init(repeating: data, count: 20)
         return result
     }
 }
