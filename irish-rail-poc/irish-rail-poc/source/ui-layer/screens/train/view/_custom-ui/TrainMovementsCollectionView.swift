@@ -66,7 +66,16 @@ private extension TrainMovementsCollectionView {
             }
             return result
         }
-        static let itemWidthToHeightRatio: CGFloat = 240.0 / 180.0
+        static var itemWidthToHeightRatio: CGFloat {
+            let result: CGFloat
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                result = 240.0 / 180.0
+            }
+            else {
+                result = 240.0 / 140.0
+            }
+            return result
+        }
         static var sectionEdgeInsets: UIEdgeInsets {
             return UIEdgeInsets(top: self.minimumLineSpacing,
                                 left: self.paddingLeft,
