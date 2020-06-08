@@ -24,7 +24,7 @@ class StationDataCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.stationDataView.reset()
+        self.stationDataView.resetUi()
     }
     
     override func layoutSubviews() {
