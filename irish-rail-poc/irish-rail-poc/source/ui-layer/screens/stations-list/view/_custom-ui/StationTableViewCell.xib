@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="StationTableViewCell" customModule="irish_rail_poc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="362" height="66"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-4Q-HYR" userLabel="content-stack-view">
+                        <rect key="frame" x="8" y="8" width="346" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDL-A5-T4C" userLabel="name-label">
+                                <rect key="frame" x="0.0" y="0.0" width="346" height="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qa-wq-Xmc" userLabel="code-label">
+                                <rect key="frame" x="0.0" y="34" width="346" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="jnD-4Q-HYR" secondAttribute="trailing" constant="8" id="QRS-js-iYd"/>
+                    <constraint firstItem="jnD-4Q-HYR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SUc-x4-FR1"/>
+                    <constraint firstItem="jnD-4Q-HYR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="d7h-po-H3J"/>
+                    <constraint firstItem="jnD-4Q-HYR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="din-eG-bNf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="stationCodeLabel" destination="1Qa-wq-Xmc" id="tyd-7M-3C1"/>
+                <outlet property="stationNameLabel" destination="tDL-A5-T4C" id="rWV-me-ORn"/>
+            </connections>
+            <point key="canvasLocation" x="162.31884057971016" y="160.04464285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

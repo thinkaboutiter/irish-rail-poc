@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F037D14248EEC8400082C41 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D12248EEC8400082C41 /* StationsViewController.swift */; };
+		4F037D15248EEC8400082C41 /* StationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F037D13248EEC8400082C41 /* StationsViewController.xib */; };
+		4F037D17248EED9D00082C41 /* StationsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D16248EED9D00082C41 /* StationsTableView.swift */; };
+		4F037D1B248EEDF700082C41 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F037D19248EEDF700082C41 /* StationTableViewCell.swift */; };
+		4F037D1C248EEDF700082C41 /* StationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */; };
 		4F065EC6248D62350066ED5A /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC4248D62350066ED5A /* StationViewController.swift */; };
 		4F065EC7248D62350066ED5A /* StationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F065EC5248D62350066ED5A /* StationViewController.xib */; };
 		4F065EC9248D62910066ED5A /* StationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */; };
@@ -73,6 +78,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F037D12248EEC8400082C41 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
+		4F037D13248EEC8400082C41 /* StationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsViewController.xib; sourceTree = "<group>"; };
+		4F037D16248EED9D00082C41 /* StationsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsTableView.swift; sourceTree = "<group>"; };
+		4F037D19248EEDF700082C41 /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
+		4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationTableViewCell.xib; sourceTree = "<group>"; };
 		4F065EC4248D62350066ED5A /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		4F065EC5248D62350066ED5A /* StationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationViewController.xib; sourceTree = "<group>"; };
 		4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDependencyContainer.swift; sourceTree = "<group>"; };
@@ -151,6 +161,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F037D10248EEB1400082C41 /* stations-list */ = {
+			isa = PBXGroup;
+			children = (
+				4F037D11248EEB2B00082C41 /* view */,
+			);
+			path = "stations-list";
+			sourceTree = "<group>";
+		};
+		4F037D11248EEB2B00082C41 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4F037D18248EEDA500082C41 /* _custom-ui */,
+				4F037D12248EEC8400082C41 /* StationsViewController.swift */,
+				4F037D13248EEC8400082C41 /* StationsViewController.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4F037D18248EEDA500082C41 /* _custom-ui */ = {
+			isa = PBXGroup;
+			children = (
+				4F037D16248EED9D00082C41 /* StationsTableView.swift */,
+				4F037D19248EEDF700082C41 /* StationTableViewCell.swift */,
+				4F037D1A248EEDF700082C41 /* StationTableViewCell.xib */,
+			);
+			path = "_custom-ui";
+			sourceTree = "<group>";
+		};
 		4F5490C3248C4A9900472ED6 /* _custom-ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +293,7 @@
 				4FBA162E248940620087D9B5 /* map */,
 				4F88AE4C2486DA9F00CA20D7 /* root */,
 				4FB7DA5E248D59C700F15B6B /* station */,
+				4F037D10248EEB1400082C41 /* stations-list */,
 				4FBA32CE248E722F003EF5C8 /* train */,
 			);
 			path = screens;
@@ -563,7 +602,9 @@
 				4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */,
 				4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */,
 				4F07B3E1248C5AA3008129AE /* StationDataCalloutAccessoryView.xib in Resources */,
+				4F037D15248EEC8400082C41 /* StationsViewController.xib in Resources */,
 				4FFD9574248D92C600DA8479 /* StationDataView.xib in Resources */,
+				4F037D1C248EEDF700082C41 /* StationTableViewCell.xib in Resources */,
 				4F757992248EC12900FF533C /* TrainMovementCollectionViewCell.xib in Resources */,
 				4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */,
 				4FBA16392489411B0087D9B5 /* MapViewController.xib in Resources */,
@@ -603,6 +644,7 @@
 			files = (
 				4FBA163B248941630087D9B5 /* MapDependencyContainer.swift in Sources */,
 				4F8842FD2489B91000BCFACE /* TrainMovementRepository.swift in Sources */,
+				4F037D1B248EEDF700082C41 /* StationTableViewCell.swift in Sources */,
 				4F75798C248EBEBA00FF533C /* TrainMovementView.swift in Sources */,
 				4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */,
 				4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */,
@@ -623,6 +665,7 @@
 				4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */,
 				4F88AE312486D4C000CA20D7 /* AppDelegate.swift in Sources */,
 				4F8842FB2489B72600BCFACE /* StationDataRepository.swift in Sources */,
+				4F037D14248EEC8400082C41 /* StationsViewController.swift in Sources */,
 				4FB7DA63248D5F8B00F15B6B /* StationModel.swift in Sources */,
 				4FBA162D24885F9E0087D9B5 /* GetTrainMovementsWebService.swift in Sources */,
 				4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */,
@@ -640,6 +683,7 @@
 				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
 				4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */,
 				4FCBB2D9248DA05300586FB3 /* StationDataCollectionView.swift in Sources */,
+				4F037D17248EED9D00082C41 /* StationsTableView.swift in Sources */,
 				4F75797F248E87EE00FF533C /* AppCache.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
