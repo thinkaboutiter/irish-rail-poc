@@ -22,23 +22,23 @@ protocol StationDataCalloutAccessoryViewModel: AnyObject {
     func fetchStationData()
     func cancelStationDataFetching()
     func trainsCount() -> Int
-    func stationCode() -> String
+    func station() -> Station
 }
 
 class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewModel {
     
     // MARK: - Properties
-    private let stationCodeStorage: String
+    private let stationStorage: Station
     private var trainsCountStorage: Int
     private let repository: StationDataRepository
     private weak var viewModelConsumer: StationDataCalloutAccessoryViewModelConsumer!
     
     // MARK: - Initialization
-    init(stationCode: String,
+    init(station: Station,
          repository: StationDataRepository)
     {
         self.trainsCountStorage = 0
-        self.stationCodeStorage = stationCode
+        self.stationStorage = station
         self.repository = repository
         self.repository.setRepositoryConsumer(self)
         Logger.success.message()
@@ -56,7 +56,8 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
     
     func fetchStationData() {
         self.repository.reset()
-        self.repository.fetchStationData(for: self.stationCodeStorage)
+        self.repository.fetchStationData(for: self.stationStorage.code,
+                                         usingCache: true)
     }
     
     func cancelStationDataFetching() {
@@ -67,8 +68,8 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
         return self.trainsCountStorage
     }
     
-    func stationCode() -> String {
-        return self.stationCodeStorage
+    func station() -> Station {
+        return self.stationStorage
     }
 }
 
@@ -76,9 +77,15 @@ class StationDataCalloutAccessoryViewModelImpl: StationDataCalloutAccessoryViewM
 extension StationDataCalloutAccessoryViewModelImpl: StationDataRepositoryConsumer {
     
     func didFetchStationData(on repository: StationDataRepository) {
-        let stationData: [StationData] = repository.stationData()
-        self.trainsCountStorage = stationData.count
-        self.viewModelConsumer.didFinishFetchngStationData(on: self)
+        do {
+            let stationData: [StationData] = try repository.stationData()
+            self.trainsCountStorage = stationData.count
+            self.viewModelConsumer.didFinishFetchngStationData(on: self)
+        }
+        catch {
+            self.didFailToFetchStationData(on: repository,
+                                           with: error)
+        }
     }
     
     func didFailToFetchStationData(on repository: StationDataRepository,

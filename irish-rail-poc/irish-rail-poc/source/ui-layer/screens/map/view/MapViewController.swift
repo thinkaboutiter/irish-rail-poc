@@ -19,6 +19,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: MapViewModel
+    private let makeStationViewControllerWith: ((_ station: Station) -> StationViewController)
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             self.mapView.delegate = self
@@ -49,8 +50,11 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: MapViewModel) {
+    init(viewModel: MapViewModel,
+         makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController))
+    {
         self.viewModel = viewModel
+        self.makeStationViewControllerWith = makeStationViewControllerWith
         super.init(nibName: String(describing: MapViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -128,11 +132,11 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryView {
-        let stationCode: String = annotation.station.code
+        let station: Station = annotation.station
         let webService: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
         let repository: StationDataRepository = StationDataRepositoryImpl(webService: webService)
         let viewModel: StationDataCalloutAccessoryViewModel = StationDataCalloutAccessoryViewModelImpl(
-            stationCode: stationCode,
+            station: station,
             repository: repository)
         let frame: CGRect = CGRect(origin: .zero, size: CGSize(width: 80, height: 40))
         let view: StationDataCalloutAccessoryView = StationDataCalloutAccessoryView(
@@ -154,15 +158,18 @@ extension MapViewController: MKMapViewDelegate {
             return
         }
         accessoryView.cancelStationDataFetching()
-        view.rightCalloutAccessoryView = nil
     }
 }
 
 extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
     
     func didTap(on view: StationDataCalloutAccessoryView) {
-        let _: String = view.viewModel.stationCode()
-        
-        // TODO: navigate to station data screen
+        guard view.viewModel.trainsCount() > 0 else {
+            return
+        }
+        let station: Station = view.viewModel.station()
+        let vc: StationViewController = self.makeStationViewControllerWith(station)
+        let navVc: UINavigationController = UINavigationController(rootViewController: vc)
+        self.present(navVc, animated: true, completion: nil)
     }
 }

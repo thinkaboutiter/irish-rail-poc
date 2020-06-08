@@ -9,7 +9,9 @@
 import Foundation
 import SimpleLogger
 
-protocol MapDependencyContainer: AnyObject {}
+protocol MapDependencyContainer: AnyObject {
+    func getStationDataRepository() -> StationDataRepository
+}
 
 class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFactory {
     
@@ -26,10 +28,22 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
         Logger.fatal.message()
     }
     
+    // MARK: - MapDependencyContainer protocol
+    func getStationDataRepository() -> StationDataRepository {
+        return self.parent.getStationDataRepository()
+    }
+    
     // MARK: - MapViewControllerFactory protocol
     func makeMapViewController() -> MapViewController {
         let vm: MapViewModel = self.makeMapViewModel()
         let vc: MapViewController = MapViewController(viewModel: vm)
+        { (station: Station) -> StationViewController in
+            let factory: StationViewControllerFactory = StationDependencyContainerImpl(
+                parent: self,
+                station: station)
+            let vc: StationViewController = factory.makeStationViewController()
+            return vc
+        }
         return vc
     }
     

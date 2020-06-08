@@ -96,7 +96,7 @@ class BaseRepository<ApiResponseType> {
     
     /// Get objects from cache, consuming them
     /// - Returns: cahecd objects or empty collection
-    final func objects() -> [ApiResponseType] {
+    final func consumeObjects() -> [ApiResponseType] {
         let result: [ApiResponseType] = self.flushObjects()
         return result
     }

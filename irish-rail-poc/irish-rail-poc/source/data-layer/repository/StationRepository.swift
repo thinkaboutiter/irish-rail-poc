@@ -70,7 +70,7 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     }
     
     func stations() -> [Station] {
-        let result: [Station] = self.objects()
+        let result: [Station] = self.consumeObjects()
         return result
     }
     

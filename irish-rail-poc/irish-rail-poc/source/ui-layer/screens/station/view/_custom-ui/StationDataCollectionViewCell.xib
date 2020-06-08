@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StationDataCollectionViewCell" customModule="irish_rail_poc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="215" height="189"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="215" height="189"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zx8-c5-6iI" userLabel="container-view">
+                        <rect key="frame" x="0.0" y="0.0" width="215" height="189"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-JS-G2h" userLabel="station-data-view" customClass="StationDataView" customModule="irish_rail_poc" customModuleProvider="target">
+                                <rect key="frame" x="8" y="8" width="199" height="173"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="app-cell-background"/>
+                        <constraints>
+                            <constraint firstItem="ffy-JS-G2h" firstAttribute="top" secondItem="zx8-c5-6iI" secondAttribute="top" constant="8" id="LeB-vi-EuT"/>
+                            <constraint firstAttribute="bottom" secondItem="ffy-JS-G2h" secondAttribute="bottom" constant="8" id="h61-bQ-ojt"/>
+                            <constraint firstAttribute="trailing" secondItem="ffy-JS-G2h" secondAttribute="trailing" constant="8" id="hJy-Ug-0Tr"/>
+                            <constraint firstItem="ffy-JS-G2h" firstAttribute="leading" secondItem="zx8-c5-6iI" secondAttribute="leading" constant="8" id="lIS-nC-M6W"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="zx8-c5-6iI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="CAF-mU-ZLY"/>
+                <constraint firstAttribute="bottom" secondItem="zx8-c5-6iI" secondAttribute="bottom" id="GY2-qL-m4w"/>
+                <constraint firstAttribute="trailing" secondItem="zx8-c5-6iI" secondAttribute="trailing" id="Llh-5D-sUc"/>
+                <constraint firstItem="zx8-c5-6iI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="OjD-Gp-WfZ"/>
+            </constraints>
+            <size key="customSize" width="215" height="189"/>
+            <connections>
+                <outlet property="stationDataView" destination="ffy-JS-G2h" id="KXZ-qs-Ep9"/>
+            </connections>
+            <point key="canvasLocation" x="251.44927536231887" y="199.21875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="app-cell-background">
+            <color red="0.86659263959390864" green="0.86659263959390864" blue="0.86659263959390864" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
