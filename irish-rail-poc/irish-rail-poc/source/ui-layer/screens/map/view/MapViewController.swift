@@ -164,6 +164,9 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
     
     func didTap(on view: StationDataCalloutAccessoryView) {
+        guard view.viewModel.trainsCount() > 0 else {
+            return
+        }
         let station: Station = view.viewModel.station()
         let vc: StationViewController = self.makeStationViewControllerWith(station)
         let navVc: UINavigationController = UINavigationController(rootViewController: vc)
