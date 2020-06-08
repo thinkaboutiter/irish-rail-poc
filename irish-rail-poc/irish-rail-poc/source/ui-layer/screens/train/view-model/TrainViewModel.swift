@@ -54,11 +54,14 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     }
     
     func fetchTrainMovements() {
-        // TODO: implement, repository
+        self.repository.reset()
+        self.repository.fetchTrainMovement(for: self.stationData().trainCode,
+                                           trainDate: self.stationData().trainDate,
+                                           usingCache: true)
     }
     
     func cancelTrainMovementsFetching() {
-        // TODO: implement, repository
+        self.repository.reset()
     }
     
     func items() -> [TrainMovement] {
@@ -91,7 +94,13 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
 extension TrainViewModelImpl: TrainMovementRepositoryConsumer {
     
     func didFetchTrainMovement(on repository: TrainMovementRepository) {
-        // TODO: implement, repository
+        do {
+            let trainMovements: [TrainMovement] = try repository.trainMovements().sorted() { $0.locationOrder < $1.locationOrder}
+            self.model.setTrainMovements(trainMovements)
+        }
+        catch {
+            self.didFailToFetchTrainMovement(on: repository, with: error)
+        }
     }
     
     func didFailToFetchTrainMovement(on repository: TrainMovementRepository, with error: Error) {
