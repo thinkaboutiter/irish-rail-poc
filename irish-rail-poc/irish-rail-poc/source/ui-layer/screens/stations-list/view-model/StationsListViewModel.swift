@@ -10,14 +10,14 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `View` to expose to `ViewModel`
-protocol StationsViewModelConsumer: AnyObject {
-    func didUpdateStations(on viewModel: StationsViewModel)
-    func didReceiveError(on viewModel: StationsViewModel, error: Swift.Error)
+protocol StationsListViewModelConsumer: AnyObject {
+    func didUpdateStations(on viewModel: StationsListViewModel)
+    func didReceiveError(on viewModel: StationsListViewModel, error: Swift.Error)
 }
 
 /// APIs for `ViewModel` to expose to `View`
-protocol StationsViewModel: AnyObject {
-    func setViewModelConsumer(_ newValue: StationsViewModelConsumer)
+protocol StationsListViewModel: AnyObject {
+    func setViewModelConsumer(_ newValue: StationsListViewModelConsumer)
     
     /// Initiate `Station`-s fetching
     func fetchStations()
@@ -33,15 +33,15 @@ protocol StationsViewModel: AnyObject {
     func reset()
 }
 
-class StationsViewModelImpl: StationsViewModel, StationsModelConsumer, StationRepositoryConsumer {
+class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsumer, StationRepositoryConsumer {
     
     // MARK: - Properties
-    private let model: StationsModel
+    private let model: StationsListModel
     private let repository: StationRepository
-    private weak var viewModelConsumer: StationsViewModelConsumer!
+    private weak var viewModelConsumer: StationsListViewModelConsumer!
     
     // MARK: - Initialization
-    init(model: StationsModel,
+    init(model: StationsListModel,
          repository: StationRepository)
     {
         self.model = model
@@ -56,7 +56,7 @@ class StationsViewModelImpl: StationsViewModel, StationsModelConsumer, StationRe
     }
     
     // MARK: - StationsViewModel protocol
-    func setViewModelConsumer(_ newValue: StationsViewModelConsumer) {
+    func setViewModelConsumer(_ newValue: StationsListViewModelConsumer) {
         self.viewModelConsumer = newValue
     }
     
@@ -85,7 +85,7 @@ class StationsViewModelImpl: StationsViewModel, StationsModelConsumer, StationRe
     }
     
     // MARK: - StationsModelConsumer protocol
-    func didUpdateStations(on model: StationsModel) {
+    func didUpdateStations(on model: StationsListModel) {
         self.viewModelConsumer.didUpdateStations(on: self)
     }
     

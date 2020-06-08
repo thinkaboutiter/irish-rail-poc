@@ -1,5 +1,5 @@
 //
-//  StationsViewController.swift
+//  StationsListViewController.swift
 //  irish-rail-poc
 //
 //  Created by Boyan Yankov on 2020-W24-09-Jun-Tue.
@@ -11,13 +11,13 @@ import SimpleLogger
 
 /// APIs for `DependecyContainer` to expose.
 protocol StationsListViewControllerFactory {
-    func makeStationsViewController() -> StationsViewController
+    func makeStationsListViewController() -> StationsListViewController
 }
 
-class StationsViewController: BaseViewController, StationsViewModelConsumer {
+class StationsListViewController: BaseViewController, StationsListViewModelConsumer {
     
     // MARK: - Properties
-    private let viewModel: StationsViewModel
+    private let viewModel: StationsListViewModel
     @IBOutlet private weak var stationsTableView: StationsTableView! {
         didSet {
             let identifier: String = StationTableViewCell.identifier
@@ -40,9 +40,9 @@ class StationsViewController: BaseViewController, StationsViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: StationsViewModel) {
+    init(viewModel: StationsListViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: String(describing: StationsViewController.self), bundle: nil)
+        super.init(nibName: String(describing: StationsListViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
     }
@@ -52,11 +52,11 @@ class StationsViewController: BaseViewController, StationsViewModelConsumer {
     }
     
     // MARK: - MapViewModelConsumer protocol
-    func didUpdateStations(on viewModel: StationsViewModel) {
+    func didUpdateStations(on viewModel: StationsListViewModel) {
         let _: [Station] = viewModel.items()
     }
     
-    func didReceiveError(on viewModel: StationsViewModel, error: Error) {
+    func didReceiveError(on viewModel: StationsListViewModel, error: Error) {
         self.showAlert(for: error as NSError)
     }
     
@@ -73,7 +73,7 @@ class StationsViewController: BaseViewController, StationsViewModelConsumer {
 }
 
 // MARK: - UITableViewDataSource protocol
-extension StationsViewController: UITableViewDataSource {
+extension StationsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.items().count
@@ -98,6 +98,6 @@ extension StationsViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate protocol
-extension StationsViewController: UITableViewDelegate {
+extension StationsListViewController: UITableViewDelegate {
     
 }

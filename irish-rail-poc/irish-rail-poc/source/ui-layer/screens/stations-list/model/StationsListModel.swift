@@ -10,22 +10,22 @@ import Foundation
 import SimpleLogger
 
 /// APIs for `ViewModel` to expose to `Model`
-protocol StationsModelConsumer: AnyObject {
-    func didUpdateStations(on model: StationsModel)
+protocol StationsListModelConsumer: AnyObject {
+    func didUpdateStations(on model: StationsListModel)
 }
 
 /// APIs for `Model` to expose to `ViewModel`
-protocol StationsModel: AnyObject {
-    func setModelConsumer(_ newValue: StationsModelConsumer)
+protocol StationsListModel: AnyObject {
+    func setModelConsumer(_ newValue: StationsListModelConsumer)
     func stations() -> [Station]
     func setStations(_ newValue: [Station])
     func reset()
 }
 
-class StationsModelImpl: StationsModel {
+class StationsListModelImpl: StationsListModel {
     
     // MARK: - Properties
-    private weak var modelConsumer: StationsModelConsumer!
+    private weak var modelConsumer: StationsListModelConsumer!
     private var stationsCache: NSMutableOrderedSet = []
     
     // MARK: - Initialization
@@ -38,7 +38,7 @@ class StationsModelImpl: StationsModel {
     }
     
     // MARK: - StationsModel protocol
-    func setModelConsumer(_ newValue: StationsModelConsumer) {
+    func setModelConsumer(_ newValue: StationsListModelConsumer) {
         self.modelConsumer = newValue
     }
     
