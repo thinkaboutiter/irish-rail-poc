@@ -18,6 +18,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: StationViewModel
+     private let makeTrainViewControllerWith: ((_ stationData: StationData) -> TrainViewController)
     @IBOutlet private weak var stationDataCollectionView: StationDataCollectionView! {
         didSet {
             let identifier: String = StationDataCollectionViewCell.identifier
@@ -39,8 +40,10 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: StationViewModel) {
+    init(viewModel: StationViewModel,
+         makeTrainViewControllerWith: @escaping ((_ stationData: StationData) -> TrainViewController)) {
         self.viewModel = viewModel
+        self.makeTrainViewControllerWith = makeTrainViewControllerWith
         super.init(nibName: String(describing: StationViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()

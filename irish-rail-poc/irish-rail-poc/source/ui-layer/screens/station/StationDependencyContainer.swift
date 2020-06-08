@@ -41,6 +41,13 @@ class StationDependencyContainerImpl: StationDependencyContainer, StationViewCon
     func makeStationViewController() -> StationViewController {
         let vm: StationViewModel = self.makeStationViewModel()
         let vc: StationViewController = StationViewController(viewModel: vm)
+        { (stationData: StationData) -> TrainViewController in
+            let factory: TrainViewControllerFactory = TrainDependencyContainerImpl(
+                parent: self,
+                stationData: stationData)
+            let vc: TrainViewController = factory.makeTrainViewController()
+            return vc
+        }
         return vc
     }
     
