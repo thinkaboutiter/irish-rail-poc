@@ -21,9 +21,10 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     private lazy var searchController: UISearchController = {
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
-        result.obscuresBackgroundDuringPresentation = true
+        result.obscuresBackgroundDuringPresentation = false
         result.searchBar.placeholder = "Search for station"
         result.searchBar.delegate = self
+        result.delegate = self
         return result
     }()
     @IBOutlet private weak var stationsTableView: StationsTableView! {
@@ -122,10 +123,23 @@ extension StationsListViewController: UITableViewDelegate {
     }
 }
 
+extension StationsListViewController: UISearchControllerDelegate {
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(true)
+        self.stationsTableView.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(false)
+        self.stationsTableView.reloadData()
+    }
+}
+
 extension StationsListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let valid_text: String = searchController.searchBar.text else {
+        guard let validText: String = searchController.searchBar.text else {
             let message: String = "Invalid searchBar.text object!"
             let error: NSError = ErrorCreator
                 .custom(domain: InternalError.domainName,
@@ -135,7 +149,8 @@ extension StationsListViewController: UISearchResultsUpdating {
             Logger.error.message().object(error)
             return
         }
-        Logger.debug.message("searchBar.text=\(valid_text)")
+        self.viewModel.setSearchTerm(validText)
+        self.stationsTableView.reloadData()
     }
 }
 
