@@ -20,6 +20,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Properties
     private let viewModel: MapViewModel
     private let makeStationViewControllerWith: ((_ station: Station) -> StationViewController)
+    private let makeStationsListViewController: (() -> StationsListViewController)
     @IBOutlet private weak var mapView: MKMapView! {
         didSet {
             self.mapView.delegate = self
@@ -51,10 +52,12 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     }
     
     init(viewModel: MapViewModel,
-         makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController))
+         makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController),
+         makeStationsListViewController: @escaping (() -> StationsListViewController))
     {
         self.viewModel = viewModel
         self.makeStationViewControllerWith = makeStationViewControllerWith
+        self.makeStationsListViewController = makeStationsListViewController
         super.init(nibName: String(describing: MapViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -86,6 +89,15 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     private func configureUi() {
         // used only for development
         self.reloadButton.isHidden = true
+        self.title = "Irish Rail Stations"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                                 target: self,
+                                                                 action: #selector(self.showList))
+    }
+    
+    @objc private func showList() {
+        let vc = self.makeStationsListViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Fetching

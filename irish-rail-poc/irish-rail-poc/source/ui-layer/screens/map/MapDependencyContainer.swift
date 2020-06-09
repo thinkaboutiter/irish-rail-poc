@@ -45,14 +45,20 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     // MARK: - MapViewControllerFactory protocol
     func makeMapViewController() -> MapViewController {
         let vm: MapViewModel = self.makeMapViewModel()
-        let vc: MapViewController = MapViewController(viewModel: vm)
-        { (station: Station) -> StationViewController in
-            let factory: StationViewControllerFactory = StationDependencyContainerImpl(
-                parent: self,
-                station: station)
-            let vc: StationViewController = factory.makeStationViewController()
+        let vc: MapViewController = MapViewController(
+            viewModel: vm,
+            makeStationViewControllerWith: { (station: Station) -> StationViewController in
+                let factory: StationViewControllerFactory = StationDependencyContainerImpl(
+                    parent: self,
+                    station: station)
+                let vc: StationViewController = factory.makeStationViewController()
+                return vc
+        }) { () -> StationsListViewController in
+            let factory: StationsListViewControllerFactory = StationsListDependencyContainerImpl(parent: self)
+            let vc: StationsListViewController = factory.makeStationsListViewController()
             return vc
         }
+
         return vc
     }
     
