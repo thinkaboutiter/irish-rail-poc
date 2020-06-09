@@ -92,7 +92,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     }
 }
 
-// MARK: - UISearchControllerDelegate
+// MARK: - UISearchControllerDelegate protocol
 extension StationsListViewController: UISearchControllerDelegate {
     
     func willPresentSearchController(_ searchController: UISearchController) {
@@ -106,7 +106,7 @@ extension StationsListViewController: UISearchControllerDelegate {
     }
 }
 
-// MARK: - UISearchResultsUpdating
+// MARK: - UISearchResultsUpdating protocol
 extension StationsListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

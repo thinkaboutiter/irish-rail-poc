@@ -102,7 +102,7 @@ class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsume
         self.model.reset()
     }
     
-    // MARK: - SearchStationsListViewModel protocol
+    // MARK: - SearchStationViewModel protocol
     func isDisplayingSearchResults() -> Bool {
         return self.displayingSearchResults
     }
