@@ -67,6 +67,13 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     }
     
     func didFailFetchingStationData(on viewModel: StationViewModel, error: Swift.Error) {
+        if self.viewModel.items().count == 0 {
+            let text: String = "No station data available."
+            self.showNoContentView(with: text)
+        }
+        else {
+            self.hideNoContentView()
+        }
         self.showAlert(for: error)
     }
     
