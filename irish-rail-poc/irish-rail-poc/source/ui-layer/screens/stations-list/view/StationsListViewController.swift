@@ -33,7 +33,8 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
                                             forCellReuseIdentifier: identifier)
             self.stationsTableView.delegate = self
             self.stationsTableView.dataSource = self
-            self.stationsTableView.separatorStyle = .none
+            self.stationsTableView.separatorStyle = .singleLine
+            self.stationsTableView.insetsContentViewsToSafeArea = false
         }
     }
     
@@ -114,6 +115,11 @@ extension StationsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate protocol
 extension StationsListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // TODO: push station data
+    }
 }
 
 extension StationsListViewController: UISearchResultsUpdating {
