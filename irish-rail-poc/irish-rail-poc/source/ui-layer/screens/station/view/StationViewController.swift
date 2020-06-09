@@ -19,6 +19,14 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     // MARK: - Properties
     private let viewModel: StationViewModel
     private let makeTrainViewControllerWith: ((_ stationData: StationData) -> TrainViewController)
+    private lazy var searchController: UISearchController = {
+        let result: UISearchController = UISearchController(searchResultsController: nil)
+        result.searchResultsUpdater = self
+        result.obscuresBackgroundDuringPresentation = false
+        result.searchBar.placeholder = "Search for train"
+        result.delegate = self
+        return result
+    }()
     @IBOutlet private weak var stationDataCollectionView: StationDataCollectionView! {
         didSet {
             let identifier: String = StationDataCollectionViewCell.identifier
@@ -58,7 +66,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         self.stationDataCollectionView.reloadData()
     }
     
-    func didFailFetchingStationData(on viewModel: StationViewModel, error: Error) {
+    func didFailFetchingStationData(on viewModel: StationViewModel, error: Swift.Error) {
         self.showAlert(for: error)
     }
     
@@ -73,9 +81,14 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     private func configureUi() {
         self.title = self.viewModel.station().desc
         self.configureNavigationBar()
+        self.configureSearchBar()
     }
     
-    // MARK: - Navigation
+    private func configureSearchBar() {
+        self.navigationItem.searchController = self.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     private func configureNavigationBar() {
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
@@ -89,6 +102,39 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+extension StationViewController: UISearchControllerDelegate {
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(true)
+        self.stationDataCollectionView.reloadData()
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(false)
+        self.stationDataCollectionView.reloadData()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension StationViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let validText: String = searchController.searchBar.text else {
+            let message: String = "Invalid searchBar.text object!"
+            let error: NSError = ErrorCreator
+                .custom(domain: Error.domainName,
+                        code: Error.Code.invalidSearchText,
+                        localizedMessage: message)
+                .error()
+            Logger.error.message().object(error)
+            return
+        }
+        self.viewModel.setSearchTerm(validText)
+        self.stationDataCollectionView.reloadData()
     }
 }
 
@@ -217,5 +263,17 @@ extension StationViewController: UICollectionViewDelegateFlowLayout {
             return 0
         }
         return valid_dimensionsProvider.minimumLineSpacing
+    }
+}
+
+// MARK: - Internal Errors
+private extension StationViewController {
+    
+    enum Error {
+        static let domainName: String = "\(AppConstants.projectName).\(String(describing: StationViewController.self)).\(String(describing: Error.self))"
+        
+        enum Code {
+            static let invalidSearchText: Int = 9000
+        }
     }
 }
