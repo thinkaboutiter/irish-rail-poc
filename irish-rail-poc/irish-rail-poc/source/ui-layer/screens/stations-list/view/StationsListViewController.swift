@@ -24,7 +24,6 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
         result.searchBar.placeholder = "Search for station"
-        result.searchBar.delegate = self
         result.delegate = self
         return result
     }()
@@ -70,7 +69,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
         let _: [Station] = viewModel.items()
     }
     
-    func didReceiveError(on viewModel: StationsListViewModel, error: Error) {
+    func didReceiveError(on viewModel: StationsListViewModel, error: Swift.Error) {
         self.showAlert(for: error as NSError)
     }
     
@@ -90,6 +89,39 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     // MARK: - Fetching
     private func loadStations() {
         self.viewModel.fetchStations()
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+extension StationsListViewController: UISearchControllerDelegate {
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(true)
+        self.stationsTableView.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(false)
+        self.stationsTableView.reloadData()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension StationsListViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let validText: String = searchController.searchBar.text else {
+            let message: String = "Invalid searchBar.text object!"
+            let error: NSError = ErrorCreator
+                .custom(domain: Error.domainName,
+                        code: Error.Code.invalidSearchText,
+                        localizedMessage: message)
+                .error()
+            Logger.error.message().object(error)
+            return
+        }
+        self.viewModel.setSearchTerm(validText)
+        self.stationsTableView.reloadData()
     }
 }
 
@@ -133,41 +165,6 @@ extension StationsListViewController: UITableViewDelegate {
     }
 }
 
-extension StationsListViewController: UISearchControllerDelegate {
-    
-    func willPresentSearchController(_ searchController: UISearchController) {
-        self.viewModel.setDisplayingSearchResults(true)
-        self.stationsTableView.reloadData()
-    }
-    
-    func willDismissSearchController(_ searchController: UISearchController) {
-        self.viewModel.setDisplayingSearchResults(false)
-        self.stationsTableView.reloadData()
-    }
-}
-
-extension StationsListViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let validText: String = searchController.searchBar.text else {
-            let message: String = "Invalid searchBar.text object!"
-            let error: NSError = ErrorCreator
-                .custom(domain: InternalError.domainName,
-                        code: InternalError.Code.invalidSearchText,
-                        localizedMessage: message)
-                .error()
-            Logger.error.message().object(error)
-            return
-        }
-        self.viewModel.setSearchTerm(validText)
-        self.stationsTableView.reloadData()
-    }
-}
-
-extension StationsListViewController: UISearchBarDelegate {
-    
-}
-
 // MARK: - Constants
 private extension StationsListViewController {
     
@@ -179,12 +176,11 @@ private extension StationsListViewController {
 // MARK: - Internal Errors
 private extension StationsListViewController {
     
-    enum InternalError {
-        static let domainName: String = "\(AppConstants.projectName).\(String(describing: StationsListViewController.self)).\(String(describing: InternalError.self))"
+    enum Error {
+        static let domainName: String = "\(AppConstants.projectName).\(String(describing: StationsListViewController.self)).\(String(describing: Error.self))"
         
         enum Code {
             static let invalidSearchText: Int = 9000
-            static let unableToCreateBreakingBadSeason: Int = 9001
         }
     }
 }

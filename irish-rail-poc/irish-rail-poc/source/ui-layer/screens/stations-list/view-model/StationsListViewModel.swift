@@ -15,7 +15,7 @@ protocol StationsListViewModelConsumer: AnyObject {
     func didReceiveError(on viewModel: StationsListViewModel, error: Swift.Error)
 }
 
-protocol SearchStationsListViewModel: AnyObject {
+protocol SearchStationViewModel: AnyObject {
     func isDisplayingSearchResults() -> Bool
     func setDisplayingSearchResults(_ newValue: Bool)
     func getSearchTerm() -> String
@@ -24,7 +24,7 @@ protocol SearchStationsListViewModel: AnyObject {
 }
 
 /// APIs for `ViewModel` to expose to `View`
-protocol StationsListViewModel: SearchStationsListViewModel {
+protocol StationsListViewModel: SearchStationViewModel {
     func setViewModelConsumer(_ newValue: StationsListViewModelConsumer)
     
     /// Initiate `Station`-s fetching
