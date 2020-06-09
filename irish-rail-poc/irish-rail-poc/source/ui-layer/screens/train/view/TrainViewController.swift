@@ -74,10 +74,14 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     // MARK: - Navigation
     private func configureNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(self.closeButtonTapped(_:)))
+        if self.navigationController?.presentingViewController != nil
+            || self.presentingViewController != nil
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                                     style: .plain,
+                                                                     target: self,
+                                                                     action: #selector(self.closeButtonTapped(_:)))
+        }
     }
     
     @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {

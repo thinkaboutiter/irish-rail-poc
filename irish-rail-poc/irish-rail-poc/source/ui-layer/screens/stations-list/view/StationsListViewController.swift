@@ -18,6 +18,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     
     // MARK: - Properties
     private let viewModel: StationsListViewModel
+    private let makeStationViewControllerWith: ((_ station: Station) -> StationViewController)
     private lazy var searchController: UISearchController = {
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
@@ -50,8 +51,11 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: StationsListViewModel) {
+    init(viewModel: StationsListViewModel,
+         makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController))
+    {
         self.viewModel = viewModel
+        self.makeStationViewControllerWith = makeStationViewControllerWith
         super.init(nibName: String(describing: StationsListViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -80,6 +84,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     // MARK: - ConfigureUI
     private func configureUi() {
         self.navigationItem.searchController = self.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     // MARK: - Fetching
@@ -118,8 +123,13 @@ extension StationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        // TODO: push station data
+        guard let station: Station = self.viewModel.item(at: indexPath) else {
+            let message: String = "unable to obtain \(String(describing: Station.self)) object for index_path=\(indexPath)"
+            Logger.error.message(message)
+            return
+        }
+        let vc: StationViewController = self.makeStationViewControllerWith(station)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

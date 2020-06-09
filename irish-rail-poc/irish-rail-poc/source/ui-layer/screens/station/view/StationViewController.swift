@@ -77,10 +77,14 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     // MARK: - Navigation
     private func configureNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(self.closeButtonTapped(_:)))
+        if self.navigationController?.presentingViewController != nil
+            || self.presentingViewController != nil
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                                     style: .plain,
+                                                                     target: self,
+                                                                     action: #selector(self.closeButtonTapped(_:)))
+        }
     }
     
     @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {
@@ -132,8 +136,15 @@ extension StationViewController: UICollectionViewDelegate {
     
     private func showTrainViewController(for stationData: StationData) {
         let vc: TrainViewController = self.makeTrainViewControllerWith(stationData)
-        let nc: UINavigationController = UINavigationController(rootViewController: vc)
-        self.present(nc, animated: true, completion: nil)
+        if self.navigationController?.presentingViewController != nil
+            || self.presentingViewController != nil
+        {
+            let nc: UINavigationController = UINavigationController(rootViewController: vc)
+            self.present(nc, animated: true, completion: nil)
+        }
+        else if let nc = self.navigationController {
+            nc.pushViewController(vc, animated: true)
+        }
     }
 }
 

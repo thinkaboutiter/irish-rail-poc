@@ -31,7 +31,13 @@ class StationsListDependencyContainerImpl: StationsListDependencyContainer, Stat
     // MARK: - StationsListViewControllerFactory protocol
     func makeStationsListViewController() -> StationsListViewController {
         let vm: StationsListViewModel = self.makeStationsListViewModel()
-        let vc: StationsListViewController = StationsListViewController(viewModel: vm)
+        let vc: StationsListViewController = StationsListViewController(viewModel: vm) { (station: Station) -> StationViewController in
+                let factory: StationViewControllerFactory = StationDependencyContainerImpl(
+                    parent: self.parent,
+                    station: station)
+                let vc: StationViewController = factory.makeStationViewController()
+                return vc
+        }
         return vc
     }
     
