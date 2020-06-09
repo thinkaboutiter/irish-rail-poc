@@ -34,8 +34,8 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
                                             forCellReuseIdentifier: identifier)
             self.stationsTableView.delegate = self
             self.stationsTableView.dataSource = self
-            self.stationsTableView.separatorStyle = .singleLine
-            self.stationsTableView.insetsContentViewsToSafeArea = false
+            self.stationsTableView.separatorStyle = .none
+            self.stationsTableView.insetsContentViewsToSafeArea = true
         }
     }
     
@@ -84,6 +84,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     private func configureUi() {
         self.navigationItem.searchController = self.searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.title = "Stations"
     }
     
     // MARK: - Fetching
@@ -145,7 +146,8 @@ extension StationsListViewController: UITableViewDataSource {
             let message: String = "Unable to obtain \(String(describing: Station.self)) object for index_path=\(indexPath)!"
             fatalError(message)
         }
-        cell.configure(with: station)
+        cell.configure(with: station, for: indexPath)
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }
