@@ -16,13 +16,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="362" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-ku-yd2" userLabel="separator-view">
-                        <rect key="frame" x="0.0" y="65" width="362" height="1"/>
-                        <color key="backgroundColor" name="app-cell-separator"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="giV-Fu-1vI"/>
-                        </constraints>
-                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-4Q-HYR" userLabel="content-stack-view">
                         <rect key="frame" x="16" y="8" width="338" height="50"/>
                         <subviews>
@@ -48,11 +41,6 @@
                     <constraint firstItem="jnD-4Q-HYR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="din-eG-bNf"/>
                 </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="lhp-ku-yd2" secondAttribute="trailing" id="5Xt-js-LQg"/>
-                <constraint firstAttribute="bottom" secondItem="lhp-ku-yd2" secondAttribute="bottom" id="DW8-6H-Sd7"/>
-                <constraint firstItem="lhp-ku-yd2" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="jB9-sn-knf"/>
-            </constraints>
             <connections>
                 <outlet property="stationCodeLabel" destination="1Qa-wq-Xmc" id="tyd-7M-3C1"/>
                 <outlet property="stationNameLabel" destination="tDL-A5-T4C" id="rWV-me-ORn"/>
@@ -61,9 +49,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="app-cell-separator">
-            <color red="0.63576235020826311" green="0.63576235020826311" blue="0.63576235020826311" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="app-text-color">
             <color red="0.050999999046325684" green="0.050999999046325684" blue="0.050999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

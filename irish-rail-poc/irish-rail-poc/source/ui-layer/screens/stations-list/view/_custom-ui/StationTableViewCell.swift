@@ -28,9 +28,17 @@ class StationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = UIColor.systemBackground
+    }
+    
     // MARK: - Configurations
-    func configure(with station: Station) {
+    func configure(with station: Station, for indexPath: IndexPath) {
         self.station = station
+        if indexPath.row % 2 == 0 {
+            self.backgroundColor = UIColor(named: "app-cell-background")
+        }
         self.stationNameLabel.text = station.desc.uppercased()
         self.stationCodeLabel.text = station.code.uppercased()
     }
