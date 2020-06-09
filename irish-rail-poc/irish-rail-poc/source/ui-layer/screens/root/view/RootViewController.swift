@@ -60,8 +60,10 @@ private extension RootViewController {
     
     func embedMapViewController() {
         let vc: MapViewController = self.mapViewControllerFactory.makeMapViewController()
+        let nc: UINavigationController = UINavigationController()
+        nc.pushViewController(vc, animated: false)
         do {
-            try self.embed(vc,
+            try self.embed(nc,
                            containerView: self.view,
                            positionChildViewIntoContainerView: nil)
         }
