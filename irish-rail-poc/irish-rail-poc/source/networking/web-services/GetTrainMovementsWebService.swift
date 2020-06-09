@@ -46,7 +46,6 @@ final class GetTrainMovementsWebService: BaseWebService<TrainMovement> {
     }
     
     // MARK: - WebService protocol
-
     
     // MARK: - Checks
     override func performPreFetchParametersCheck() throws {

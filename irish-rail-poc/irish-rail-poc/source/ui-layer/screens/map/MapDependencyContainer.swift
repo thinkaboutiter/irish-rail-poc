@@ -78,6 +78,7 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     }
 }
 
+// MARK: - Location
 private extension MapDependencyContainerImpl {
     
     enum Location {

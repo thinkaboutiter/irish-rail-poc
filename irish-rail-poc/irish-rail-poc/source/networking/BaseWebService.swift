@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import SimpleLogger
 
-
 /// Abstract.
 /// Base class for all web service objects
 class BaseWebService<ApiResponseType>: WebService {

@@ -9,7 +9,6 @@
 import Foundation
 import SimpleLogger
 
-
 /// Get All Stations
 ///
 ///     http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML

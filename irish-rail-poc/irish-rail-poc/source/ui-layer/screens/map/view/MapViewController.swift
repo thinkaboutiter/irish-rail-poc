@@ -173,6 +173,7 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
+// MARK: - StationDataCalloutAccessoryViewActionsConsumer protocol
 extension MapViewController: StationDataCalloutAccessoryViewActionsConsumer {
     
     func didTap(on view: StationDataCalloutAccessoryView) {

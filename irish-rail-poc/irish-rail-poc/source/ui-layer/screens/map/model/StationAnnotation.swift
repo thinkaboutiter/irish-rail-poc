@@ -8,7 +8,6 @@
 
 import Foundation
 import MapKit
-import SimpleLogger
 
 class StationAnnotation: NSObject, MKAnnotation {
     

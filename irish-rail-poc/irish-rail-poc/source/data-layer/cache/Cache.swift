@@ -110,7 +110,6 @@ class CacheImpl<K: Hashable, V>: Cache {
             
             let message: String = "added object for key=\(keyHash)"
             Logger.debug.message(message)
-
             
             // update time stamp
             let timeStamp: NSDate = NSDate()

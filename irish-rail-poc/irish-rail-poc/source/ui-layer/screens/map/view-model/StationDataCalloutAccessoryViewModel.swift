@@ -89,7 +89,7 @@ extension StationDataCalloutAccessoryViewModelImpl: StationDataRepositoryConsume
     }
     
     func didFailToFetchStationData(on repository: StationDataRepository,
-                                   with error: Error)
+                                   with error: Swift.Error)
     {
         self.viewModelConsumer.didFailFetchingStationData(on: self, error: error)
     }
