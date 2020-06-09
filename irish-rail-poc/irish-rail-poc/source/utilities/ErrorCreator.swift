@@ -44,6 +44,6 @@ private extension ErrorCreator {
     enum Constatns {
         static let domainName: String = "Application.GenericError"
         static let genericCode: Int = 9999
-        static let genericMessage: String = "I've got a bad feeling about this."
+        static let genericMessage: String = NSLocalizedString("I've got a bad feeling about this.", comment: "I've got a bad feeling about this.")
     }
 }

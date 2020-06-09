@@ -69,21 +69,21 @@ class TrainMovementView: UIView {
         self.locationLabel.text = viewModel.locationFullName.uppercased()
         self.locationCodeLabel.text = viewModel.locationCode.uppercased()
         self.locationOrderLabel.text = "(\(viewModel.locationOrder))"
-        self.arrivalTitleLabel.text = "arrival".uppercased()
+        self.arrivalTitleLabel.text = NSLocalizedString("arrival", comment: "arrival").uppercased()
         self.arrivalTimeLabel.text = "(\(viewModel.scheduledArrival))"
-        self.departureTitleLabel.text = "departure".uppercased()
+        self.departureTitleLabel.text = NSLocalizedString("departure", comment: "departure").uppercased()
         self.departureTImeLabel.text = "(\(viewModel.scheduledDeparture))"
     }
     
     func resetUi() {
-        self.originDestinationLabel.text = "n/a - n/a".uppercased()
-        self.dateLabel.text = "N/A"
-        self.locationLabel.text = "N/A"
-        self.locationCodeLabel.text = "N/A"
-        self.locationOrderLabel.text = "N/A"
-        self.arrivalTitleLabel.text = "arrival".uppercased()
-        self.arrivalTimeLabel.text = "N/A"
-        self.departureTitleLabel.text = "departure".uppercased()
-        self.departureTImeLabel.text = "N/A"
+        self.originDestinationLabel.text = NSLocalizedString("N/A - N/A", comment: "N/A - N/A")
+        self.dateLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.locationLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.locationCodeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.locationOrderLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.arrivalTitleLabel.text = NSLocalizedString("arrival", comment: "arrival").uppercased()
+        self.arrivalTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.departureTitleLabel.text = NSLocalizedString("departure", comment: "departure").uppercased()
+        self.departureTImeLabel.text = NSLocalizedString("N/A", comment: "N/A")
     }
 }

@@ -22,7 +22,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
-        result.searchBar.placeholder = "Search for a train stop"
+        result.searchBar.placeholder = NSLocalizedString("Search for a train stop", comment: "Search for a train stop")
         result.delegate = self
         return result
     }()
@@ -65,7 +65,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Swift.Error) {
         if self.viewModel.items().count == 0 {
-            let text: String = "No train data available."
+            let text: String = NSLocalizedString("No train data available.", comment: "No train data available.")
             self.showNoContentView(with: text)
         }
         else {
@@ -83,7 +83,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     // MARK: - Configuration
     private func configureUi() {
-        self.title = "train \(self.viewModel.stationData().trainCode)".uppercased()
+        self.title = "\(NSLocalizedString("train", comment: "train")) \(self.viewModel.stationData().trainCode)".uppercased()
         self.configureNavigationBar()
         self.configureSearchBar()
     }
@@ -97,7 +97,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close"),
                                                                      style: .plain,
                                                                      target: self,
                                                                      action: #selector(self.closeButtonTapped(_:)))

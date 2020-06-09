@@ -14,7 +14,7 @@ class NoContentView: UIView {
     // source: https://medium.com/@brianclouser/swift-3-creating-a-custom-view-from-a-xib-ecdfe5b3a960
     @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
-    private var text: String = "No content available" {
+    private var text: String = NSLocalizedString("No content available", comment: "No content available") {
         didSet {
             self.titleLabel.text = self.text
         }

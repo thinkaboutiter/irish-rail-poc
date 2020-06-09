@@ -89,7 +89,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     private func configureUi() {
         // used only for development
         self.reloadButton.isHidden = true
-        self.title = "Stations map"
+        self.title = NSLocalizedString("Stations map", comment: "Stations map")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
                                                                  target: self,
                                                                  action: #selector(self.showList))

@@ -23,7 +23,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
-        result.searchBar.placeholder = "Search for a station"
+        result.searchBar.placeholder = NSLocalizedString("Search for a station", comment: "Search for a station")
         result.delegate = self
         return result
     }()
@@ -84,7 +84,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     private func configureUi() {
         self.navigationItem.searchController = self.searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.title = "Stations"
+        self.title = NSLocalizedString("Stations", comment: "Stations")
     }
     
     // MARK: - Fetching

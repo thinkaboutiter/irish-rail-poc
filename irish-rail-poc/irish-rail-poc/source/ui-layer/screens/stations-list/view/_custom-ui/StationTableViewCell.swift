@@ -44,7 +44,8 @@ class StationTableViewCell: UITableViewCell {
     }
     
     func resetUi() {
-        self.stationNameLabel.text = "n/a".uppercased()
-        self.stationCodeLabel.text = "n/a".uppercased()
+        let text: String = NSLocalizedString("N/A", comment: "N/A")
+        self.stationNameLabel.text = text
+        self.stationCodeLabel.text = text
     }
 }

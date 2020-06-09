@@ -23,7 +23,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
-        result.searchBar.placeholder = "Search for a train"
+        result.searchBar.placeholder = NSLocalizedString("Search for a train", comment: "Search for a train")
         result.delegate = self
         return result
     }()
@@ -68,7 +68,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     
     func didFailFetchingStationData(on viewModel: StationViewModel, error: Swift.Error) {
         if self.viewModel.items().count == 0 {
-            let text: String = "No station data available."
+            let text: String = NSLocalizedString("No station data available.", comment: "No station data available.")
             self.showNoContentView(with: text)
         }
         else {
@@ -100,7 +100,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close"),
                                                                      style: .plain,
                                                                      target: self,
                                                                      action: #selector(self.closeButtonTapped(_:)))
