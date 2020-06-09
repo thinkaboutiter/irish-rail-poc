@@ -23,7 +23,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
-        result.searchBar.placeholder = "Search for train"
+        result.searchBar.placeholder = "Search for a train"
         result.delegate = self
         return result
     }()

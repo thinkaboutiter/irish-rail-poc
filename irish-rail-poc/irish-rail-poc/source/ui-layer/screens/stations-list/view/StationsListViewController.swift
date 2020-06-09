@@ -23,7 +23,7 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
         let result: UISearchController = UISearchController(searchResultsController: nil)
         result.searchResultsUpdater = self
         result.obscuresBackgroundDuringPresentation = false
-        result.searchBar.placeholder = "Search for station"
+        result.searchBar.placeholder = "Search for a station"
         result.delegate = self
         return result
     }()
