@@ -18,6 +18,14 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     
     // MARK: - Properties
     private let viewModel: StationsListViewModel
+    private lazy var searchController: UISearchController = {
+        let result: UISearchController = UISearchController(searchResultsController: nil)
+        result.searchResultsUpdater = self
+        result.obscuresBackgroundDuringPresentation = true
+        result.searchBar.placeholder = "Search for station"
+        result.searchBar.delegate = self
+        return result
+    }()
     @IBOutlet private weak var stationsTableView: StationsTableView! {
         didSet {
             let identifier: String = StationTableViewCell.identifier
@@ -63,7 +71,13 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureUi()
         self.loadStations()
+    }
+    
+    // MARK: - ConfigureUI
+    private func configureUi() {
+        self.navigationItem.searchController = self.searchController
     }
     
     // MARK: - Fetching
@@ -100,4 +114,46 @@ extension StationsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate protocol
 extension StationsListViewController: UITableViewDelegate {
     
+}
+
+extension StationsListViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let valid_text: String = searchController.searchBar.text else {
+            let message: String = "Invalid searchBar.text object!"
+            let error: NSError = ErrorCreator
+                .custom(domain: InternalError.domainName,
+                        code: InternalError.Code.invalidSearchText,
+                        localizedMessage: message)
+                .error()
+            Logger.error.message().object(error)
+            return
+        }
+        Logger.debug.message("searchBar.text=\(valid_text)")
+    }
+}
+
+extension StationsListViewController: UISearchBarDelegate {
+    
+}
+
+// MARK: - Constants
+private extension StationsListViewController {
+    
+    enum Constants {
+        static let cellHeight: CGFloat = 82.0
+    }
+}
+
+// MARK: - Internal Errors
+private extension StationsListViewController {
+    
+    enum InternalError {
+        static let domainName: String = "\(AppConstants.projectName).\(String(describing: StationsListViewController.self)).\(String(describing: InternalError.self))"
+        
+        enum Code {
+            static let invalidSearchText: Int = 9000
+            static let unableToCreateBreakingBadSeason: Int = 9001
+        }
+    }
 }
