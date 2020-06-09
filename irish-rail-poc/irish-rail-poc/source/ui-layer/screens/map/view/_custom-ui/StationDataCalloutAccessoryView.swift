@@ -138,6 +138,6 @@ class StationDataCalloutAccessoryView: UIView, StationDataCalloutAccessoryViewMo
 private extension StationDataCalloutAccessoryView {
     
     enum Constants {
-        static let notAvailableText: String = "N/A"
+        static let notAvailableText: String = NSLocalizedString("N/A", comment: "N/A")
     }
 }

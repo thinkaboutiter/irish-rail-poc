@@ -16,8 +16,16 @@ protocol TrainViewModelConsumer: AnyObject {
                                        error: Swift.Error)
 }
 
+protocol SearchTainMovementViewModel: AnyObject {
+    func isDisplayingSearchResults() -> Bool
+    func setDisplayingSearchResults(_ newValue: Bool)
+    func getSearchTerm() -> String
+    func setSearchTerm(_ newValue: String)
+    func filteredItems(by term: String) -> [TrainMovement]
+}
+
 /// APIs for `ViewModel` to expose to `View`
-protocol TrainViewModel: AnyObject {
+protocol TrainViewModel: SearchTainMovementViewModel {
     func setViewModelConsumer(_ newValue: TrainViewModelConsumer)
     func fetchTrainMovements()
     func cancelTrainMovementsFetching()
@@ -32,6 +40,8 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     private let model: TrainModel
     private weak var viewModelConsumer: TrainViewModelConsumer!
     private let repository: TrainMovementRepository
+    private var displayingSearchResults: Bool = false
+    private var searchTerm: String = ""
     
     // MARK: - Initialization
     init(model: TrainModel,
@@ -65,7 +75,15 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     }
     
     func items() -> [TrainMovement] {
-        return self.model.trainMovements()
+        let result: [TrainMovement]
+        if self.isDisplayingSearchResults() {
+            let term: String = self.getSearchTerm()
+            result = self.filteredItems(by: term)
+        }
+        else {
+            result = self.model.trainMovements()
+        }
+        return result
     }
     
     func item(at indexPath: IndexPath) -> TrainMovement? {
@@ -82,6 +100,34 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     
     func stationData() -> StationData {
         return self.model.stationData()
+    }
+    
+    // MARK: - SearchTainMovementViewModel protocol
+    func isDisplayingSearchResults() -> Bool {
+        return self.displayingSearchResults
+    }
+    
+    func setDisplayingSearchResults(_ newValue: Bool) {
+        self.displayingSearchResults = newValue
+    }
+    
+    func getSearchTerm() -> String {
+        return self.searchTerm
+    }
+    
+    func setSearchTerm(_ newValue: String) {
+        self.searchTerm = newValue
+    }
+    
+    func filteredItems(by term: String) -> [TrainMovement] {
+        var result: [TrainMovement] = []
+        do {
+            result = try self.repository.filteredTrainMovements(by: term)
+        }
+        catch {
+            Logger.error.message().object(error)
+        }
+        return result
     }
     
     // MARK: - TrainModelConsumer protocol

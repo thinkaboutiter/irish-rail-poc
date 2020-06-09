@@ -124,12 +124,13 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
     }
     
     func filteredStationData(by term: String) throws -> [StationData] {
+        let lowercasedTerm: String = term.lowercased()
         let result: [StationData] = try self.stationData().filter { (stationData: StationData) -> Bool in
-            return (stationData.stationFullName.contains(term)
-                || stationData.stationCode.contains(term)
-                || stationData.origin.contains(term)
-                || stationData.destination.contains(term)
-                || stationData.lastLocation.contains(term))
+            return (stationData.stationFullName.lowercased().contains(lowercasedTerm)
+                || stationData.stationCode.lowercased().contains(lowercasedTerm)
+                || stationData.origin.lowercased().contains(lowercasedTerm)
+                || stationData.destination.lowercased().contains(lowercasedTerm)
+                || stationData.lastLocation.lowercased().contains(lowercasedTerm))
         }
         return result
     }

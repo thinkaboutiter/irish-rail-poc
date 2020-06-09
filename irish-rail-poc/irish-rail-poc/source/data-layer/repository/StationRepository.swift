@@ -94,10 +94,10 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
     }
     
     func filteredStations(by term: String) throws -> [Station] {
+        let lowercasedTerm: String = term.lowercased()
         let result: [Station] = try self.stations().filter { (station: Station) -> Bool in
-            return ((station.alias?.contains(term) ?? false)
-                || station.desc.contains(term)
-                || station.code.contains(term))
+            return (station.desc.lowercased().contains(lowercasedTerm)
+                || station.code.lowercased().contains(lowercasedTerm))
         }
         return result
     }

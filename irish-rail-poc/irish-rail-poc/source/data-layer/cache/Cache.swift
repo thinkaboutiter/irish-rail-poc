@@ -109,7 +109,7 @@ class CacheImpl<K: Hashable, V>: Cache {
             validSelf.objectsCache.setObject(collectionToAdd, forKey: keyHash)
             
             let message: String = "added object for key=\(keyHash)"
-            Logger.error.message(message)
+            Logger.debug.message(message)
 
             
             // update time stamp

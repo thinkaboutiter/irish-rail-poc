@@ -18,6 +18,14 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: TrainViewModel
+    private lazy var searchController: UISearchController = {
+        let result: UISearchController = UISearchController(searchResultsController: nil)
+        result.searchResultsUpdater = self
+        result.obscuresBackgroundDuringPresentation = false
+        result.searchBar.placeholder = NSLocalizedString("Search for a train stop", comment: "Search for a train stop")
+        result.delegate = self
+        return result
+    }()
     @IBOutlet weak var trainMovementsCollectionView: TrainMovementsCollectionView! {
         didSet {
             let identifier: String = TrainMovementCollectionViewCell.identifier
@@ -55,7 +63,14 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
         self.trainMovementsCollectionView.reloadData()
     }
     
-    func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Error) {
+    func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Swift.Error) {
+        if self.viewModel.items().count == 0 {
+            let text: String = NSLocalizedString("No train data available.", comment: "No train data available.")
+            self.showNoContentView(with: text)
+        }
+        else {
+            self.hideNoContentView()
+        }
         self.showAlert(for: error)
     }
     
@@ -68,20 +83,62 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     
     // MARK: - Configuration
     private func configureUi() {
-        self.title = "train \(self.viewModel.stationData().trainCode)".uppercased()
+        self.title = "\(NSLocalizedString("train", comment: "train")) \(self.viewModel.stationData().trainCode)".uppercased()
         self.configureNavigationBar()
+        self.configureSearchBar()
     }
     
-    // MARK: - Navigation
+    private func configureSearchBar() {
+        self.navigationItem.searchController = self.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     private func configureNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(self.closeButtonTapped(_:)))
+        if self.navigationController?.presentingViewController != nil
+            || self.presentingViewController != nil
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close"),
+                                                                     style: .plain,
+                                                                     target: self,
+                                                                     action: #selector(self.closeButtonTapped(_:)))
+        }
     }
     
     @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UISearchControllerDelegate protocol
+extension TrainViewController: UISearchControllerDelegate {
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(true)
+        self.trainMovementsCollectionView.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.viewModel.setDisplayingSearchResults(false)
+        self.trainMovementsCollectionView.reloadData()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension TrainViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let validText: String = searchController.searchBar.text else {
+            let message: String = "Invalid searchBar.text object!"
+            let error: NSError = ErrorCreator
+                .custom(domain: Error.domainName,
+                        code: Error.Code.invalidSearchText,
+                        localizedMessage: message)
+                .error()
+            Logger.error.message().object(error)
+            return
+        }
+        self.viewModel.setSearchTerm(validText)
+        self.trainMovementsCollectionView.reloadData()
     }
 }
 
@@ -193,3 +250,16 @@ extension TrainViewController: UICollectionViewDelegateFlowLayout {
         return valid_dimensionsProvider.minimumLineSpacing
     }
 }
+
+// MARK: - Internal Errors
+private extension TrainViewController {
+    
+    enum Error {
+        static let domainName: String = "\(AppConstants.projectName).\(String(describing: TrainViewController.self)).\(String(describing: Error.self))"
+        
+        enum Code {
+            static let invalidSearchText: Int = 9000
+        }
+    }
+}
+

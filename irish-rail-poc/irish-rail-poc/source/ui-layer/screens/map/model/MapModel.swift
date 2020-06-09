@@ -11,7 +11,7 @@ import SimpleLogger
 
 /// APIs for `ViewModel` to expose to `Model`
 protocol MapModelConsumer: AnyObject {
-    func didUpdateStationsCache(on model: MapModel)
+    func didUpdateStations(on model: MapModel)
 }
 
 /// APIs for `Model` to expose to `ViewModel`
@@ -77,11 +77,11 @@ class MapModelImpl: MapModel {
     
     func setStations(_ newValue: [Station]) {
         self.stationsCache.addObjects(from: newValue)
-        self.modelConsumer.didUpdateStationsCache(on: self)
+        self.modelConsumer.didUpdateStations(on: self)
     }
     
     func reset() {
         self.stationsCache.removeAllObjects()
-        self.modelConsumer.didUpdateStationsCache(on: self)
+        self.modelConsumer.didUpdateStations(on: self)
     }
 }

@@ -135,10 +135,11 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
     }
     
     func filteredTrainMovements(by term: String) throws -> [TrainMovement] {
+        let lowercasedTerm: String = term.lowercased()
         let result: [TrainMovement] = try self.trainMovements().filter { (trainMovement: TrainMovement) -> Bool in
-            return (trainMovement.locationFullName.contains(term)
-                || trainMovement.trainOrigin.contains(term)
-                || trainMovement.trainDestination.contains(term))
+            return (trainMovement.locationFullName.lowercased().contains(lowercasedTerm)
+                || trainMovement.trainOrigin.lowercased().contains(lowercasedTerm)
+                || trainMovement.trainDestination.lowercased().contains(lowercasedTerm))
         }
         return result
     }

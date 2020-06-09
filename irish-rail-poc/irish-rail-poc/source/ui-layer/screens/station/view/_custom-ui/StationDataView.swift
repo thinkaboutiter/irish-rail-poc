@@ -67,32 +67,32 @@ class StationDataView: UIView {
     }
     
     private func configureUi(with viewModel: StationDataViewModel) {
-        self.trainCodeLabel.text = "train \(viewModel.trainCode)".uppercased()
+        self.trainCodeLabel.text = "\(NSLocalizedString("train", comment: "train")) \(viewModel.trainCode)".uppercased()
         self.trainDateLabel.text = viewModel.trainDate.uppercased()
         self.originLabel.text = viewModel.origin.uppercased()
         self.originTimeLabel.text = viewModel.originTime
         self.destinationLabel.text = viewModel.destination.uppercased()
         self.destinationTimeLabel.text = viewModel.destinationTime
-        self.dueInTitleLabel.text = "due in".uppercased()
+        self.dueInTitleLabel.text = NSLocalizedString("due in", comment: "due in").uppercased()
         self.dueInTimeLabel.text = "\(viewModel.dueIn)"
-        self.lateTitleLabel.text = "late".uppercased()
+        self.lateTitleLabel.text = NSLocalizedString("late", comment: "late").uppercased()
         self.lateTimeLabel.text = "\(viewModel.late)"
-        self.expArrivalTitleLabel.text = "exp arrival".uppercased()
+        self.expArrivalTitleLabel.text = NSLocalizedString("exp arrival", comment: "exp arrival").uppercased()
         self.expArrivalTimeLabel.text = viewModel.expectedArrival
     }
     
     func resetUi() {
-        self.trainCodeLabel.text = "train N/A".uppercased()
-        self.trainDateLabel.text = "N/A"
-        self.originLabel.text = "origin".uppercased()
-        self.originTimeLabel.text = "N/A"
-        self.destinationLabel.text = "destination".uppercased()
-        self.destinationTimeLabel.text = "N/A"
-        self.dueInTitleLabel.text = "due in".uppercased()
-        self.dueInTimeLabel.text = "N/A"
-        self.lateTitleLabel.text = "late".uppercased()
-        self.lateTimeLabel.text = "N/A"
-        self.expArrivalTitleLabel.text = "exp arrival".uppercased()
-        self.expArrivalTimeLabel.text = "N/A"
+        self.trainCodeLabel.text = NSLocalizedString("train N/A", comment: "train N/A").uppercased()
+        self.trainDateLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.originLabel.text = NSLocalizedString("origin", comment: "origin").uppercased()
+        self.originTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.destinationLabel.text = NSLocalizedString("destination", comment: "destination").uppercased()
+        self.destinationTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.dueInTitleLabel.text = NSLocalizedString("due in", comment: "due in").uppercased()
+        self.dueInTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.lateTitleLabel.text = NSLocalizedString("late", comment: "late").uppercased()
+        self.lateTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.expArrivalTitleLabel.text = NSLocalizedString("exp arrival", comment: "exp arrival").uppercased()
+        self.expArrivalTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
     }
 }
