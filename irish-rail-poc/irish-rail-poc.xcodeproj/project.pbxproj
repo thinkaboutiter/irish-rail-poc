@@ -50,6 +50,7 @@
 		4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */; };
 		4FA3338424902F860091E356 /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA3338324902F860091E356 /* NoContentView.swift */; };
 		4FA3338624902FC90091E356 /* NoContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA3338524902FC90091E356 /* NoContentView.xib */; };
+		4FA3338A2490434F0091E356 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FA333882490434F0091E356 /* Localizable.strings */; };
 		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
@@ -127,6 +128,7 @@
 		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
 		4FA3338324902F860091E356 /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
 		4FA3338524902FC90091E356 /* NoContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
+		4FA333892490434F0091E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE392486D4C300CA20D7 /* Assets.xcassets */,
+				4FA333872490434F0091E356 /* resources */,
 				4F88AE452486D5AD00CA20D7 /* source */,
 			);
 			path = "irish-rail-poc";
@@ -372,6 +375,14 @@
 				4FA3338524902FC90091E356 /* NoContentView.xib */,
 			);
 			path = "_ui-support-classes";
+			sourceTree = "<group>";
+		};
+		4FA333872490434F0091E356 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FA333882490434F0091E356 /* Localizable.strings */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		4FB5E96E248782910040C1BD /* data-layer */ = {
@@ -648,6 +659,7 @@
 				4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */,
 				4FBA16392489411B0087D9B5 /* MapViewController.xib in Resources */,
 				4F75798E248EC06F00FF533C /* TrainMovementView.xib in Resources */,
+				4FA3338A2490434F0091E356 /* Localizable.strings in Resources */,
 				4F065EC7248D62350066ED5A /* StationViewController.xib in Resources */,
 				4FA3338624902FC90091E356 /* NoContentView.xib in Resources */,
 				4FCBB2DF248DA29D00586FB3 /* StationDataCollectionViewCell.xib in Resources */,
@@ -750,6 +762,14 @@
 				4F88AE3C2486D4C300CA20D7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4FA333882490434F0091E356 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FA333892490434F0091E356 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
