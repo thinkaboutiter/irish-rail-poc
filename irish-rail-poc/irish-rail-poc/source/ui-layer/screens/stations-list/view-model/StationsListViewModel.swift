@@ -15,8 +15,16 @@ protocol StationsListViewModelConsumer: AnyObject {
     func didReceiveError(on viewModel: StationsListViewModel, error: Swift.Error)
 }
 
+protocol SearchStationsListViewModel: AnyObject {
+    func isDisplayingSearchResults() -> Bool
+    func setDisplayingSearchResults(_ newValue: Bool)
+    func getSearchTerm() -> String
+    func setSearchTerm(_ newValue: String)
+    func filteredItems(by term: String) -> [Station]
+}
+
 /// APIs for `ViewModel` to expose to `View`
-protocol StationsListViewModel: AnyObject {
+protocol StationsListViewModel: SearchStationsListViewModel {
     func setViewModelConsumer(_ newValue: StationsListViewModelConsumer)
     
     /// Initiate `Station`-s fetching
@@ -39,6 +47,8 @@ class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsume
     private let model: StationsListModel
     private let repository: StationRepository
     private weak var viewModelConsumer: StationsListViewModelConsumer!
+    private var displayingSearchResults: Bool = false
+    private var searchTerm: String = ""
     
     // MARK: - Initialization
     init(model: StationsListModel,
@@ -65,7 +75,15 @@ class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsume
     }
     
     func items() -> [Station] {
-        return self.model.stations()
+        let result: [Station]
+        if self.isDisplayingSearchResults() {
+            let term: String = self.getSearchTerm()
+            result = self.filteredItems(by: term)
+        }
+        else {
+            result = self.model.stations()
+        }
+        return result
     }
     
     func item(at indexPath: IndexPath) -> Station? {
@@ -82,6 +100,34 @@ class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsume
     
     func reset() {
         self.model.reset()
+    }
+    
+    // MARK: - SearchStationsListViewModel protocol
+    func isDisplayingSearchResults() -> Bool {
+        return self.displayingSearchResults
+    }
+    
+    func setDisplayingSearchResults(_ newValue: Bool) {
+        self.displayingSearchResults = newValue
+    }
+    
+    func getSearchTerm() -> String {
+        return self.searchTerm
+    }
+    
+    func setSearchTerm(_ newValue: String) {
+        self.searchTerm = newValue
+    }
+    
+    func filteredItems(by term: String) -> [Station] {
+        var result: [Station] = []
+        do {
+            result = try self.repository.filteredStations(by: term)
+        }
+        catch {
+            Logger.error.message().object(error)
+        }
+        return result
     }
     
     // MARK: - StationsModelConsumer protocol
