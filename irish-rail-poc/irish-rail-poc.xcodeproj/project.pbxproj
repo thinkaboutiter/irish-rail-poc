@@ -613,7 +613,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "boyankov@yahoo.com";
 				TargetAttributes = {
 					4F88AE2C2486D4C000CA20D7 = {
@@ -801,6 +801,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -861,6 +862,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -963,16 +965,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/thinkaboutiter/SWXMLHash";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
+				kind = exactVersion;
+				version = 5.0.1;
 			};
 		};
 		4FB5E97624882C9A0040C1BD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/thinkaboutiter/Alamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.1;
+				kind = exactVersion;
+				version = 5.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
