@@ -83,6 +83,16 @@
 		4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4FA0D44D257956A4002F6F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F88AE252486D4C000CA20D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F88AE2C2486D4C000CA20D7;
+			remoteInfo = "irish-rail-poc";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4F037D12248EEC8400082C41 /* StationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListViewController.swift; sourceTree = "<group>"; };
 		4F037D13248EEC8400082C41 /* StationsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationsListViewController.xib; sourceTree = "<group>"; };
@@ -126,6 +136,8 @@
 		4F88AE572486DC2100CA20D7 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4F88AE582486DC2100CA20D7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
+		4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "irish-rail-poc-unit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA0D45825795752002F6F41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA3338324902F860091E356 /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
 		4FA3338524902FC90091E356 /* NoContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
 		4FA333892490434F0091E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,6 +179,13 @@
 				4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */,
 				4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */,
 				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA0D445257956A4002F6F41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */,
+				4FA0D449257956A4002F6F41 /* irish-rail-poc-unit-tests */,
 				4F88AE2E2486D4C000CA20D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */,
+				4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,20 +306,20 @@
 				4FB5E96E248782910040C1BD /* data-layer */,
 				4FBA163C248941EC0087D9B5 /* extensions */,
 				4FB5E97924882D1B0040C1BD /* networking */,
-				4F88AE462486D5E400CA20D7 /* SupportFiles */,
+				4F88AE462486D5E400CA20D7 /* support-files */,
 				4F88AE472486D9BC00CA20D7 /* ui-layer */,
 				4FB5E98124883C850040C1BD /* utilities */,
 			);
 			path = source;
 			sourceTree = "<group>";
 		};
-		4F88AE462486D5E400CA20D7 /* SupportFiles */ = {
+		4F88AE462486D5E400CA20D7 /* support-files */ = {
 			isa = PBXGroup;
 			children = (
 				4F88AE3E2486D4C300CA20D7 /* Info.plist */,
 				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
 			);
-			path = SupportFiles;
+			path = "support-files";
 			sourceTree = "<group>";
 		};
 		4F88AE472486D9BC00CA20D7 /* ui-layer */ = {
@@ -366,6 +387,38 @@
 				4F88AE552486DBF600CA20D7 /* RootViewModel.swift */,
 			);
 			path = "view-model";
+			sourceTree = "<group>";
+		};
+		4FA0D449257956A4002F6F41 /* irish-rail-poc-unit-tests */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D45525795752002F6F41 /* source */,
+			);
+			path = "irish-rail-poc-unit-tests";
+			sourceTree = "<group>";
+		};
+		4FA0D45525795752002F6F41 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D45625795752002F6F41 /* ui-layer */,
+				4FA0D45725795752002F6F41 /* support-files */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		4FA0D45625795752002F6F41 /* ui-layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "ui-layer";
+			sourceTree = "<group>";
+		};
+		4FA0D45725795752002F6F41 /* support-files */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D45825795752002F6F41 /* Info.plist */,
+			);
+			path = "support-files";
 			sourceTree = "<group>";
 		};
 		4FA3338224902F5A0091E356 /* _ui-support-classes */ = {
@@ -606,18 +659,40 @@
 			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FA0D447257956A4002F6F41 /* irish-rail-poc-unit-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA0D451257956A4002F6F41 /* Build configuration list for PBXNativeTarget "irish-rail-poc-unit-tests" */;
+			buildPhases = (
+				4FA0D444257956A4002F6F41 /* Sources */,
+				4FA0D445257956A4002F6F41 /* Frameworks */,
+				4FA0D446257956A4002F6F41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FA0D44E257956A4002F6F41 /* PBXTargetDependency */,
+			);
+			name = "irish-rail-poc-unit-tests";
+			productName = "irish-rail-poc-unit-tests";
+			productReference = 4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4F88AE252486D4C000CA20D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "boyankov@yahoo.com";
 				TargetAttributes = {
 					4F88AE2C2486D4C000CA20D7 = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					4FA0D447257956A4002F6F41 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 4F88AE2C2486D4C000CA20D7;
 					};
 				};
 			};
@@ -640,6 +715,7 @@
 			projectRoot = "";
 			targets = (
 				4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */,
+				4FA0D447257956A4002F6F41 /* irish-rail-poc-unit-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -664,6 +740,13 @@
 				4FA3338624902FC90091E356 /* NoContentView.xib in Resources */,
 				4FCBB2DF248DA29D00586FB3 /* StationDataCollectionViewCell.xib in Resources */,
 				4F757985248E9F5200FF533C /* TrainViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA0D446257956A4002F6F41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +836,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FA0D444257956A4002F6F41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FA0D44E257956A4002F6F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */;
+			targetProxy = 4FA0D44D257956A4002F6F41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */ = {
@@ -897,7 +995,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LD73RX298R;
-				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/support-files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -916,7 +1014,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
-				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/support-files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,6 +1024,46 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4FA0D44F257956A4002F6F41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(TARGET_NAME)/source/support-files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "boyankov-yahoo.com.irish-rail-poc-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/irish-rail-poc.app/irish-rail-poc";
+			};
+			name = Debug;
+		};
+		4FA0D450257956A4002F6F41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(TARGET_NAME)/source/support-files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "boyankov-yahoo.com.irish-rail-poc-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/irish-rail-poc.app/irish-rail-poc";
 			};
 			name = Release;
 		};
@@ -946,6 +1084,15 @@
 			buildConfigurations = (
 				4F88AE422486D4C300CA20D7 /* Debug */,
 				4F88AE432486D4C300CA20D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA0D451257956A4002F6F41 /* Build configuration list for PBXNativeTarget "irish-rail-poc-unit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA0D44F257956A4002F6F41 /* Debug */,
+				4FA0D450257956A4002F6F41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
