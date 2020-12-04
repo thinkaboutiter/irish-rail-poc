@@ -80,7 +80,7 @@ extension RootViewControllerTests {
     private class DummyMapViewController: MapViewController {
         
         init() {
-            let viewModel = MockMapViewModel()
+            let viewModel = DummyMapViewModel()
             super.init(
                 viewModel: viewModel,
                 makeStationViewControllerWith: { _ in
@@ -92,11 +92,10 @@ extension RootViewControllerTests {
         }
     }
     
-    private class MockMapViewModel: AbstractMockMapViewModel {
-        private(set) var didCall_setViewModelConsumer = false
+    private class DummyMapViewModel: AbstractMockMapViewModel {
         
         override func setViewModelConsumer(_ newValue: MapViewModelConsumer) {
-            didCall_setViewModelConsumer = true
+            // NOOP
         }
     }
     
@@ -104,7 +103,7 @@ extension RootViewControllerTests {
     private class DummyStationViewController: StationViewController {
         
         init() {
-            let viewModel = MockStationViewModel()
+            let viewModel = DummyStationViewModel()
             super.init(
                 viewModel: viewModel,
                 makeTrainViewControllerWith: { _ in
@@ -113,12 +112,10 @@ extension RootViewControllerTests {
         }
     }
     
-    private class MockStationViewModel: AbstractMockStationViewModel {
-        
-        private(set) var didCall_setViewModelConsumer = false
-        
+    private class DummyStationViewModel: AbstractMockStationViewModel {
+                
         override func setViewModelConsumer(_ newValue: StationViewModelConsumer) {
-            didCall_setViewModelConsumer = true
+            // NOOP
         }
     }
     
@@ -126,17 +123,15 @@ extension RootViewControllerTests {
     private class DummyTrainViewController: TrainViewController {
         
         init() {
-            let viewModel = MockTrainViewModel()
+            let viewModel = DummyTrainViewModel()
             super.init(viewModel: viewModel)
         }
     }
     
-    private class MockTrainViewModel: AbstractMockTrainViewModel {
-        
-        private(set) var didCall_setViewModelConsumer = false
-        
+    private class DummyTrainViewModel: AbstractMockTrainViewModel {
+                
         override func setViewModelConsumer(_ newValue: TrainViewModelConsumer) {
-            didCall_setViewModelConsumer = true
+            // NOOP
         }
     }
     
@@ -144,7 +139,7 @@ extension RootViewControllerTests {
     private class DummyStationsListViewController: StationsListViewController {
         
         init() {
-            let viewModel = MockStationsListViewModel()
+            let viewModel = DummyStationsListViewModel()
             super.init(
                 viewModel: viewModel,
                 makeStationViewControllerWith: { _ in
@@ -153,12 +148,10 @@ extension RootViewControllerTests {
         }
     }
     
-    private class MockStationsListViewModel: AbstractMockStationsListViewModel {
-        
-        private(set) var didCall_setViewModelConsumer = false
-        
+    private class DummyStationsListViewModel: AbstractMockStationsListViewModel {
+                
         override func setViewModelConsumer(_ newValue: StationsListViewModelConsumer) {
-            didCall_setViewModelConsumer = true
+            // NOOP
         }
     }
 }
