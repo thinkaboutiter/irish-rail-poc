@@ -52,16 +52,8 @@ class RootDependencyContainerImpl: RootDependencyContainer, RootViewControllerFa
     
     // MARK: - RootViewControllerFactory protocol
     func makeRootViewController() -> RootViewController {
-        let vm: RootViewModel = self.makeRootViewModel()
         let factory: MapViewControllerFactory = MapDependencyContainerImpl(parent: self)
-        let vc: RootViewController = RootViewController(viewModel: vm,
-                                                        mapViewControllerFactory: factory)
+        let vc: RootViewController = RootViewController(mapViewControllerFactory: factory)
         return vc
-    }
-    
-    private func makeRootViewModel() -> RootViewModel {
-        let model: RootModel = RootModelImpl()
-        let result: RootViewModel = RootViewModelImpl(model: model)
-        return result
     }
 }

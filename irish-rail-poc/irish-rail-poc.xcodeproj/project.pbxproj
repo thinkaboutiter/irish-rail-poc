@@ -42,15 +42,19 @@
 		4F88AE3A2486D4C300CA20D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE392486D4C300CA20D7 /* Assets.xcassets */; };
 		4F88AE3D2486D4C300CA20D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */; };
 		4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */; };
-		4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE502486DB1F00CA20D7 /* RootModel.swift */; };
 		4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 4F88AE532486DB7400CA20D7 /* SimpleLogger */; };
-		4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE552486DBF600CA20D7 /* RootViewModel.swift */; };
 		4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE572486DC2100CA20D7 /* RootViewController.swift */; };
 		4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE582486DC2100CA20D7 /* RootViewController.xib */; };
 		4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */; };
+		4FA0D46E25795EF8002F6F41 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */; };
+		4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D47C25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift */; };
 		4FA3338424902F860091E356 /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA3338324902F860091E356 /* NoContentView.swift */; };
 		4FA3338624902FC90091E356 /* NoContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA3338524902FC90091E356 /* NoContentView.xib */; };
 		4FA3338A2490434F0091E356 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FA333882490434F0091E356 /* Localizable.strings */; };
+		4FB0C10325799D18004C6634 /* AbstractMockMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C10225799D18004C6634 /* AbstractMockMapViewModel.swift */; };
+		4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C1142579B6B6004C6634 /* AbstractMockStationViewModel.swift */; };
+		4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */; };
+		4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */; };
 		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
@@ -82,6 +86,16 @@
 		4FFD9574248D92C600DA8479 /* StationDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9573248D92C600DA8479 /* StationDataView.xib */; };
 		4FFD9576248D9D8900DA8479 /* StationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9575248D9D8800DA8479 /* StationDataViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FA0D44D257956A4002F6F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F88AE252486D4C000CA20D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F88AE2C2486D4C000CA20D7;
+			remoteInfo = "irish-rail-poc";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F037D12248EEC8400082C41 /* StationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListViewController.swift; sourceTree = "<group>"; };
@@ -121,14 +135,20 @@
 		4F88AE3C2486D4C300CA20D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F88AE3E2486D4C300CA20D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F88AE492486DA0C00CA20D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		4F88AE502486DB1F00CA20D7 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
-		4F88AE552486DBF600CA20D7 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		4F88AE572486DC2100CA20D7 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4F88AE582486DC2100CA20D7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
+		4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "irish-rail-poc-unit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA0D45825795752002F6F41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
+		4FA0D47C25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockMapViewControllerFactory.swift; sourceTree = "<group>"; };
 		4FA3338324902F860091E356 /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
 		4FA3338524902FC90091E356 /* NoContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
 		4FA333892490434F0091E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FB0C10225799D18004C6634 /* AbstractMockMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockMapViewModel.swift; sourceTree = "<group>"; };
+		4FB0C1142579B6B6004C6634 /* AbstractMockStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockStationViewModel.swift; sourceTree = "<group>"; };
+		4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockStationsListViewModel.swift; sourceTree = "<group>"; };
+		4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainViewModel.swift; sourceTree = "<group>"; };
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
@@ -167,6 +187,13 @@
 				4FB5E97824882C9A0040C1BD /* Alamofire in Frameworks */,
 				4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */,
 				4F88AE542486DB7400CA20D7 /* SimpleLogger in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA0D445257956A4002F6F41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE2F2486D4C000CA20D7 /* irish-rail-poc */,
+				4FA0D449257956A4002F6F41 /* irish-rail-poc-unit-tests */,
 				4F88AE2E2486D4C000CA20D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */,
+				4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,20 +314,20 @@
 				4FB5E96E248782910040C1BD /* data-layer */,
 				4FBA163C248941EC0087D9B5 /* extensions */,
 				4FB5E97924882D1B0040C1BD /* networking */,
-				4F88AE462486D5E400CA20D7 /* SupportFiles */,
+				4F88AE462486D5E400CA20D7 /* support-files */,
 				4F88AE472486D9BC00CA20D7 /* ui-layer */,
 				4FB5E98124883C850040C1BD /* utilities */,
 			);
 			path = source;
 			sourceTree = "<group>";
 		};
-		4F88AE462486D5E400CA20D7 /* SupportFiles */ = {
+		4F88AE462486D5E400CA20D7 /* support-files */ = {
 			isa = PBXGroup;
 			children = (
 				4F88AE3E2486D4C300CA20D7 /* Info.plist */,
 				4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */,
 			);
-			path = SupportFiles;
+			path = "support-files";
 			sourceTree = "<group>";
 		};
 		4F88AE472486D9BC00CA20D7 /* ui-layer */ = {
@@ -335,20 +364,10 @@
 		4F88AE4C2486DA9F00CA20D7 /* root */ = {
 			isa = PBXGroup;
 			children = (
-				4F88AE4D2486DAAA00CA20D7 /* model */,
 				4F88AE4E2486DAAF00CA20D7 /* view */,
-				4F88AE4F2486DAB400CA20D7 /* view-model */,
 				4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */,
 			);
 			path = root;
-			sourceTree = "<group>";
-		};
-		4F88AE4D2486DAAA00CA20D7 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				4F88AE502486DB1F00CA20D7 /* RootModel.swift */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		4F88AE4E2486DAAF00CA20D7 /* view */ = {
@@ -360,12 +379,74 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		4F88AE4F2486DAB400CA20D7 /* view-model */ = {
+		4FA0D449257956A4002F6F41 /* irish-rail-poc-unit-tests */ = {
 			isa = PBXGroup;
 			children = (
-				4F88AE552486DBF600CA20D7 /* RootViewModel.swift */,
+				4FA0D45525795752002F6F41 /* source */,
 			);
-			path = "view-model";
+			path = "irish-rail-poc-unit-tests";
+			sourceTree = "<group>";
+		};
+		4FA0D45525795752002F6F41 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D45625795752002F6F41 /* ui-layer */,
+				4FA0D45725795752002F6F41 /* support-files */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		4FA0D45625795752002F6F41 /* ui-layer */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D46A25795E57002F6F41 /* screens */,
+			);
+			path = "ui-layer";
+			sourceTree = "<group>";
+		};
+		4FA0D45725795752002F6F41 /* support-files */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D45825795752002F6F41 /* Info.plist */,
+			);
+			path = "support-files";
+			sourceTree = "<group>";
+		};
+		4FA0D46A25795E57002F6F41 /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C10025799BCE004C6634 /* map */,
+				4FA0D46B25795E62002F6F41 /* root */,
+				4FB0C10E2579B581004C6634 /* station */,
+				4FB0C10F2579B58D004C6634 /* stations-list */,
+				4FB0C1102579B599004C6634 /* train */,
+			);
+			path = screens;
+			sourceTree = "<group>";
+		};
+		4FA0D46B25795E62002F6F41 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D47325795F1E002F6F41 /* mocks */,
+				4FA0D46C25795ED6002F6F41 /* view */,
+			);
+			path = root;
+			sourceTree = "<group>";
+		};
+		4FA0D46C25795ED6002F6F41 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4FA0D47325795F1E002F6F41 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0D47C25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift */,
+			);
+			path = mocks;
 			sourceTree = "<group>";
 		};
 		4FA3338224902F5A0091E356 /* _ui-support-classes */ = {
@@ -383,6 +464,70 @@
 				4FA333882490434F0091E356 /* Localizable.strings */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		4FB0C10025799BCE004C6634 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C10125799BD5004C6634 /* mocks */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
+		4FB0C10125799BD5004C6634 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C10225799D18004C6634 /* AbstractMockMapViewModel.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+		4FB0C10E2579B581004C6634 /* station */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C1112579B5A4004C6634 /* mocks */,
+			);
+			path = station;
+			sourceTree = "<group>";
+		};
+		4FB0C10F2579B58D004C6634 /* stations-list */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C1122579B5AA004C6634 /* mocks */,
+			);
+			path = "stations-list";
+			sourceTree = "<group>";
+		};
+		4FB0C1102579B599004C6634 /* train */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C1132579B5B2004C6634 /* mocks */,
+			);
+			path = train;
+			sourceTree = "<group>";
+		};
+		4FB0C1112579B5A4004C6634 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C1142579B6B6004C6634 /* AbstractMockStationViewModel.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+		4FB0C1122579B5AA004C6634 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+		4FB0C1132579B5B2004C6634 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */,
+			);
+			path = mocks;
 			sourceTree = "<group>";
 		};
 		4FB5E96E248782910040C1BD /* data-layer */ = {
@@ -606,18 +751,41 @@
 			productReference = 4F88AE2D2486D4C000CA20D7 /* irish-rail-poc.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FA0D447257956A4002F6F41 /* irish-rail-poc-unit-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA0D451257956A4002F6F41 /* Build configuration list for PBXNativeTarget "irish-rail-poc-unit-tests" */;
+			buildPhases = (
+				4FA0D444257956A4002F6F41 /* Sources */,
+				4FA0D445257956A4002F6F41 /* Frameworks */,
+				4FA0D446257956A4002F6F41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FA0D44E257956A4002F6F41 /* PBXTargetDependency */,
+			);
+			name = "irish-rail-poc-unit-tests";
+			productName = "irish-rail-poc-unit-tests";
+			productReference = 4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4F88AE252486D4C000CA20D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "boyankov@yahoo.com";
 				TargetAttributes = {
 					4F88AE2C2486D4C000CA20D7 = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					4FA0D447257956A4002F6F41 = {
+						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
+						TestTargetID = 4F88AE2C2486D4C000CA20D7;
 					};
 				};
 			};
@@ -640,6 +808,7 @@
 			projectRoot = "";
 			targets = (
 				4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */,
+				4FA0D447257956A4002F6F41 /* irish-rail-poc-unit-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -664,6 +833,13 @@
 				4FA3338624902FC90091E356 /* NoContentView.xib in Resources */,
 				4FCBB2DF248DA29D00586FB3 /* StationDataCollectionViewCell.xib in Resources */,
 				4F757985248E9F5200FF533C /* TrainViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA0D446257956A4002F6F41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,7 +887,6 @@
 				4FBA32D3248E72F4003EF5C8 /* TrainModel.swift in Sources */,
 				4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */,
 				4F75798A248EBE7200FF533C /* TrainMovementsCollectionView.swift in Sources */,
-				4F88AE512486DB1F00CA20D7 /* RootModel.swift in Sources */,
 				4FB5E980248831820040C1BD /* WebServiceConstants.swift in Sources */,
 				4FB5E97E24882FCF0040C1BD /* BaseWebService.swift in Sources */,
 				4F8842F724899F9500BCFACE /* StationRepository.swift in Sources */,
@@ -732,7 +907,6 @@
 				4F757991248EC12900FF533C /* TrainMovementCollectionViewCell.swift in Sources */,
 				4FCBB2DE248DA29D00586FB3 /* StationDataCollectionViewCell.swift in Sources */,
 				4FD70C24248EFBAC00EF5FA2 /* StationsListDependencyContainer.swift in Sources */,
-				4F88AE562486DBF600CA20D7 /* RootViewModel.swift in Sources */,
 				4F8842F92489AB6700BCFACE /* BaseRepository.swift in Sources */,
 				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
 				4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */,
@@ -753,7 +927,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FA0D444257956A4002F6F41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */,
+				4FB0C10325799D18004C6634 /* AbstractMockMapViewModel.swift in Sources */,
+				4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */,
+				4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */,
+				4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */,
+				4FA0D46E25795EF8002F6F41 /* RootViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FA0D44E257956A4002F6F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F88AE2C2486D4C000CA20D7 /* irish-rail-poc */;
+			targetProxy = 4FA0D44D257956A4002F6F41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F88AE3B2486D4C300CA20D7 /* LaunchScreen.storyboard */ = {
@@ -897,7 +1092,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LD73RX298R;
-				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/support-files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -915,8 +1110,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J48Y9TAH25;
-				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
+				DEVELOPMENT_TEAM = LD73RX298R;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/source/support-files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,6 +1121,53 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4FA0D44F257956A4002F6F41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LD73RX298R;
+				INFOPLIST_FILE = "$(TARGET_NAME)/source/support-files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "boyankov-yahoo.com.irish-rail-poc-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/irish-rail-poc.app/irish-rail-poc";
+			};
+			name = Debug;
+		};
+		4FA0D450257956A4002F6F41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LD73RX298R;
+				INFOPLIST_FILE = "$(TARGET_NAME)/source/support-files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "boyankov-yahoo.com.irish-rail-poc-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/irish-rail-poc.app/irish-rail-poc";
 			};
 			name = Release;
 		};
@@ -946,6 +1188,15 @@
 			buildConfigurations = (
 				4F88AE422486D4C300CA20D7 /* Debug */,
 				4F88AE432486D4C300CA20D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA0D451257956A4002F6F41 /* Build configuration list for PBXNativeTarget "irish-rail-poc-unit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA0D44F257956A4002F6F41 /* Debug */,
+				4FA0D450257956A4002F6F41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

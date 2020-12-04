@@ -15,10 +15,9 @@ protocol RootViewControllerFactory {
     func makeRootViewController() -> RootViewController
 }
 
-class RootViewController: BaseViewController, RootViewModelConsumer {
+class RootViewController: BaseViewController {
     
     // MARK: - Properties
-    private let viewModel: RootViewModel
     private let mapViewControllerFactory: MapViewControllerFactory
     
     // MARK: - Initialization
@@ -32,22 +31,16 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: RootViewModel,
-         mapViewControllerFactory: MapViewControllerFactory)
-    {
-        self.viewModel = viewModel
+    init(mapViewControllerFactory: MapViewControllerFactory) {
         self.mapViewControllerFactory = mapViewControllerFactory
         super.init(nibName: String(describing: RootViewController.self), bundle: nil)
-        self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
     }
     
     deinit {
         Logger.fatal.message()
     }
-    
-    // MARK: - RootViewModelConsumer protocol
-    
+        
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
