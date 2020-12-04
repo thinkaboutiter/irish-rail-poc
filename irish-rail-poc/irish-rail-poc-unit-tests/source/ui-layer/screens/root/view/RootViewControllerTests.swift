@@ -11,26 +11,45 @@ import XCTest
 
 class RootViewControllerTests: XCTestCase {
     
+    // MARK: - Properties
     private var sut: RootViewController!
     private var viewModel: MockRootViewModel!
-    private var mapViewControllerFactory: MockMapViewControllerFactory!
+    private var factory: MockMapViewControllerFactory!
 
+    // MARK: - Life cycle
     override func setUpWithError() throws {
         viewModel = MockRootViewModel()
-        mapViewControllerFactory = MockMapViewControllerFactory()
+        factory = MockMapViewControllerFactory()
         sut = RootViewController(viewModel: viewModel,
-                                 mapViewControllerFactory: mapViewControllerFactory)
+                                 mapViewControllerFactory: factory)
     }
 
     override func tearDownWithError() throws {
         sut = nil
-        mapViewControllerFactory = nil
+        factory = nil
         viewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // MARK: - Tests
+    func test_whenViewIsLoaded_embedsNavigationController() {
+        // when
+        sut.viewDidLoad()
+        
+        // then
+        let child = sut.children.first
+        XCTAssertNotNil(child)
+        XCTAssertTrue(child! is UINavigationController)
+    }
+    
+    func test_whenViewIsLoaded_embeddedNavigationController_hasMapViewController_asRootViewController() {
+        // when
+        sut.viewDidLoad()
+        
+        // then
+        let child = sut.children.first
+        let root = (child as? UINavigationController)?.viewControllers.first
+        XCTAssertNotNil(root)
+        XCTAssertTrue(root! is MapViewController)
     }
 }
 
