@@ -34,6 +34,7 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     func getStationRepository() -> StationRepository {
         return self.parent.getStationRepository()
     }
+    
     func getStationDataRepository() -> StationDataRepository {
         return self.parent.getStationDataRepository()
     }

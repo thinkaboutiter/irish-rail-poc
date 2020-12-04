@@ -13,21 +13,17 @@ class RootViewControllerTests: XCTestCase {
     
     // MARK: - Properties
     private var sut: RootViewController!
-    private var viewModel: MockRootViewModel!
     private var factory: MockMapViewControllerFactory!
 
     // MARK: - Life cycle
     override func setUpWithError() throws {
-        viewModel = MockRootViewModel()
         factory = MockMapViewControllerFactory()
-        sut = RootViewController(viewModel: viewModel,
-                                 mapViewControllerFactory: factory)
+        sut = RootViewController(mapViewControllerFactory: factory)
     }
 
     override func tearDownWithError() throws {
         sut = nil
         factory = nil
-        viewModel = nil
     }
 
     // MARK: - Tests
@@ -55,15 +51,6 @@ class RootViewControllerTests: XCTestCase {
 
 // MARK: - Subtypes
 extension RootViewControllerTests {
-    
-    private class MockRootViewModel: AbstractMockRootViewModel {
-        
-        private(set) var didCall_setViewModelConsumer = false
-        
-        override func setViewModelConsumer(_ newValue: RootViewModelConsumer) {
-            didCall_setViewModelConsumer = true
-        }
-    }
     
     // MARK: - Map
     private class MockMapViewControllerFactory: AbstractMockMapViewControllerFactory {
