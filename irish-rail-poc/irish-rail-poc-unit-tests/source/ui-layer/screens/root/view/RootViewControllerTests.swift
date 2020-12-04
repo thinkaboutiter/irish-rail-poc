@@ -37,6 +37,15 @@ class RootViewControllerTests: XCTestCase {
         XCTAssertTrue(child! is UINavigationController)
     }
     
+    func test_whenViewIsLoaded_callsMakeMapViewControllerAPI_onMapViewControllerFactory() {
+        // when
+        sut.viewDidLoad()
+        
+        // then
+        let apiDidCall = factory.didCall_makeMapViewController
+        XCTAssertTrue(apiDidCall)
+    }
+    
     func test_whenViewIsLoaded_embeddedNavigationController_hasMapViewController_asRootViewController() {
         // when
         sut.viewDidLoad()
