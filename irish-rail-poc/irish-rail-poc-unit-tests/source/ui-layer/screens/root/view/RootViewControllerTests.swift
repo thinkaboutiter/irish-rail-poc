@@ -48,7 +48,7 @@ class RootViewControllerTests: XCTestCase {
     // MARK: - Tests
     func test_whenViewIsLoaded_embedsNavigationController() {
         // when
-        sut.viewDidLoad()
+        sut.loadViewIfNeeded()
         
         // then
         let child = sut.children.first
@@ -58,7 +58,7 @@ class RootViewControllerTests: XCTestCase {
     
     func test_whenViewIsLoaded_callsMakeMapViewControllerAPI_onMapViewControllerFactory() {
         // when
-        sut.viewDidLoad()
+        sut.loadViewIfNeeded()
         
         // then
         let apiDidCall = factory.didCall_makeMapViewController
@@ -67,7 +67,7 @@ class RootViewControllerTests: XCTestCase {
     
     func test_whenViewIsLoaded_embeddedNavigationController_hasMapViewController_asRootViewController() {
         // when
-        sut.viewDidLoad()
+        sut.loadViewIfNeeded()
         
         // then
         let child = sut.children.first
