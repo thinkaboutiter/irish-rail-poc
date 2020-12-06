@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/thinkaboutiter/Alamofire",
         "state": {
           "branch": null,
-          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
-          "version": "5.2.1"
+          "revision": "9e0328127dfb801cefe8ac53a13c0c90a7770448",
+          "version": "5.4.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/thinkaboutiter/SimpleLogger.git",
         "state": {
           "branch": null,
-          "revision": "c5cace7eb070a424500567ed14623958d7fa5511",
-          "version": "2.4.4"
+          "revision": "6b6f4c6fe99df50f8605bf1bca2ee9aa12d01cfa",
+          "version": "2.4.5"
         }
       },
       {
