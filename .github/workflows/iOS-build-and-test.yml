@@ -1,10 +1,10 @@
-name: iOS starter workflow
+name: iOS Build & Test
 
 on:
   push:
-    branches: [ 13-workflows ]
+    branches: [ master ]
   pull_request:
-    branches: [ 13-workflows ]
+    branches: [ master ]
 
 jobs:
   build:
