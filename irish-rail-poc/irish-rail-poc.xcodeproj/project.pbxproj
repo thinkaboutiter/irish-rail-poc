@@ -76,6 +76,7 @@
 		4FBA163B248941630087D9B5 /* MapDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */; };
 		4FBA163E248942060087D9B5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */; };
 		4FBA32D3248E72F4003EF5C8 /* TrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA32D2248E72F4003EF5C8 /* TrainModel.swift */; };
+		4FC5AD40257EEB2100316BC0 /* TrainViewControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC5AD3F257EEB2100316BC0 /* TrainViewControllerTestCase.swift */; };
 		4FCBB2D9248DA05300586FB3 /* StationDataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2D8248DA05300586FB3 /* StationDataCollectionView.swift */; };
 		4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */; };
 		4FCBB2DE248DA29D00586FB3 /* StationDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */; };
@@ -168,6 +169,7 @@
 		4FBA163A248941630087D9B5 /* MapDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDependencyContainer.swift; sourceTree = "<group>"; };
 		4FBA163D248942060087D9B5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		4FBA32D2248E72F4003EF5C8 /* TrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainModel.swift; sourceTree = "<group>"; };
+		4FC5AD3F257EEB2100316BC0 /* TrainViewControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewControllerTestCase.swift; sourceTree = "<group>"; };
 		4FCBB2D8248DA05300586FB3 /* StationDataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCollectionView.swift; sourceTree = "<group>"; };
 		4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDimensionsProvider.swift; sourceTree = "<group>"; };
 		4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 		4FB0C1102579B599004C6634 /* train */ = {
 			isa = PBXGroup;
 			children = (
+				4FC5AD3E257EEAD300316BC0 /* view */,
 				4FB0C1132579B5B2004C6634 /* mocks */,
 			);
 			path = train;
@@ -711,6 +714,14 @@
 				4F704714248ED1C900201093 /* TrainMovementViewModel.swift */,
 			);
 			path = "view-model";
+			sourceTree = "<group>";
+		};
+		4FC5AD3E257EEAD300316BC0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4FC5AD3F257EEB2100316BC0 /* TrainViewControllerTestCase.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		4FFD9570248D922700DA8479 /* _custom-ui */ = {
@@ -932,6 +943,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */,
+				4FC5AD40257EEB2100316BC0 /* TrainViewControllerTestCase.swift in Sources */,
 				4FB0C10325799D18004C6634 /* AbstractMockMapViewModel.swift in Sources */,
 				4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */,
 				4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */,
