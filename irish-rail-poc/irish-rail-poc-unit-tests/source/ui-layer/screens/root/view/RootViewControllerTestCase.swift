@@ -57,12 +57,17 @@ class RootViewControllerTestCase: XCTestCase {
     }
     
     func test_whenViewIsLoaded_callsMakeMapViewControllerAPI_onMapViewControllerFactory() {
+        // given
+        let expectation = self.expectation(description: "MapViewControllerFactory.makeMapViewController() called")
+        factory.on_makeMapViewController = {
+            expectation.fulfill()
+        }
+        
         // when
         sut.loadViewIfNeeded()
         
         // then
-        let apiDidCall = factory.didCall_makeMapViewController
-        XCTAssertTrue(apiDidCall)
+        waitForExpectations(timeout: 0.0)
     }
     
     func test_whenViewIsLoaded_embeddedNavigationController_hasMapViewController_asRootViewController() {
@@ -83,10 +88,12 @@ extension RootViewControllerTestCase {
     // MARK: - Map
     private class MockMapViewControllerFactory: AbstractMockMapViewControllerFactory {
         
-        private(set) var didCall_makeMapViewController = false
+        var on_makeMapViewController: (() -> Void)?
         
         override func makeMapViewController() -> MapViewController {
-            didCall_makeMapViewController = true
+            defer {
+                on_makeMapViewController?()
+            }
             let result = DummyMapViewController()
             return result
         }
