@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import MapKit
 import SimpleLogger
 
 protocol MapDependencyContainer: AnyObject {
@@ -65,8 +66,10 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
     // MARK: - MapViewControllerFactory protocol
     func makeMapViewController() -> MapViewController {
         let vm: MapViewModel = self.makeMapViewModel()
+        let lm: LocationManager = self.makeLocationManager()
         let vc: MapViewController = MapViewController(
             viewModel: vm,
+            locationManager: lm,
             makeStationViewControllerWith: { (station: Station) -> StationViewController in
                 let factory: StationViewControllerFactory = StationDependencyContainerImpl(
                     parent: self,
@@ -94,6 +97,12 @@ class MapDependencyContainerImpl: MapDependencyContainer, MapViewControllerFacto
         let result: MapModel = MapModelImpl(latitude: Location.Ireland.latitude,
                                             longitude: Location.Ireland.longitude,
                                             radius: Location.Ireland.radius)
+        return result
+    }
+    
+    private func makeLocationManager() -> LocationManager {
+        let locationManager = CLLocationManager()
+        let result = CLLocationManagerWrapper(locationManager: locationManager)
         return result
     }
 }
