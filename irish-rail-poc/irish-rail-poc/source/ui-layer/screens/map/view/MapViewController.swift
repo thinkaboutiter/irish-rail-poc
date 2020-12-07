@@ -38,6 +38,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: MapViewModel
+    private let locationManager: LocationManager
     private let makeStationViewControllerWith: ((_ station: Station) -> StationViewController)
     private let makeStationsListViewController: (() -> StationsListViewController)
     @IBOutlet private weak var mapView: MKMapView! {
@@ -71,14 +72,17 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     }
     
     init(viewModel: MapViewModel,
+         locationManager: LocationManager,
          makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController),
          makeStationsListViewController: @escaping (() -> StationsListViewController))
     {
         self.viewModel = viewModel
+        self.locationManager = locationManager
         self.makeStationViewControllerWith = makeStationViewControllerWith
         self.makeStationsListViewController = makeStationsListViewController
         super.init(nibName: String(describing: MapViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
+        self.locationManager.setUpdatesConsumer(self)
         Logger.success.message()
     }
     
@@ -134,6 +138,27 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     private func updateAnnotations(_ annotations: [MKAnnotation], on mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(annotations)
+    }
+}
+
+// MARK: - LocationManagerUpdatesConsumer protocol
+extension MapViewController: LocationManagerUpdatesConsumer {
+    
+    func didFailToUpdateLocation(from manager: LocationManager,
+                                 error: Error)
+    {
+        showAlert(for: error)
+    }
+    
+    func didUpdateLocation(form manager: LocationManager,
+                           location: CLLocationCoordinate2D)
+    {
+        let annotation = UserAnnotation(coordinate: location)
+        mapView.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: location,
+                                        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
     }
 }
 
