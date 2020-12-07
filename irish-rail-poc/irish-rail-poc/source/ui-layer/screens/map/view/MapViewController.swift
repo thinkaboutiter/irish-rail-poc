@@ -4,7 +4,7 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2020 Boyan Yankov
+//  Copyright (c) 2020 Boyan Yankov (thinkaboutiter@gmail.com)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -52,9 +52,9 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
                                                                 latitudinalMeters: radius,
                                                                 longitudinalMeters: radius)
             self.mapView.setRegion(region, animated: true)
-            let identifier: String = String(describing: MKPinAnnotationView.self)
             self.mapView.register(MKPinAnnotationView.self,
-                                  forAnnotationViewWithReuseIdentifier: identifier)
+                                  forAnnotationViewWithReuseIdentifier: String(describing: MKPinAnnotationView.self))
+            self.mapView.showsUserLocation = true
         }
     }
     @IBOutlet private weak var reloadButton: UIButton!
@@ -141,28 +141,38 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let stationAnnotation: StationAnnotation = annotation as? StationAnnotation else {
-            return nil
+        let annotationView: MKAnnotationView?
+        if let stationAnnotation: StationAnnotation = annotation as? StationAnnotation {
+            annotationView = stationAnnotationView(from: stationAnnotation)
         }
+        else {
+            annotationView = nil
+        }
+        return annotationView
+    }
+    
+    private func stationAnnotationView(from annotation: StationAnnotation) -> MKPinAnnotationView {
         let identifier: String = String(describing: MKPinAnnotationView.self)
         let annotationView: MKPinAnnotationView
         if let cachedView: MKPinAnnotationView = mapView
             .dequeueReusableAnnotationView(withIdentifier: identifier,
-                                           for: stationAnnotation) as? MKPinAnnotationView {
+                                           for: annotation) as? MKPinAnnotationView {
             annotationView = cachedView
         }
         else {
-            annotationView = MKPinAnnotationView(annotation: stationAnnotation,
+            annotationView = MKPinAnnotationView(annotation: annotation,
                                                  reuseIdentifier: identifier)
         }
         annotationView.pinTintColor = .red
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: stationAnnotation)
+        annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: annotation)
         return annotationView
     }
     
-    private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryView {
+    private func rightCalloutAccessoryView(
+        for annotation: StationAnnotation) -> StationDataCalloutAccessoryView
+    {
         let station: Station = annotation.station
         let webService: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
         let repository: StationDataRepository = StationDataRepositoryImpl(webService: webService)

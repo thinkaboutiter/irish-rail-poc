@@ -4,7 +4,7 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2020 Boyan Yankov
+//  Copyright (c) 2020 Boyan Yankov (thinkaboutiter@gmail.com)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,5 +29,4 @@ import Foundation
 
 enum AppConstants {
     static let projectName: String = "irish-rail-poc"
-
 }
