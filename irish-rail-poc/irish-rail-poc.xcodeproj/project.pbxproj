@@ -46,7 +46,7 @@
 		4F88AE592486DC2100CA20D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE572486DC2100CA20D7 /* RootViewController.swift */; };
 		4F88AE5A2486DC2100CA20D7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F88AE582486DC2100CA20D7 /* RootViewController.xib */; };
 		4F88AE5C2486DCD700CA20D7 /* RootDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */; };
-		4FA0D46E25795EF8002F6F41 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */; };
+		4FA0D46E25795EF8002F6F41 /* RootViewControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D46D25795EF8002F6F41 /* RootViewControllerTestCase.swift */; };
 		4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D47C25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift */; };
 		4FA3338424902F860091E356 /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA3338324902F860091E356 /* NoContentView.swift */; };
 		4FA3338624902FC90091E356 /* NoContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA3338524902FC90091E356 /* NoContentView.xib */; };
@@ -140,7 +140,7 @@
 		4F88AE5B2486DCD700CA20D7 /* RootDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDependecyContainer.swift; sourceTree = "<group>"; };
 		4FA0D448257956A4002F6F41 /* irish-rail-poc-unit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "irish-rail-poc-unit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA0D45825795752002F6F41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
+		4FA0D46D25795EF8002F6F41 /* RootViewControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTestCase.swift; sourceTree = "<group>"; };
 		4FA0D47C25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockMapViewControllerFactory.swift; sourceTree = "<group>"; };
 		4FA3338324902F860091E356 /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
 		4FA3338524902FC90091E356 /* NoContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
@@ -436,7 +436,7 @@
 		4FA0D46C25795ED6002F6F41 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				4FA0D46D25795EF8002F6F41 /* RootViewControllerTests.swift */,
+				4FA0D46D25795EF8002F6F41 /* RootViewControllerTestCase.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -936,7 +936,7 @@
 				4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */,
 				4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */,
 				4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */,
-				4FA0D46E25795EF8002F6F41 /* RootViewControllerTests.swift in Sources */,
+				4FA0D46E25795EF8002F6F41 /* RootViewControllerTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

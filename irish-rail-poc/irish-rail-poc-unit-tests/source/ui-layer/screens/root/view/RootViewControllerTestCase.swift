@@ -1,5 +1,5 @@
 //
-//  RootViewControllerTests.swift
+//  RootViewControllerTestCase.swift
 //  irish-rail-poc-unit-tests
 //
 //  MIT License
@@ -28,7 +28,7 @@
 import XCTest
 @testable import irish_rail_poc
 
-class RootViewControllerTests: XCTestCase {
+class RootViewControllerTestCase: XCTestCase {
     
     // MARK: - Properties
     private var sut: RootViewController!
@@ -78,7 +78,7 @@ class RootViewControllerTests: XCTestCase {
 }
 
 // MARK: - Subtypes
-extension RootViewControllerTests {
+extension RootViewControllerTestCase {
     
     // MARK: - Map
     private class MockMapViewControllerFactory: AbstractMockMapViewControllerFactory {
