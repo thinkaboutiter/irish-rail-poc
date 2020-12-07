@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>540</string>
+	<string>558</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -34,7 +34,11 @@
 		</dict>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow app to show you your location</string>
+	<string>Allow app to show you your current location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow app to show you your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow app to show you your current location</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -38,7 +38,6 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: MapViewModel
-    private let locationManager: LocationManager
     private let makeStationViewControllerWith: ((_ station: Station) -> StationViewController)
     private let makeStationsListViewController: (() -> StationsListViewController)
     @IBOutlet private weak var mapView: MKMapView! {
@@ -53,9 +52,9 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
                                                                 latitudinalMeters: radius,
                                                                 longitudinalMeters: radius)
             self.mapView.setRegion(region, animated: true)
-            let identifier: String = String(describing: MKPinAnnotationView.self)
             self.mapView.register(MKPinAnnotationView.self,
-                                  forAnnotationViewWithReuseIdentifier: identifier)
+                                  forAnnotationViewWithReuseIdentifier: String(describing: MKPinAnnotationView.self))
+            self.mapView.showsUserLocation = true
         }
     }
     @IBOutlet private weak var reloadButton: UIButton!
@@ -72,17 +71,14 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     }
     
     init(viewModel: MapViewModel,
-         locationManager: LocationManager,
          makeStationViewControllerWith: @escaping ((_ station: Station) -> StationViewController),
          makeStationsListViewController: @escaping (() -> StationsListViewController))
     {
         self.viewModel = viewModel
-        self.locationManager = locationManager
         self.makeStationViewControllerWith = makeStationViewControllerWith
         self.makeStationsListViewController = makeStationsListViewController
         super.init(nibName: String(describing: MapViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
-        self.locationManager.setUpdatesConsumer(self)
         Logger.success.message()
     }
     
@@ -106,7 +102,6 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
         super.viewDidLoad()
         self.configureUi()
         self.loadStations()
-        locationManager.getUserLocation()
     }
     
     // MARK: - UI configs
@@ -142,27 +137,6 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     }
 }
 
-// MARK: - LocationManagerUpdatesConsumer protocol
-extension MapViewController: LocationManagerUpdatesConsumer {
-    
-    func didFailToUpdateLocation(from manager: LocationManager,
-                                 error: Error)
-    {
-        showAlert(for: error)
-    }
-    
-    func didUpdateLocation(form manager: LocationManager,
-                           location: CLLocationCoordinate2D)
-    {
-        let annotation = UserAnnotation(coordinate: location)
-        mapView.addAnnotation(annotation)
-        
-        let region = MKCoordinateRegion(center: location,
-                                        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        mapView.setRegion(region, animated: true)
-    }
-}
-
 // MARK: - MKMapViewDelegate protocol
 extension MapViewController: MKMapViewDelegate {
     
@@ -170,9 +144,6 @@ extension MapViewController: MKMapViewDelegate {
         let annotationView: MKAnnotationView?
         if let stationAnnotation: StationAnnotation = annotation as? StationAnnotation {
             annotationView = stationAnnotationView(from: stationAnnotation)
-        }
-        else if let userAnnotation = annotation as? UserAnnotation {
-            annotationView = userAnnotationView(from: userAnnotation)
         }
         else {
             annotationView = nil
@@ -197,20 +168,6 @@ extension MapViewController: MKMapViewDelegate {
         annotationView.canShowCallout = true
         annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: annotation)
         return annotationView
-    }
-    
-    private func userAnnotationView(from annnotation: UserAnnotation) -> UserAnnotationView {
-        let identifier = UserAnnotationView.identifier
-        let userPin: UserAnnotationView
-        if let cachedView = mapView
-            .dequeueReusableAnnotationView(withIdentifier: identifier,
-                                           for: annnotation) as? UserAnnotationView {
-            userPin = cachedView
-        }
-        else {
-            userPin = UserAnnotationView(annotation: annnotation)
-        }
-        return userPin
     }
     
     private func rightCalloutAccessoryView(

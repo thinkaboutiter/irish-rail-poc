@@ -19,12 +19,9 @@
 		4F065EC9248D62910066ED5A /* StationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */; };
 		4F07B3E1248C5AA3008129AE /* StationDataCalloutAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */; };
 		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
-		4F0E6655257E5CE80073E0A8 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E6654257E5CE80073E0A8 /* UserAnnotation.swift */; };
-		4F0E6659257E5ECC0073E0A8 /* UserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E6658257E5ECC0073E0A8 /* UserAnnotationView.swift */; };
 		4F3A4F1C248E7C02008F54C5 /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */; };
 		4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */; };
 		4F5490C7248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */; };
-		4F582592257D3D6B0070A7CA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F582591257D3D6B0070A7CA /* LocationManager.swift */; };
 		4F704715248ED1C900201093 /* TrainMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704714248ED1C900201093 /* TrainMovementViewModel.swift */; };
 		4F75797F248E87EE00FF533C /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75797E248E87EE00FF533C /* AppCache.swift */; };
 		4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F757982248E9F5200FF533C /* TrainViewController.swift */; };
@@ -113,12 +110,9 @@
 		4F065EC8248D62910066ED5A /* StationDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDependencyContainer.swift; sourceTree = "<group>"; };
 		4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataCalloutAccessoryView.xib; sourceTree = "<group>"; };
 		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
-		4F0E6654257E5CE80073E0A8 /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
-		4F0E6658257E5ECC0073E0A8 /* UserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotationView.swift; sourceTree = "<group>"; };
 		4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
 		4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryView.swift; sourceTree = "<group>"; };
 		4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryViewModel.swift; sourceTree = "<group>"; };
-		4F582591257D3D6B0070A7CA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4F704714248ED1C900201093 /* TrainMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovementViewModel.swift; sourceTree = "<group>"; };
 		4F75797E248E87EE00FF533C /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
 		4F757982248E9F5200FF533C /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
@@ -258,7 +252,6 @@
 			children = (
 				4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */,
 				4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */,
-				4F0E6658257E5ECC0073E0A8 /* UserAnnotationView.swift */,
 			);
 			path = "_custom-ui";
 			sourceTree = "<group>";
@@ -266,7 +259,6 @@
 		4F582590257D3B830070A7CA /* location */ = {
 			isa = PBXGroup;
 			children = (
-				4F582591257D3D6B0070A7CA /* LocationManager.swift */,
 			);
 			path = location;
 			sourceTree = "<group>";
@@ -669,7 +661,6 @@
 			children = (
 				4FBA1632248940B70087D9B5 /* MapModel.swift */,
 				4F7A534F248C2501005C502E /* StationAnnotation.swift */,
-				4F0E6654257E5CE80073E0A8 /* UserAnnotation.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -928,17 +919,14 @@
 				4FB5E98E248845650040C1BD /* GetAllStationsWebService.swift in Sources */,
 				4F757984248E9F5200FF533C /* TrainViewController.swift in Sources */,
 				4FCBB2D9248DA05300586FB3 /* StationDataCollectionView.swift in Sources */,
-				4F0E6655257E5CE80073E0A8 /* UserAnnotation.swift in Sources */,
 				4F037D17248EED9D00082C41 /* StationsTableView.swift in Sources */,
 				4F75797F248E87EE00FF533C /* AppCache.swift in Sources */,
 				4F88AE4A2486DA0C00CA20D7 /* BaseViewController.swift in Sources */,
 				4FB5E98324883C9B0040C1BD /* AppConstants.swift in Sources */,
 				4F037D22248EF90200082C41 /* StationsListModel.swift in Sources */,
 				4F065EC6248D62350066ED5A /* StationViewController.swift in Sources */,
-				4F582592257D3D6B0070A7CA /* LocationManager.swift in Sources */,
 				4FA3338424902F860091E356 /* NoContentView.swift in Sources */,
 				4FB5E97C24882E170040C1BD /* WebService.swift in Sources */,
-				4F0E6659257E5ECC0073E0A8 /* UserAnnotationView.swift in Sources */,
 				4F7A5350248C2501005C502E /* StationAnnotation.swift in Sources */,
 				4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */,
 				4FB5E971248782F00040C1BD /* Station.swift in Sources */,
