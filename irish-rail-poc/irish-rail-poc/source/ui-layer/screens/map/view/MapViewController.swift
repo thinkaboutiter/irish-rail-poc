@@ -106,6 +106,7 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
         super.viewDidLoad()
         self.configureUi()
         self.loadStations()
+        locationManager.getUserLocation()
     }
     
     // MARK: - UI configs
@@ -166,28 +167,55 @@ extension MapViewController: LocationManagerUpdatesConsumer {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let stationAnnotation: StationAnnotation = annotation as? StationAnnotation else {
-            return nil
+        let annotationView: MKAnnotationView?
+        if let stationAnnotation: StationAnnotation = annotation as? StationAnnotation {
+            annotationView = stationAnnotationView(from: stationAnnotation)
         }
+        else if let userAnnotation = annotation as? UserAnnotation {
+            annotationView = userAnnotationView(from: userAnnotation)
+        }
+        else {
+            annotationView = nil
+        }
+        return annotationView
+    }
+    
+    private func stationAnnotationView(from annotation: StationAnnotation) -> MKPinAnnotationView {
         let identifier: String = String(describing: MKPinAnnotationView.self)
         let annotationView: MKPinAnnotationView
         if let cachedView: MKPinAnnotationView = mapView
             .dequeueReusableAnnotationView(withIdentifier: identifier,
-                                           for: stationAnnotation) as? MKPinAnnotationView {
+                                           for: annotation) as? MKPinAnnotationView {
             annotationView = cachedView
         }
         else {
-            annotationView = MKPinAnnotationView(annotation: stationAnnotation,
+            annotationView = MKPinAnnotationView(annotation: annotation,
                                                  reuseIdentifier: identifier)
         }
         annotationView.pinTintColor = .red
         annotationView.animatesDrop = false
         annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: stationAnnotation)
+        annotationView.rightCalloutAccessoryView = self.rightCalloutAccessoryView(for: annotation)
         return annotationView
     }
     
-    private func rightCalloutAccessoryView(for annotation: StationAnnotation) -> StationDataCalloutAccessoryView {
+    private func userAnnotationView(from annnotation: UserAnnotation) -> UserAnnotationView {
+        let identifier = UserAnnotationView.identifier
+        let userPin: UserAnnotationView
+        if let cachedView = mapView
+            .dequeueReusableAnnotationView(withIdentifier: identifier,
+                                           for: annnotation) as? UserAnnotationView {
+            userPin = cachedView
+        }
+        else {
+            userPin = UserAnnotationView(annotation: annnotation)
+        }
+        return userPin
+    }
+    
+    private func rightCalloutAccessoryView(
+        for annotation: StationAnnotation) -> StationDataCalloutAccessoryView
+    {
         let station: Station = annotation.station
         let webService: GetStationDataByCodeWebService = GetStationDataByCodeWebService()
         let repository: StationDataRepository = StationDataRepositoryImpl(webService: webService)

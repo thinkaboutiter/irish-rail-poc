@@ -1,5 +1,5 @@
 //
-//  AppConstants.swift
+//  UserAnnotation.swift
 //  irish-rail-poc
 //
 //  MIT License
@@ -26,11 +26,21 @@
 //
 
 import Foundation
+import MapKit
 
-enum AppConstants {
-    static let projectName: String = "irish-rail-poc"
-
-    enum AssetName {
-        static let userLocationPin = "user-location-pin"
+class UserAnnotation: NSObject, MKAnnotation {
+    
+    // MARK: - Properties
+    private let _coordinate: CLLocationCoordinate2D
+    
+    // MARK: - Initialization
+    init(coordinate: CLLocationCoordinate2D) {
+        _coordinate = coordinate
+        super.init()
+    }
+    
+    // MARK: - MKAnnotation protocol
+    var coordinate: CLLocationCoordinate2D {
+        return _coordinate
     }
 }

@@ -112,6 +112,8 @@ extension CLLocationManagerWrapper: CLLocationManagerDelegate {
         case .authorizedAlways,
              .authorizedWhenInUse:
             startUpdatingLocation()
+        case .notDetermined:
+            getUserLocation()
         default:
             let error = Self.Error.error(from: Self.Error.locationUnauthorized)
             failToObtainLocation(with: error)
