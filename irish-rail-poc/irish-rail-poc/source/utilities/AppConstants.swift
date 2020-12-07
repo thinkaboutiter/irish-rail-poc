@@ -29,8 +29,4 @@ import Foundation
 
 enum AppConstants {
     static let projectName: String = "irish-rail-poc"
-
-    enum AssetName {
-        static let userLocationPin = "user-location-pin"
-    }
 }
