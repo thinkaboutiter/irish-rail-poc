@@ -20,6 +20,9 @@
 		4F07B3E1248C5AA3008129AE /* StationDataCalloutAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */; };
 		4F0E19A124884D7600132DC0 /* GetStationDataByCodeWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */; };
 		4F3A4F1C248E7C02008F54C5 /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */; };
+		4F3B08B1257EF59700045D56 /* TrainModelImplTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B08B0257EF59700045D56 /* TrainModelImplTestCase.swift */; };
+		4F3B08BA257EF7E300045D56 /* StaticStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B08B9257EF7E300045D56 /* StaticStationData.swift */; };
+		4F3B08C0257EFD0A00045D56 /* StaticTrainMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B08BF257EFD0A00045D56 /* StaticTrainMovement.swift */; };
 		4F5490C5248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */; };
 		4F5490C7248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */; };
 		4F704715248ED1C900201093 /* TrainMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704714248ED1C900201093 /* TrainMovementViewModel.swift */; };
@@ -55,6 +58,7 @@
 		4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C1142579B6B6004C6634 /* AbstractMockStationViewModel.swift */; };
 		4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */; };
 		4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */; };
+		4FB4233C257EFF2800876314 /* AbstractMockTrainModelConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4233B257EFF2800876314 /* AbstractMockTrainModelConsumer.swift */; };
 		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
 		4FB5E971248782F00040C1BD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E970248782F00040C1BD /* Station.swift */; };
 		4FB5E97324878BBF0040C1BD /* StationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E97224878BBF0040C1BD /* StationData.swift */; };
@@ -112,6 +116,9 @@
 		4F07B3E0248C5AA3008129AE /* StationDataCalloutAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataCalloutAccessoryView.xib; sourceTree = "<group>"; };
 		4F0E19A024884D7600132DC0 /* GetStationDataByCodeWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStationDataByCodeWebService.swift; sourceTree = "<group>"; };
 		4F3A4F1B248E7C02008F54C5 /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
+		4F3B08B0257EF59700045D56 /* TrainModelImplTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainModelImplTestCase.swift; sourceTree = "<group>"; };
+		4F3B08B9257EF7E300045D56 /* StaticStationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticStationData.swift; sourceTree = "<group>"; };
+		4F3B08BF257EFD0A00045D56 /* StaticTrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTrainMovement.swift; sourceTree = "<group>"; };
 		4F5490C4248C4AD800472ED6 /* StationDataCalloutAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryView.swift; sourceTree = "<group>"; };
 		4F5490C6248C4E0E00472ED6 /* StationDataCalloutAccessoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCalloutAccessoryViewModel.swift; sourceTree = "<group>"; };
 		4F704714248ED1C900201093 /* TrainMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovementViewModel.swift; sourceTree = "<group>"; };
@@ -150,6 +157,7 @@
 		4FB0C1142579B6B6004C6634 /* AbstractMockStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockStationViewModel.swift; sourceTree = "<group>"; };
 		4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockStationsListViewModel.swift; sourceTree = "<group>"; };
 		4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainViewModel.swift; sourceTree = "<group>"; };
+		4FB4233B257EFF2800876314 /* AbstractMockTrainModelConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainModelConsumer.swift; sourceTree = "<group>"; };
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		4FB5E97224878BBF0040C1BD /* StationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationData.swift; sourceTree = "<group>"; };
 		4FB5E97424881C550040C1BD /* TrainMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovement.swift; sourceTree = "<group>"; };
@@ -247,6 +255,23 @@
 				4F037D21248EF90200082C41 /* StationsListModel.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		4F3B08AF257EF56000045D56 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4F3B08B0257EF59700045D56 /* TrainModelImplTestCase.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		4F3B08B8257EF78100045D56 /* static-data */ = {
+			isa = PBXGroup;
+			children = (
+				4F3B08B9257EF7E300045D56 /* StaticStationData.swift */,
+				4F3B08BF257EFD0A00045D56 /* StaticTrainMovement.swift */,
+			);
+			path = "static-data";
 			sourceTree = "<group>";
 		};
 		4F5490C3248C4A9900472ED6 /* _custom-ui */ = {
@@ -392,8 +417,9 @@
 		4FA0D45525795752002F6F41 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				4FA0D45625795752002F6F41 /* ui-layer */,
+				4F3B08B8257EF78100045D56 /* static-data */,
 				4FA0D45725795752002F6F41 /* support-files */,
+				4FA0D45625795752002F6F41 /* ui-layer */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -503,8 +529,9 @@
 		4FB0C1102579B599004C6634 /* train */ = {
 			isa = PBXGroup;
 			children = (
-				4FC5AD3E257EEAD300316BC0 /* view */,
 				4FB0C1132579B5B2004C6634 /* mocks */,
+				4F3B08AF257EF56000045D56 /* model */,
+				4FC5AD3E257EEAD300316BC0 /* view */,
 			);
 			path = train;
 			sourceTree = "<group>";
@@ -529,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */,
+				4FB4233B257EFF2800876314 /* AbstractMockTrainModelConsumer.swift */,
 			);
 			path = mocks;
 			sourceTree = "<group>";
@@ -946,7 +974,11 @@
 				4FC5AD40257EEB2100316BC0 /* TrainViewControllerTestCase.swift in Sources */,
 				4FB0C10325799D18004C6634 /* AbstractMockMapViewModel.swift in Sources */,
 				4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */,
+				4F3B08BA257EF7E300045D56 /* StaticStationData.swift in Sources */,
+				4FB4233C257EFF2800876314 /* AbstractMockTrainModelConsumer.swift in Sources */,
+				4F3B08B1257EF59700045D56 /* TrainModelImplTestCase.swift in Sources */,
 				4FA0D47D25796F63002F6F41 /* AbstractMockMapViewControllerFactory.swift in Sources */,
+				4F3B08C0257EFD0A00045D56 /* StaticTrainMovement.swift in Sources */,
 				4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */,
 				4FA0D46E25795EF8002F6F41 /* RootViewControllerTestCase.swift in Sources */,
 			);
