@@ -58,9 +58,9 @@ class RootViewControllerTestCase: XCTestCase {
     
     func test_whenViewIsLoaded_callsMakeMapViewControllerAPI_onMapViewControllerFactory() {
         // given
-        let expectation = self.expectation(description: "MapViewControllerFactory.makeMapViewController() called")
+        let exp = expectation(description: "MapViewControllerFactory.makeMapViewController() called")
         factory.on_makeMapViewController = {
-            expectation.fulfill()
+            exp.fulfill()
         }
         
         // when
@@ -89,7 +89,6 @@ extension RootViewControllerTestCase {
     private class MockMapViewControllerFactory: AbstractMockMapViewControllerFactory {
         
         var on_makeMapViewController: (() -> Void)?
-        
         override func makeMapViewController() -> MapViewController {
             defer {
                 on_makeMapViewController?()

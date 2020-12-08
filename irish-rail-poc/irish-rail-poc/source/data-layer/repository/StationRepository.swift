@@ -104,11 +104,8 @@ class StationRepositoryImpl: BaseRepository<Station>, StationRepository {
         if !consumed.isEmpty {
             self.stationsCache.add(consumed,
                                    shouldInvalidateExistingCache: true)
-            result = consumed
         }
-        else {
-            result = try self.stationsCache.stations()
-        }
+        result = try self.stationsCache.stations()
         return result
     }
     

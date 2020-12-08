@@ -57,10 +57,10 @@ class CacheImpl<K: Hashable, V>: Cache {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
-            validSelf.objectsCache.removeAllObjects()
+            self.objectsCache.removeAllObjects()
         }
     }
     private lazy var timeStampsCache: NSMapTable<NSNumber, NSDate> = {
@@ -85,11 +85,11 @@ class CacheImpl<K: Hashable, V>: Cache {
         }
         var result: [V]!
         self.concurrentCacheQueue.sync { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
             let keyHash: NSNumber = NSNumber(value: key.hashValue)
-            guard let collection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: keyHash) else {
+            guard let collection: NSMutableOrderedSet = self.objectsCache.object(forKey: keyHash) else {
                 let message: String = "unable to obtain object for key=\(keyHash)"
                 Logger.error.message(message)
                 return
@@ -111,12 +111,12 @@ class CacheImpl<K: Hashable, V>: Cache {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
             let keyHash: NSNumber = NSNumber(value: key.hashValue)
             let collectionToAdd: NSMutableOrderedSet
-            if let existingCollection: NSMutableOrderedSet = validSelf.objectsCache.object(forKey: keyHash),
+            if let existingCollection: NSMutableOrderedSet = self.objectsCache.object(forKey: keyHash),
                 !shouldInvalidateExistingCache
             {
                 collectionToAdd = existingCollection
@@ -125,14 +125,14 @@ class CacheImpl<K: Hashable, V>: Cache {
                 collectionToAdd = NSMutableOrderedSet()
             }
             collectionToAdd.addObjects(from: objects)
-            validSelf.objectsCache.setObject(collectionToAdd, forKey: keyHash)
+            self.objectsCache.setObject(collectionToAdd, forKey: keyHash)
             
             let message: String = "added object for key=\(keyHash)"
             Logger.debug.message(message)
             
             // update time stamp
             let timeStamp: NSDate = NSDate()
-            validSelf.timeStampsCache.setObject(timeStamp, forKey: keyHash)
+            self.timeStampsCache.setObject(timeStamp, forKey: keyHash)
         }
     }
     
@@ -152,11 +152,11 @@ class CacheImpl<K: Hashable, V>: Cache {
     private func timeStamp(for key: K) -> NSDate? {
         var result: NSDate!
         self.concurrentCacheQueue.sync { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
             let key: NSNumber = NSNumber(value: key.hashValue)
-            guard let object: NSDate = validSelf.timeStampsCache.object(forKey: key) else {
+            guard let object: NSDate = self.timeStampsCache.object(forKey: key) else {
                 let message: String = "unable to obtain object for key=\(key)"
                 Logger.error.message(message)
                 return
@@ -170,15 +170,15 @@ class CacheImpl<K: Hashable, V>: Cache {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
             let key: NSNumber = NSNumber(value: key.hashValue)
-            if let _ = validSelf.objectsCache.object(forKey: key) {
-                validSelf.objectsCache.setObject(nil, forKey: key)
+            if let _ = self.objectsCache.object(forKey: key) {
+                self.objectsCache.setObject(nil, forKey: key)
                 
                 // invalidate time stamp
-                validSelf.timeStampsCache.setObject(nil, forKey: key)
+                self.timeStampsCache.setObject(nil, forKey: key)
             }
         }
     }

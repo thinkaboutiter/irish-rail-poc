@@ -40,10 +40,10 @@ class BaseRepository<ApiResponseType> {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
-            validSelf.cache.removeAllObjects()
+            self.cache.removeAllObjects()
         }
     }
     
@@ -74,7 +74,7 @@ class BaseRepository<ApiResponseType> {
         self.concurrentCacheQueue.async(qos: .default,
                                         flags: .barrier)
         { [weak self] in
-            guard let valid_self = self else {
+            guard let self = self else {
                 let message: String = "Unable to consume data!"
                 let error: NSError = ErrorCreator
                     .custom(domain: BaseRepository<ApiResponseType>.Error.domain,
@@ -84,7 +84,7 @@ class BaseRepository<ApiResponseType> {
                 failure(error)
                 return
             }
-            valid_self.cache.addObjects(from: collection)
+            self.cache.addObjects(from: collection)
             DispatchQueue.main.async { [weak self] in
                 guard let _ = self else {
                     let message: String = "Unable to notify for data consumption!"
@@ -125,10 +125,10 @@ class BaseRepository<ApiResponseType> {
     private func flushObjects() -> [ApiResponseType] {
         var result: [ApiResponseType]!
         self.concurrentCacheQueue.sync { [weak self] in
-            guard let validSelf = self else {
+            guard let self = self else {
                 return
             }
-            result = validSelf.cache.compactMap { (element: Any) -> ApiResponseType? in
+            result = self.cache.compactMap { (element: Any) -> ApiResponseType? in
                 guard let object: ApiResponseType = element as? ApiResponseType else {
                     return nil
                 }

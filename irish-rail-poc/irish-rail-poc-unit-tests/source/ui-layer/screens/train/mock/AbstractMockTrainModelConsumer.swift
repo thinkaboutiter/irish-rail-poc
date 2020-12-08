@@ -30,7 +30,7 @@ import Foundation
 
 class AbstractMockTrainModelConsumer: TrainModelConsumer {
     
-    func didUpdateTrainMovements(on viewModel: TrainModel) {
+    func didUpdateTrainMovements(on model: TrainModel) {
         fatalError("not implemented!")
     }
 }

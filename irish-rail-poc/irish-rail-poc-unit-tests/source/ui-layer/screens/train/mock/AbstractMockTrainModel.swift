@@ -1,6 +1,6 @@
 //
-//  TrainModel.swift
-//  irish-rail-poc
+//  AbstractMockTrainModel.swift
+//  irish-rail-poc-unit-tests
 //
 //  MIT License
 //
@@ -25,54 +25,24 @@
 //  SOFTWARE.
 //
 
-import Foundation
-import SimpleLogger
+import XCTest
+@testable import irish_rail_poc
 
-/// APIs for `ViewModel` to expose to `Model`
-protocol TrainModelConsumer: AnyObject {
-    func didUpdateTrainMovements(on model: TrainModel)
-}
-
-/// APIs for `Model` to expose to `ViewModel`
-protocol TrainModel: AnyObject {
-    func setModelConsumer(_ newValue: TrainModelConsumer)
-    func stationData() -> StationData
-    func trainMovements() -> [TrainMovement]
-    func setTrainMovements(_ newValue: [TrainMovement])
-}
-
-class TrainModelImpl: TrainModel {
+class AbstractMockTrainModel: TrainModel {
     
-    // MARK: - Properties
-    private weak var modelConsumer: TrainModelConsumer!
-    private let stationDataStorage: StationData
-    private var trainMovementsStorage: [TrainMovement] = []
-    
-    // MARK: - Initialization
-    init(stationData: StationData) {
-        self.stationDataStorage = stationData
-        Logger.success.message()
-    }
-    
-    deinit {
-        Logger.fatal.message()
-    }
-    
-    // MARK: - TrainModel protocol
     func setModelConsumer(_ newValue: TrainModelConsumer) {
-        self.modelConsumer = newValue
+        fatalError("not implemented!")
     }
     
     func stationData() -> StationData {
-        return self.stationDataStorage
+        fatalError("not implemented!")
     }
     
     func trainMovements() -> [TrainMovement] {
-        return self.trainMovementsStorage
+        fatalError("not implemented!")
     }
     
     func setTrainMovements(_ newValue: [TrainMovement]) {
-        self.trainMovementsStorage = newValue
-        self.modelConsumer.didUpdateTrainMovements(on: self)
+        fatalError("not implemented!")
     }
 }

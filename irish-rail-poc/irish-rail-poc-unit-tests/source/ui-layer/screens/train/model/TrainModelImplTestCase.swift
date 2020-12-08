@@ -34,6 +34,7 @@ class TrainModelImplTestCase: XCTestCase {
     private var sut: TrainModelImpl!
     private var consumer: MockTrainModelConsumer!
 
+    // MARK: - Life cycle
     override func setUpWithError() throws {
         let stationData = StaticStationData.singleValue
         sut = TrainModelImpl(stationData: stationData)
@@ -49,25 +50,24 @@ class TrainModelImplTestCase: XCTestCase {
     // MARK: - Tests    
     func test_returnsCorrectTrainMovements() {
         // given
-        let givenMovements = StaticTrainMovement.collectionValue
+        let expectedMovements = StaticTrainMovement.responseCollectionValue
         
         // when
-        sut.setTrainMovements(givenMovements)
+        sut.setTrainMovements(expectedMovements)
         
         // then
-        let expectedMovements = sut.trainMovements()
-        let zipped = zip(givenMovements, expectedMovements)
-        zipped.forEach { (given, expected) in
-            XCTAssertEqual(given, expected)
-        }
+        let actualMovements = sut.trainMovements()
+        let zipped = zip(expectedMovements, actualMovements)
+        zipped.forEach { XCTAssertEqual($0, $1) }
     }
     
     func test_whenTrainMovementsAreSet_callsDidUpdateTrainMovementsAPIOnConsumer() {
         // given
-        let givenMovements = StaticTrainMovement.collectionValue
-        let expectation = self.expectation(description: "TrainModelConsumer.didUpdateTrainMovements(on:) API called")
+        let givenMovements = StaticTrainMovement.responseCollectionValue
+        let exp = expectation(
+            description: "TrainModelConsumer.didUpdateTrainMovements(on:) API called")
         consumer.on_didUpdateTrainMovements = {
-            expectation.fulfill()
+            exp.fulfill()
         }
         
         // when
@@ -84,8 +84,7 @@ extension TrainModelImplTestCase {
     private class MockTrainModelConsumer: AbstractMockTrainModelConsumer {
         
         var on_didUpdateTrainMovements: (() -> Void)?
-        
-        override func didUpdateTrainMovements(on viewModel: TrainModel) {
+        override func didUpdateTrainMovements(on model: TrainModel) {
             on_didUpdateTrainMovements?()
         }
     }

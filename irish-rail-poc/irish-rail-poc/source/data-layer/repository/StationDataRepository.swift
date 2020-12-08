@@ -134,11 +134,8 @@ class StationDataRepositoryImpl: BaseRepository<StationData>, StationDataReposit
             self.stationDataCache.add(consumed,
                                       for: stationCode,
                                       shouldInvalidateExistingCache: true)
-            result = consumed
         }
-        else {
-            result = try self.stationDataCache.stationData(for: stationCode)
-        }
+        result = try self.stationDataCache.stationData(for: stationCode)
         return result
     }
     

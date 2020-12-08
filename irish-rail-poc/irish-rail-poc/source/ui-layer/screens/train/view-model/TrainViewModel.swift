@@ -40,7 +40,6 @@ protocol SearchTainMovementViewModel: AnyObject {
     func setDisplayingSearchResults(_ newValue: Bool)
     func getSearchTerm() -> String
     func setSearchTerm(_ newValue: String)
-    func filteredItems(by term: String) -> [TrainMovement]
 }
 
 /// APIs for `ViewModel` to expose to `View`
@@ -84,9 +83,10 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     
     func fetchTrainMovements() {
         self.repository.reset()
-        self.repository.fetchTrainMovement(for: self.stationData().trainCode,
-                                           trainDate: self.stationData().trainDate,
-                                           usingCache: true)
+        let stationData = self.stationData()
+        self.repository.fetchTrainMovements(for: stationData.trainCode,
+                                            trainDate: stationData.trainDate,
+                                            usingCache: true)
     }
     
     func cancelTrainMovementsFetching() {
@@ -105,8 +105,20 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
         return result
     }
     
+    private func filteredItems(by term: String) -> [TrainMovement] {
+        var result: [TrainMovement] = []
+        do {
+            result = try self.repository.filteredTrainMovements(by: term)
+        }
+        catch {
+            Logger.error.message().object(error)
+        }
+        return result
+    }
+    
     func item(at indexPath: IndexPath) -> TrainMovement? {
-        let range: Range<Int> = 0..<self.items().count
+        let count: Int = self.items().count
+        let range: Range<Int> = 0..<count
         let index: Int = indexPath.item
         guard range ~= index else {
             let message: String = "index=\(index) out of range=\(range)!"
@@ -138,19 +150,8 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
         self.searchTerm = newValue
     }
     
-    func filteredItems(by term: String) -> [TrainMovement] {
-        var result: [TrainMovement] = []
-        do {
-            result = try self.repository.filteredTrainMovements(by: term)
-        }
-        catch {
-            Logger.error.message().object(error)
-        }
-        return result
-    }
-    
     // MARK: - TrainModelConsumer protocol
-    func didUpdateTrainMovements(on viewModel: TrainModel) {
+    func didUpdateTrainMovements(on model: TrainModel) {
         self.viewModelConsumer.didFinishFetchingTrainMovements(on: self)
     }
 }
@@ -158,17 +159,17 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
 // MARK: - TrainMovementRepositoryConsumer protocol
 extension TrainViewModelImpl: TrainMovementRepositoryConsumer {
     
-    func didFetchTrainMovement(on repository: TrainMovementRepository) {
+    func didFetchTrainMovements(on repository: TrainMovementRepository) {
         do {
             let trainMovements: [TrainMovement] = try repository.trainMovements().sorted() { $0.locationOrder < $1.locationOrder}
             self.model.setTrainMovements(trainMovements)
         }
         catch {
-            self.didFailToFetchTrainMovement(on: repository, with: error)
+            self.didFailToFetchTrainMovements(on: repository, with: error)
         }
     }
     
-    func didFailToFetchTrainMovement(on repository: TrainMovementRepository, with error: Error) {
+    func didFailToFetchTrainMovements(on repository: TrainMovementRepository, with error: Error) {
         self.viewModelConsumer.didFailFetchingTrainMovements(on: self, error: error)
     }
 }

@@ -55,9 +55,4 @@ enum StaticStationData {
                                             locationType: "D")
         return data
     }()
-    
-    static let collectionValue: [StationData] = {
-        let result = Array<StationData>.init(repeating: Self.singleValue, count: 20)
-        return result
-    }()
 }

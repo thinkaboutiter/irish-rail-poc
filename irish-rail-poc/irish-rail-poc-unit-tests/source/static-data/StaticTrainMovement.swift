@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import SimpleLogger
 @testable import irish_rail_poc
 
 /// Use as namespace to hold all `StationData` static data APIs
@@ -47,9 +48,22 @@ enum StaticTrainMovement {
                                                 stopType: "-")
         return data
     }()
-    
-    static let collectionValue: [TrainMovement] = {
-        let result = Array<TrainMovement>.init(repeating: Self.singleValue, count: 20)
+        
+    static let responseCollectionValue: [TrainMovement] = {
+        var result = Array<TrainMovement>()
+        let filename = TargetConstants.trainMovements_xml_filename
+        let bundle = TargetConstants.bundle
+        guard let path = bundle.path(forResource: filename, ofType: nil) else {
+            Logger.error.message("Invalid path for filename=\(filename)")
+            return result
+        }
+        do {
+            let contents = try String(contentsOfFile: path)
+            result = try TrainMovementParser.parse(contents)
+        }
+        catch {
+            Logger.error.message("Error").object(error as NSError)
+        }
         return result
     }()
 }
