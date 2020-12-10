@@ -317,11 +317,6 @@ extension TrainViewModelImplTestCase {
             on_setRepositoryConsumer?()
         }
         
-        var on_reset: (() -> Void)?
-        override func reset() {
-            on_reset?()
-        }
-        
         var on_fetchTrainMovement: (() -> Void)?
         override func fetchTrainMovements(for trainCode: String,
                                           trainDate: String,
@@ -330,6 +325,12 @@ extension TrainViewModelImplTestCase {
             consumer?.didFetchTrainMovements(on: self)
             on_fetchTrainMovement?()
         }
+        
+        var on_reset: (() -> Void)?
+        override func reset() {
+            on_reset?()
+        }
+        
         
         var on_trainMovements: (() -> Void)?
         override func trainMovements() throws -> [TrainMovement] {

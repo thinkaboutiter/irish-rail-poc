@@ -116,6 +116,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     }
     
     private func configureNavigationBar() {
+        /// need to setup `close_button` only for modal presentations
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {

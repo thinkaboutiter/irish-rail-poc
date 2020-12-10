@@ -1,6 +1,6 @@
 //
-//  TargetConstants.swift
-//  irish-rail-poc-unit-tests
+//  Array+Utils.swift
+//  irish-rail-poc
 //
 //  MIT License
 //
@@ -26,12 +26,20 @@
 //
 
 import Foundation
+import SimpleLogger
 
-enum TargetConstants {
-    static let trainMovements_xml_filename = "TrainMovements.xml"
-    static let bundle: Bundle = {
-        class BundleClass {}
-        let result = Bundle(for: BundleClass.self)
+// MARK: - Safe element at index
+public extension Array {
+    
+    subscript(safeAt index: Int) -> Element? {
+        var result: Element? = nil
+        let range = 0..<count
+        guard range ~= index else {
+            let message: String = "index=\(index) out of range=\(range)!"
+            Logger.warning.message(message)
+            return result
+        }
+        result = self[index]
         return result
-    }()
+    }
 }

@@ -106,14 +106,9 @@ class StationsListViewModelImpl: StationsListViewModel, StationsListModelConsume
     }
     
     func item(at indexPath: IndexPath) -> Station? {
-        let range: Range<Int> = 0..<self.items().count
-        let index: Int = indexPath.item
-        guard range ~= index else {
-            let message: String = "index=\(index) out of range=\(range)!"
-            Logger.error.message(message)
-            return nil
-        }
-        let result: Station = self.items()[index]
+        let index = indexPath.item
+        let collection = items()
+        let result = collection[safeAt: index]
         return result
     }
     

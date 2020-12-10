@@ -1,5 +1,5 @@
 //
-//  TargetConstants.swift
+//  ArraySafeElementAtIndexTestCase.swift
 //  irish-rail-poc-unit-tests
 //
 //  MIT License
@@ -25,13 +25,42 @@
 //  SOFTWARE.
 //
 
-import Foundation
+import XCTest
 
-enum TargetConstants {
-    static let trainMovements_xml_filename = "TrainMovements.xml"
-    static let bundle: Bundle = {
-        class BundleClass {}
-        let result = Bundle(for: BundleClass.self)
-        return result
-    }()
+class ArraySafeElementAtIndexTestCase: XCTestCase {
+    
+    // MARK: - Properties
+    private var sut: Array<NSObject>!
+    
+    // MARK: - Life cycle
+    override func setUpWithError() throws {
+        sut = Array<NSObject>.init(repeating: NSObject(), count: 5)
+    }
+
+    override func tearDownWithError() throws {
+        sut = nil
+    }
+    
+    // MARK: - Tests
+    func test_whenAccessingOutOfBoundsIndex_nilIsReturned() {
+        // given
+        let index = sut.count
+        
+        // when
+        let element = sut[safeAt: index]
+        
+        // then
+        XCTAssertNil(element)
+    }
+    
+    func test_whenAccessingWithinBoundsIndex_correctElementIsReturned() {
+        // given
+        let index = 0
+        let expectedElement = sut.first
+        
+        // when
+        let actualElement = sut[safeAt: index]
+        
+        XCTAssertTrue(expectedElement === actualElement)
+    }
 }

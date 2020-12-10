@@ -83,6 +83,11 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     }
     
     func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Swift.Error) {
+        self.updateNoContentViewVisibility()
+        self.showAlert(for: error)
+    }
+    
+    private func updateNoContentViewVisibility() {
         if self.viewModel.items().count == 0 {
             let text: String = NSLocalizedString("No train data available.", comment: "No train data available.")
             self.showNoContentView(with: text)
@@ -90,7 +95,6 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
         else {
             self.hideNoContentView()
         }
-        self.showAlert(for: error)
     }
     
     // MARK: - Life cycle
@@ -113,6 +117,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     }
     
     private func configureNavigationBar() {
+        /// need to setup `close_button` only for modal presentations
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {

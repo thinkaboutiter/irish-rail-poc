@@ -117,15 +117,9 @@ class TrainViewModelImpl: TrainViewModel, TrainModelConsumer {
     }
     
     func item(at indexPath: IndexPath) -> TrainMovement? {
-        let count: Int = self.items().count
-        let range: Range<Int> = 0..<count
-        let index: Int = indexPath.item
-        guard range ~= index else {
-            let message: String = "index=\(index) out of range=\(range)!"
-            Logger.error.message(message)
-            return nil
-        }
-        let result: TrainMovement = self.items()[index]
+        let index = indexPath.item
+        let collection = items()
+        let result = collection[safeAt: index]
         return result
     }
     

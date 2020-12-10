@@ -1,5 +1,5 @@
 //
-//  TargetConstants.swift
+//  ValueProvidable.swift
 //  irish-rail-poc-unit-tests
 //
 //  MIT License
@@ -27,11 +27,25 @@
 
 import Foundation
 
-enum TargetConstants {
-    static let trainMovements_xml_filename = "TrainMovements.xml"
-    static let bundle: Bundle = {
-        class BundleClass {}
-        let result = Bundle(for: BundleClass.self)
+protocol ValueProvidable {
+    func value<T>(forLabel label: String) -> T?
+}
+
+extension ValueProvidable {
+    
+    /// Using `Mirror` to obtain value of private property
+    /// - Parameter label: property name
+    /// - Returns: optional property value
+    func value<T>(forLabel label: String) -> T? {
+        var result: T? = nil
+        let mirror = Mirror(reflecting: self)
+                
+        for child in mirror.children {
+            if child.label == label {
+                result = child.value as? T
+                break
+            }
+        }
         return result
-    }()
+    }
 }
