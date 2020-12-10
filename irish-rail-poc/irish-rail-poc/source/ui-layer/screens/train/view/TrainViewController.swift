@@ -100,12 +100,12 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
+        self.configureUI()
         self.viewModel.fetchTrainMovements()
     }
     
     // MARK: - Configuration
-    private func configureUi() {
+    private func configureUI() {
         self.title = "\(NSLocalizedString("train", comment: "train")) \(self.viewModel.stationData().trainCode)".uppercased()
         self.configureNavigationBar()
         self.configureSearchBar()

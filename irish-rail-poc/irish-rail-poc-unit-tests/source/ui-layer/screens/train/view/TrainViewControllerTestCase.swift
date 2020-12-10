@@ -28,7 +28,7 @@
 import XCTest
 @testable import irish_rail_poc
 
-extension TrainViewController: ValueProvidable {}
+extension TrainViewController: ValueProvider {}
 
 extension TrainViewControllerTestCase {
     

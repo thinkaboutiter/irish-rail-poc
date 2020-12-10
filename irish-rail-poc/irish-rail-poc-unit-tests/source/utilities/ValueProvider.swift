@@ -1,5 +1,5 @@
 //
-//  ValueProvidable.swift
+//  ValueProvider.swift
 //  irish-rail-poc-unit-tests
 //
 //  MIT License
@@ -27,13 +27,13 @@
 
 import Foundation
 
-protocol ValueProvidable {
+protocol ValueProvider {
     func value<T>(forLabel label: String) -> T?
 }
 
-extension ValueProvidable {
+extension ValueProvider {
     
-    /// Using `Mirror` to obtain value of private property
+    /// Using `Mirror` to obtain value of a property by given name (label)
     /// - Parameter label: property name
     /// - Returns: optional property value
     func value<T>(forLabel label: String) -> T? {

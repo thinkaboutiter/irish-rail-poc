@@ -95,12 +95,12 @@ class StationsListViewController: BaseViewController, StationsListViewModelConsu
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
+        self.configureUI()
         self.loadStations()
     }
     
     // MARK: - ConfigureUI
-    private func configureUi() {
+    private func configureUI() {
         self.navigationItem.searchController = self.searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.title = NSLocalizedString("Stations", comment: "Stations")

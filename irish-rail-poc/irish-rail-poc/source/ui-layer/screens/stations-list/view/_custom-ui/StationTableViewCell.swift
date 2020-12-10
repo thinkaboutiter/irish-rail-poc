@@ -40,7 +40,7 @@ class StationTableViewCell: UITableViewCell {
     // MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.resetUi()
+        self.resetUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -62,7 +62,7 @@ class StationTableViewCell: UITableViewCell {
         self.stationCodeLabel.text = station.code.uppercased()
     }
     
-    func resetUi() {
+    func resetUI() {
         let text: String = NSLocalizedString("N/A", comment: "N/A")
         self.stationNameLabel.text = text
         self.stationCodeLabel.text = text

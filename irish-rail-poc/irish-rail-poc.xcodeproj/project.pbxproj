@@ -60,7 +60,7 @@
 		4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */; };
 		4FB0C11F2579B7D1004C6634 /* AbstractMockTrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */; };
 		4FB4233C257EFF2800876314 /* AbstractMockTrainModelConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4233B257EFF2800876314 /* AbstractMockTrainModelConsumer.swift */; };
-		4FB511E02581CA6200FC1C26 /* ValueProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB511DF2581CA6200FC1C26 /* ValueProvidable.swift */; };
+		4FB511E02581CA6200FC1C26 /* ValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB511DF2581CA6200FC1C26 /* ValueProvider.swift */; };
 		4FB511E42581D80500FC1C26 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB511E32581D80500FC1C26 /* Array+Utils.swift */; };
 		4FB511EB2581DA7F00FC1C26 /* ArraySafeElementAtIndexTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB511EA2581DA7F00FC1C26 /* ArraySafeElementAtIndexTestCase.swift */; };
 		4FB5E96D2486E2720040C1BD /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB5E96C2486E2720040C1BD /* SWXMLHash */; };
@@ -89,6 +89,7 @@
 		4FCBB2DB248DA13000586FB3 /* CollectionViewDimensionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */; };
 		4FCBB2DE248DA29D00586FB3 /* StationDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */; };
 		4FCBB2DF248DA29D00586FB3 /* StationDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCBB2DD248DA29D00586FB3 /* StationDataCollectionViewCell.xib */; };
+		4FCBBF602582C69800AEE9E2 /* TrainMovementViewTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCBBF5F2582C69800AEE9E2 /* TrainMovementViewTestCase.swift */; };
 		4FD70C24248EFBAC00EF5FA2 /* StationsListDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD70C23248EFBAC00EF5FA2 /* StationsListDependencyContainer.swift */; };
 		4FDA502325805077008F5C08 /* TargetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA502225805077008F5C08 /* TargetConstants.swift */; };
 		4FDA5035258065C6008F5C08 /* AbstractMockTrainViewModelConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA5034258065C6008F5C08 /* AbstractMockTrainViewModelConsumer.swift */; };
@@ -168,7 +169,7 @@
 		4FB0C11A2579B73F004C6634 /* AbstractMockStationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockStationsListViewModel.swift; sourceTree = "<group>"; };
 		4FB0C11E2579B7D1004C6634 /* AbstractMockTrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainViewModel.swift; sourceTree = "<group>"; };
 		4FB4233B257EFF2800876314 /* AbstractMockTrainModelConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainModelConsumer.swift; sourceTree = "<group>"; };
-		4FB511DF2581CA6200FC1C26 /* ValueProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueProvidable.swift; sourceTree = "<group>"; };
+		4FB511DF2581CA6200FC1C26 /* ValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueProvider.swift; sourceTree = "<group>"; };
 		4FB511E32581D80500FC1C26 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		4FB511EA2581DA7F00FC1C26 /* ArraySafeElementAtIndexTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySafeElementAtIndexTestCase.swift; sourceTree = "<group>"; };
 		4FB5E970248782F00040C1BD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 		4FCBB2DA248DA13000586FB3 /* CollectionViewDimensionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDimensionsProvider.swift; sourceTree = "<group>"; };
 		4FCBB2DC248DA29D00586FB3 /* StationDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FCBB2DD248DA29D00586FB3 /* StationDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FCBBF5F2582C69800AEE9E2 /* TrainMovementViewTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMovementViewTestCase.swift; sourceTree = "<group>"; };
 		4FD70C23248EFBAC00EF5FA2 /* StationsListDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListDependencyContainer.swift; sourceTree = "<group>"; };
 		4FDA502225805077008F5C08 /* TargetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetConstants.swift; sourceTree = "<group>"; };
 		4FDA5034258065C6008F5C08 /* AbstractMockTrainViewModelConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMockTrainViewModelConsumer.swift; sourceTree = "<group>"; };
@@ -781,16 +783,25 @@
 		4FC5AD3E257EEAD300316BC0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4FCBBF5E2582C60A00AEE9E2 /* _custom-ui */,
 				4FC5AD3F257EEB2100316BC0 /* TrainViewControllerTestCase.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		4FCBBF5E2582C60A00AEE9E2 /* _custom-ui */ = {
+			isa = PBXGroup;
+			children = (
+				4FCBBF5F2582C69800AEE9E2 /* TrainMovementViewTestCase.swift */,
+			);
+			path = "_custom-ui";
 			sourceTree = "<group>";
 		};
 		4FDA502125805055008F5C08 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
 				4FDA502225805077008F5C08 /* TargetConstants.swift */,
-				4FB511DF2581CA6200FC1C26 /* ValueProvidable.swift */,
+				4FB511DF2581CA6200FC1C26 /* ValueProvider.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -1049,9 +1060,10 @@
 			files = (
 				4FB0C11B2579B73F004C6634 /* AbstractMockStationsListViewModel.swift in Sources */,
 				4FC5AD40257EEB2100316BC0 /* TrainViewControllerTestCase.swift in Sources */,
-				4FB511E02581CA6200FC1C26 /* ValueProvidable.swift in Sources */,
+				4FB511E02581CA6200FC1C26 /* ValueProvider.swift in Sources */,
 				4FDC7233257F079F00FC2BC6 /* AbstactMockTrainMovementRepository.swift in Sources */,
 				4FDC721C257F063B00FC2BC6 /* TrainViewModelImplTestCase.swift in Sources */,
+				4FCBBF602582C69800AEE9E2 /* TrainMovementViewTestCase.swift in Sources */,
 				4FB511EB2581DA7F00FC1C26 /* ArraySafeElementAtIndexTestCase.swift in Sources */,
 				4FB0C10325799D18004C6634 /* AbstractMockMapViewModel.swift in Sources */,
 				4FB0C1152579B6B6004C6634 /* AbstractMockStationViewModel.swift in Sources */,

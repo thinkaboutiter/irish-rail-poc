@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,7 +13,7 @@
                 <outlet property="arrivalTitleLabel" destination="yhd-wK-1XG" id="odd-ie-ntp"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="dc2-vg-z9h"/>
                 <outlet property="dateLabel" destination="kyp-AC-PIq" id="aTf-sc-Rf6"/>
-                <outlet property="departureTImeLabel" destination="40a-sW-aeH" id="GUg-jE-6JB"/>
+                <outlet property="departureTimeLabel" destination="40a-sW-aeH" id="GUg-jE-6JB"/>
                 <outlet property="departureTitleLabel" destination="MgK-s4-C2D" id="1IW-AQ-eiy"/>
                 <outlet property="locationCodeLabel" destination="vsI-Hm-FrN" id="535-ri-kj8"/>
                 <outlet property="locationLabel" destination="Zlc-n1-Npp" id="QoH-Mm-6Sp"/>
@@ -112,13 +112,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="16"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="arrival" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-wK-1XG" userLabel="arrival-title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="206" height="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="205.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eun-2F-HPm" userLabel="arrival-time">
-                                                    <rect key="frame" x="214" y="0.0" width="26" height="16"/>
+                                                    <rect key="frame" x="213.5" y="0.0" width="26.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -129,13 +129,13 @@
                                             <rect key="frame" x="0.0" y="17" width="240" height="16"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="departure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgK-s4-C2D" userLabel="departure-title">
-                                                    <rect key="frame" x="0.0" y="0.0" width="206" height="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="205.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40a-sW-aeH" userLabel="departure-time">
-                                                    <rect key="frame" x="214" y="0.0" width="26" height="16"/>
+                                                    <rect key="frame" x="213.5" y="0.0" width="26.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -152,7 +152,7 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="oYK-kd-cwL" secondAttribute="trailing" id="9dc-MJ-Jat"/>
                 <constraint firstAttribute="bottom" secondItem="oYK-kd-cwL" secondAttribute="bottom" id="H0o-yb-6mi"/>
@@ -172,5 +172,8 @@
         <namedColor name="app-title-background">
             <color red="0.63499999046325684" green="0.63499999046325684" blue="0.63499999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

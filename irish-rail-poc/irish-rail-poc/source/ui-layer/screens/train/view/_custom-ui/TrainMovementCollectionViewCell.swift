@@ -43,7 +43,7 @@ class TrainMovementCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.trainMovementView.resetUi()
+        self.trainMovementView.resetUI()
     }
     
     override func layoutSubviews() {
