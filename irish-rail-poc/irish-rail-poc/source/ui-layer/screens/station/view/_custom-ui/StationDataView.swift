@@ -70,7 +70,7 @@ class StationDataView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
-        self.resetUi()
+        self.resetUI()
     }
     
     // MARK: - Life cycle
@@ -82,10 +82,10 @@ class StationDataView: UIView {
     // MARK: - Configuration
     func configure(with viewModel: StationDataViewModel) {
         self.viewModel = viewModel
-        self.configureUi(with: viewModel)
+        self.configureUI(with: viewModel)
     }
     
-    private func configureUi(with viewModel: StationDataViewModel) {
+    private func configureUI(with viewModel: StationDataViewModel) {
         self.trainCodeLabel.text = "\(NSLocalizedString("train", comment: "train")) \(viewModel.trainCode)".uppercased()
         self.trainDateLabel.text = viewModel.trainDate.uppercased()
         self.originLabel.text = viewModel.origin.uppercased()
@@ -100,7 +100,7 @@ class StationDataView: UIView {
         self.expArrivalTimeLabel.text = viewModel.expectedArrival
     }
     
-    func resetUi() {
+    func resetUI() {
         self.trainCodeLabel.text = NSLocalizedString("train N/A", comment: "train N/A").uppercased()
         self.trainDateLabel.text = NSLocalizedString("N/A", comment: "N/A")
         self.originLabel.text = NSLocalizedString("origin", comment: "origin").uppercased()

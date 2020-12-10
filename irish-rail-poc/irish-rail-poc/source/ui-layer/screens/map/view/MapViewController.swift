@@ -100,12 +100,12 @@ class MapViewController: BaseViewController, MapViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
+        self.configureUI()
         self.loadStations()
     }
     
     // MARK: - UI configs
-    private func configureUi() {
+    private func configureUI() {
         // used only for development
         self.reloadButton.isHidden = true
         self.title = NSLocalizedString("Stations map", comment: "Stations map")

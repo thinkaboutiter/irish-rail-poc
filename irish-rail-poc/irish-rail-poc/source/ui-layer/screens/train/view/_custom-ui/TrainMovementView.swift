@@ -41,7 +41,7 @@ class TrainMovementView: UIView {
     @IBOutlet private weak var arrivalTitleLabel: UILabel!
     @IBOutlet private weak var arrivalTimeLabel: UILabel!
     @IBOutlet private weak var departureTitleLabel: UILabel!
-    @IBOutlet private weak var departureTImeLabel: UILabel!
+    @IBOutlet private weak var departureTimeLabel: UILabel!
     private var viewModel: TrainMovementViewModel!
     
     // MARK: - Initialization
@@ -67,7 +67,7 @@ class TrainMovementView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
-        self.resetUi()
+        self.resetUI()
     }
     
     // MARK: - Life cycle
@@ -79,10 +79,10 @@ class TrainMovementView: UIView {
     // MARK: - Configurations
     func configure(with viewModel: TrainMovementViewModel) {
         self.viewModel = viewModel
-        self.configureUi(with: viewModel)
+        self.configureUI(with: viewModel)
     }
     
-    private func configureUi(with viewModel: TrainMovementViewModel) {
+    private func configureUI(with viewModel: TrainMovementViewModel) {
         self.originDestinationLabel.text = "\(viewModel.trainOrigin) - \(viewModel.trainDestination)".uppercased()
         self.dateLabel.text = viewModel.trainDate.uppercased()
         self.locationLabel.text = viewModel.locationFullName.uppercased()
@@ -91,10 +91,10 @@ class TrainMovementView: UIView {
         self.arrivalTitleLabel.text = NSLocalizedString("arrival", comment: "arrival").uppercased()
         self.arrivalTimeLabel.text = "(\(viewModel.scheduledArrival))"
         self.departureTitleLabel.text = NSLocalizedString("departure", comment: "departure").uppercased()
-        self.departureTImeLabel.text = "(\(viewModel.scheduledDeparture))"
+        self.departureTimeLabel.text = "(\(viewModel.scheduledDeparture))"
     }
     
-    func resetUi() {
+    func resetUI() {
         self.originDestinationLabel.text = NSLocalizedString("N/A - N/A", comment: "N/A - N/A")
         self.dateLabel.text = NSLocalizedString("N/A", comment: "N/A")
         self.locationLabel.text = NSLocalizedString("N/A", comment: "N/A")
@@ -103,6 +103,6 @@ class TrainMovementView: UIView {
         self.arrivalTitleLabel.text = NSLocalizedString("arrival", comment: "arrival").uppercased()
         self.arrivalTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
         self.departureTitleLabel.text = NSLocalizedString("departure", comment: "departure").uppercased()
-        self.departureTImeLabel.text = NSLocalizedString("N/A", comment: "N/A")
+        self.departureTimeLabel.text = NSLocalizedString("N/A", comment: "N/A")
     }
 }

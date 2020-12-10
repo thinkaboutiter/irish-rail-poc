@@ -29,9 +29,9 @@ import Foundation
 import SimpleLogger
 
 protocol TrainMovementRepositoryConsumer: AnyObject {
-    func didFetchTrainMovement(on repository: TrainMovementRepository)
-    func didFailToFetchTrainMovement(on repository: TrainMovementRepository,
-                                     with error: Swift.Error)
+    func didFetchTrainMovements(on repository: TrainMovementRepository)
+    func didFailToFetchTrainMovements(on repository: TrainMovementRepository,
+                                      with error: Swift.Error)
 }
 
 protocol TrainMovementRepository: AnyObject {
@@ -41,9 +41,9 @@ protocol TrainMovementRepository: AnyObject {
     func setRepositoryConsumer(_ newValue: TrainMovementRepositoryConsumer)
     
     /// Obtain `TrainMovement` objects.
-    func fetchTrainMovement(for trainCode: String,
-                            trainDate: String,
-                            usingCache: Bool)
+    func fetchTrainMovements(for trainCode: String,
+                             trainDate: String,
+                             usingCache: Bool)
     
     /// Reset local cache and initiate fetch again.
     func refresh()
@@ -79,16 +79,16 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
         self.consumer = newValue
     }
     
-    func fetchTrainMovement(for trainCode: String,
-                            trainDate: String,
-                            usingCache: Bool)
+    func fetchTrainMovements(for trainCode: String,
+                             trainDate: String,
+                             usingCache: Bool)
     {
         self.trainCode = trainCode
         self.trainDate = trainDate
         let isCacheValid: Bool = self.trainMovementsCache.isTrainMovementsCacheValid(for: trainCode)
         let shouldUseCache: Bool = usingCache && isCacheValid
         guard !shouldUseCache else {
-            self.consumer.didFetchTrainMovement(on: self)
+            self.consumer.didFetchTrainMovements(on: self)
             return
         }
         self.trainMovementsCache.invalidateTrainMovementsCache(for: trainCode)
@@ -98,12 +98,12 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
         ]
         self.fetchResources(
             success: {
-                self.consumer.didFetchTrainMovement(on: self)
-        },
+                self.consumer.didFetchTrainMovements(on: self)
+            },
             failure: { (error: Swift.Error) in
-                self.consumer.didFailToFetchTrainMovement(on: self,
-                                                          with: error)
-        })
+                self.consumer.didFailToFetchTrainMovements(on: self,
+                                                           with: error)
+            })
     }
     
     override func refresh() {
@@ -113,8 +113,8 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
                                                      code: Error.Code.invalidTrainCodeParameter,
                                                      localizedMessage: message).error()
-            self.consumer.didFailToFetchTrainMovement(on: self,
-                                                      with: error)
+            self.consumer.didFailToFetchTrainMovements(on: self,
+                                                       with: error)
             return
         }
         guard let trainDate: String = self.trainDate else {
@@ -122,13 +122,13 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
             let error: NSError = ErrorCreator.custom(domain: Error.domain,
                                                      code: Error.Code.invalidTrainDateParameter,
                                                      localizedMessage: message).error()
-            self.consumer.didFailToFetchTrainMovement(on: self,
-                                                      with: error)
+            self.consumer.didFailToFetchTrainMovements(on: self,
+                                                       with: error)
             return
         }
-        self.fetchTrainMovement(for: trainCode,
-                                trainDate: trainDate,
-                                usingCache: false)
+        self.fetchTrainMovements(for: trainCode,
+                                 trainDate: trainDate,
+                                 usingCache: false)
     }
     
     func trainMovements() throws -> [TrainMovement] {
@@ -145,11 +145,8 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
             self.trainMovementsCache.add(consumed,
                                          for: trainCode,
                                          shouldInvalidateExistingCache: true)
-            result = consumed
         }
-        else {
-            result = try self.trainMovementsCache.trainMovement(for: trainCode)
-        }
+        result = try self.trainMovementsCache.trainMovements(for: trainCode)
         return result
     }
     
@@ -157,8 +154,8 @@ class TrainMovementRepositoryImpl: BaseRepository<TrainMovement>, TrainMovementR
         let lowercasedTerm: String = term.lowercased()
         let result: [TrainMovement] = try self.trainMovements().filter { (trainMovement: TrainMovement) -> Bool in
             return (trainMovement.locationFullName.lowercased().contains(lowercasedTerm)
-                || trainMovement.trainOrigin.lowercased().contains(lowercasedTerm)
-                || trainMovement.trainDestination.lowercased().contains(lowercasedTerm))
+                        || trainMovement.trainOrigin.lowercased().contains(lowercasedTerm)
+                        || trainMovement.trainDestination.lowercased().contains(lowercasedTerm))
         }
         return result
     }

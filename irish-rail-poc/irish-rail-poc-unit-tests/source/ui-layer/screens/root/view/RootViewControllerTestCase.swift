@@ -1,5 +1,5 @@
 //
-//  RootViewControllerTests.swift
+//  RootViewControllerTestCase.swift
 //  irish-rail-poc-unit-tests
 //
 //  MIT License
@@ -28,7 +28,7 @@
 import XCTest
 @testable import irish_rail_poc
 
-class RootViewControllerTests: XCTestCase {
+class RootViewControllerTestCase: XCTestCase {
     
     // MARK: - Properties
     private var sut: RootViewController!
@@ -57,12 +57,17 @@ class RootViewControllerTests: XCTestCase {
     }
     
     func test_whenViewIsLoaded_callsMakeMapViewControllerAPI_onMapViewControllerFactory() {
+        // given
+        let exp = expectation(description: "MapViewControllerFactory.makeMapViewController() called")
+        factory.on_makeMapViewController = {
+            exp.fulfill()
+        }
+        
         // when
         sut.loadViewIfNeeded()
         
         // then
-        let apiDidCall = factory.didCall_makeMapViewController
-        XCTAssertTrue(apiDidCall)
+        waitForExpectations(timeout: 0.0)
     }
     
     func test_whenViewIsLoaded_embeddedNavigationController_hasMapViewController_asRootViewController() {
@@ -78,15 +83,16 @@ class RootViewControllerTests: XCTestCase {
 }
 
 // MARK: - Subtypes
-extension RootViewControllerTests {
+extension RootViewControllerTestCase {
     
     // MARK: - Map
     private class MockMapViewControllerFactory: AbstractMockMapViewControllerFactory {
         
-        private(set) var didCall_makeMapViewController = false
-        
+        var on_makeMapViewController: (() -> Void)?
         override func makeMapViewController() -> MapViewController {
-            didCall_makeMapViewController = true
+            defer {
+                on_makeMapViewController?()
+            }
             let result = DummyMapViewController()
             return result
         }

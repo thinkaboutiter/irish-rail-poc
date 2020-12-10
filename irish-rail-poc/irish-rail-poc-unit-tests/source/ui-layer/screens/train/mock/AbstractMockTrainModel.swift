@@ -1,6 +1,6 @@
 //
-//  TrainMovementCollectionViewCell.swift
-//  irish-rail-poc
+//  AbstractMockTrainModel.swift
+//  irish-rail-poc-unit-tests
 //
 //  MIT License
 //
@@ -25,36 +25,24 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import XCTest
+@testable import irish_rail_poc
 
-class TrainMovementCollectionViewCell: UICollectionViewCell {
+class AbstractMockTrainModel: TrainModel {
     
-    // MARK: - Properties
-    static var identifier: String {
-        return String(describing: TrainMovementCollectionViewCell.self)
-    }
-    @IBOutlet private weak var trainMovementView: TrainMovementView!
-    private(set) var trainMovement: TrainMovement?
-    
-    // MARK: - Life cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    func setModelConsumer(_ newValue: TrainModelConsumer) {
+        fatalError("not implemented!")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.trainMovementView.resetUI()
+    func stationData() -> StationData {
+        fatalError("not implemented!")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.roundCorners(with: 4)
+    func trainMovements() -> [TrainMovement] {
+        fatalError("not implemented!")
     }
     
-    // MARK: - Configurations
-    func configure(with trainMovement: TrainMovement) {
-        self.trainMovement = trainMovement
-        let vm: TrainMovementViewModel = TrainMovementViewModelImpl(trainMovement: trainMovement)
-        self.trainMovementView.configure(with: vm)
+    func setTrainMovements(_ newValue: [TrainMovement]) {
+        fatalError("not implemented!")
     }
 }

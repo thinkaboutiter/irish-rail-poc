@@ -83,6 +83,11 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     }
     
     func didFailFetchingTrainMovements(on viewModel: TrainViewModel, error: Swift.Error) {
+        self.updateNoContentViewVisibility()
+        self.showAlert(for: error)
+    }
+    
+    private func updateNoContentViewVisibility() {
         if self.viewModel.items().count == 0 {
             let text: String = NSLocalizedString("No train data available.", comment: "No train data available.")
             self.showNoContentView(with: text)
@@ -90,18 +95,17 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
         else {
             self.hideNoContentView()
         }
-        self.showAlert(for: error)
     }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
+        self.configureUI()
         self.viewModel.fetchTrainMovements()
     }
     
     // MARK: - Configuration
-    private func configureUi() {
+    private func configureUI() {
         self.title = "\(NSLocalizedString("train", comment: "train")) \(self.viewModel.stationData().trainCode)".uppercased()
         self.configureNavigationBar()
         self.configureSearchBar()
@@ -113,6 +117,7 @@ class TrainViewController: BaseViewController, TrainViewModelConsumer {
     }
     
     private func configureNavigationBar() {
+        /// need to setup `close_button` only for modal presentations
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {

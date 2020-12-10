@@ -1,5 +1,5 @@
 //
-//  TrainMovementCollectionViewCell.swift
+//  Array+Utils.swift
 //  irish-rail-poc
 //
 //  MIT License
@@ -25,36 +25,21 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import SimpleLogger
 
-class TrainMovementCollectionViewCell: UICollectionViewCell {
+// MARK: - Safe element at index
+public extension Array {
     
-    // MARK: - Properties
-    static var identifier: String {
-        return String(describing: TrainMovementCollectionViewCell.self)
-    }
-    @IBOutlet private weak var trainMovementView: TrainMovementView!
-    private(set) var trainMovement: TrainMovement?
-    
-    // MARK: - Life cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.trainMovementView.resetUI()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.roundCorners(with: 4)
-    }
-    
-    // MARK: - Configurations
-    func configure(with trainMovement: TrainMovement) {
-        self.trainMovement = trainMovement
-        let vm: TrainMovementViewModel = TrainMovementViewModelImpl(trainMovement: trainMovement)
-        self.trainMovementView.configure(with: vm)
+    subscript(safeAt index: Int) -> Element? {
+        var result: Element? = nil
+        let range = 0..<count
+        guard range ~= index else {
+            let message: String = "index=\(index) out of range=\(range)!"
+            Logger.warning.message(message)
+            return result
+        }
+        result = self[index]
+        return result
     }
 }

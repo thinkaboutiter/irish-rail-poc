@@ -66,5 +66,6 @@ class NoContentView: UIView {
           .flexibleWidth
         ]
         self.contentView.backgroundColor = .clear
+        self.titleLabel.textAlignment = .center
     }
 }

@@ -99,12 +99,12 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureUi()
+        self.configureUI()
         self.viewModel.fetchStationData()
     }
     
     // MARK: - Configuration
-    private func configureUi() {
+    private func configureUI() {
         self.title = self.viewModel.station().desc
         self.configureNavigationBar()
         self.configureSearchBar()
@@ -116,6 +116,7 @@ class StationViewController: BaseViewController, StationViewModelConsumer {
     }
     
     private func configureNavigationBar() {
+        /// need to setup `close_button` only for modal presentations
         if self.navigationController?.presentingViewController != nil
             || self.presentingViewController != nil
         {

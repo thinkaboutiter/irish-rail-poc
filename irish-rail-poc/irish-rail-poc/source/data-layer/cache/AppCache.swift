@@ -49,7 +49,7 @@ protocol StationDataCache: AnyObject {
 
 /// Cache for `TrainMovements` objects for given `trainCode`
 protocol TrainMovementsCache: AnyObject {
-    func trainMovement(for trainCode: String) throws -> [TrainMovement]
+    func trainMovements(for trainCode: String) throws -> [TrainMovement]
     func add(_ trainMovements: [TrainMovement],
              for trainCode: String,
              shouldInvalidateExistingCache: Bool)
@@ -156,7 +156,7 @@ extension AppCache: StationDataCache {
 // MARK: - TrainMovementsCache protocol
 extension AppCache: TrainMovementsCache {
     
-    func trainMovement(for trainCode: String) throws -> [TrainMovement] {
+    func trainMovements(for trainCode: String) throws -> [TrainMovement] {
         return try self.trainMovementsCache.objects(for: trainCode)
     }
     

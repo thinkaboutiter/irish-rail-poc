@@ -1,6 +1,6 @@
 //
-//  TrainMovementCollectionViewCell.swift
-//  irish-rail-poc
+//  ValueProvider.swift
+//  irish-rail-poc-unit-tests
 //
 //  MIT License
 //
@@ -25,36 +25,27 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-class TrainMovementCollectionViewCell: UICollectionViewCell {
+protocol ValueProvider {
+    func value<T>(forLabel label: String) -> T?
+}
+
+extension ValueProvider {
     
-    // MARK: - Properties
-    static var identifier: String {
-        return String(describing: TrainMovementCollectionViewCell.self)
-    }
-    @IBOutlet private weak var trainMovementView: TrainMovementView!
-    private(set) var trainMovement: TrainMovement?
-    
-    // MARK: - Life cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.trainMovementView.resetUI()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.roundCorners(with: 4)
-    }
-    
-    // MARK: - Configurations
-    func configure(with trainMovement: TrainMovement) {
-        self.trainMovement = trainMovement
-        let vm: TrainMovementViewModel = TrainMovementViewModelImpl(trainMovement: trainMovement)
-        self.trainMovementView.configure(with: vm)
+    /// Using `Mirror` to obtain value of a property by given name (label)
+    /// - Parameter label: property name
+    /// - Returns: optional property value
+    func value<T>(forLabel label: String) -> T? {
+        var result: T? = nil
+        let mirror = Mirror(reflecting: self)
+                
+        for child in mirror.children {
+            if child.label == label {
+                result = child.value as? T
+                break
+            }
+        }
+        return result
     }
 }

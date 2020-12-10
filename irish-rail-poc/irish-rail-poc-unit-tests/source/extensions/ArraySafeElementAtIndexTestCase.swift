@@ -1,6 +1,6 @@
 //
-//  TrainMovementCollectionViewCell.swift
-//  irish-rail-poc
+//  ArraySafeElementAtIndexTestCase.swift
+//  irish-rail-poc-unit-tests
 //
 //  MIT License
 //
@@ -25,36 +25,42 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import XCTest
 
-class TrainMovementCollectionViewCell: UICollectionViewCell {
+class ArraySafeElementAtIndexTestCase: XCTestCase {
     
     // MARK: - Properties
-    static var identifier: String {
-        return String(describing: TrainMovementCollectionViewCell.self)
-    }
-    @IBOutlet private weak var trainMovementView: TrainMovementView!
-    private(set) var trainMovement: TrainMovement?
+    private var sut: Array<NSObject>!
     
     // MARK: - Life cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setUpWithError() throws {
+        sut = Array<NSObject>.init(repeating: NSObject(), count: 5)
+    }
+
+    override func tearDownWithError() throws {
+        sut = nil
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.trainMovementView.resetUI()
+    // MARK: - Tests
+    func test_whenAccessingOutOfBoundsIndex_nilIsReturned() {
+        // given
+        let index = sut.count
+        
+        // when
+        let element = sut[safeAt: index]
+        
+        // then
+        XCTAssertNil(element)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.roundCorners(with: 4)
-    }
-    
-    // MARK: - Configurations
-    func configure(with trainMovement: TrainMovement) {
-        self.trainMovement = trainMovement
-        let vm: TrainMovementViewModel = TrainMovementViewModelImpl(trainMovement: trainMovement)
-        self.trainMovementView.configure(with: vm)
+    func test_whenAccessingWithinBoundsIndex_correctElementIsReturned() {
+        // given
+        let index = 0
+        let expectedElement = sut.first
+        
+        // when
+        let actualElement = sut[safeAt: index]
+        
+        XCTAssertTrue(expectedElement === actualElement)
     }
 }
